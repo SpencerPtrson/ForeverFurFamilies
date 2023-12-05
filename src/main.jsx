@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { PrivateRoutes } from "./Components/PrivateRoutes.jsx";
 import { UserProfile } from "./Components/User Items/UserProfile.jsx";
 import { Adoption } from "./Components/User Items/Adoption.jsx";
@@ -13,6 +13,8 @@ import { Register } from "./Components/User Items/Register.jsx";
 import { SuccessStory } from "./Components/User Items/SuccessStory.jsx";
 import AllPetsList from "./Components/Pets/AllPetsList.jsx";
 import SpecificPet from "./Components/Pets/SpecificPet.jsx";
+import NavigationBar from "./Components/Home/NavBar.jsx";
+import HomePage from "./Components/Home/Homepage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
             element: <Adoption />,
           },
         ],
+      },
+      {
+        path: "/",
+        element: <HomePage />,
       },
       {
         path: "/meetTheTeam",
