@@ -21,84 +21,89 @@ app.use(
 );
 
 // Import Handler Functions
-import handlerFunctions from './controller.js'
-
+import handlerFunctions from "./controller.js";
 
 //#region Users
 
-  // Get all users
-  app.get('/api/users', handlerFunctions.getUsers);
+// Get all users
+app.get("/api/users", handlerFunctions.getUsers);
 
-  // Get user by Id
-  app.get('/api/users/:userId', handlerFunctions.getUserById);
+// Get user by Id
+app.get("/api/users/:userId", handlerFunctions.getUserById);
 
-  // Create new user
-  app.post('/api/users/create', handlerFunctions.createUser);
+// Create new user
+app.post("/api/users/create", handlerFunctions.createUser);
 
-  // Edit a User
-  app.put('/api/users/edit/:userId', handlerFunctions.editUser);
+// Edit a User
+app.put("/api/users/edit/:userId", handlerFunctions.editUser);
 
-  // Delete user
-  app.delete('/api/users/delete/:userId', handlerFunctions.deleteUser);
+// Delete user
+app.delete("/api/users/delete/:userId", handlerFunctions.deleteUser);
 
 //#endregion Users
 
-
 //#region Pets
 
-  // Get all pets
-  app.get('/api/pets', handlerFunctions.getPets);
+// Get all pets
+app.get("/api/pets", handlerFunctions.getPets);
 
-  // Get pet by Id
-  app.get('/api/pets/:petId', handlerFunctions.getPetById);
+// Get pet by Id
+app.get("/api/pets/:petId", handlerFunctions.getPetById);
 
-  // Create new pet
-  app.post('/api/pets/create', handlerFunctions.createPet);
+// Create new pet
+app.post("/api/pets/create", handlerFunctions.createPet);
 
-  // Edit a pet
-  app.put('/api/pets/edit/:petId', handlerFunctions.editPet);
+// Edit a pet
+app.put("/api/pets/edit/:petId", handlerFunctions.editPet);
 
-  // Delete pet
-  app.delete('/api/pets/delete/:petId', handlerFunctions.deletePet);
+// Delete pet
+app.delete("/api/pets/delete/:petId", handlerFunctions.deletePet);
 
 //#endregion Pets
 
-
 //#region Stories
 
-  // Get all stories
-  app.get('/api/stories', handlerFunctions.getStories);
+// Get all stories
+app.get("/api/stories", handlerFunctions.getStories);
 
-  // Get story by Id
-  app.get('/api/stories/:storyId', handlerFunctions.getStoryById);
+// Get story by Id
+app.get("/api/stories/:storyId", handlerFunctions.getStoryById);
 
-  // Create new story
-  app.post('/api/stories/create', handlerFunctions.createStory);
+// Create new story
+app.post("/api/stories/create", handlerFunctions.createStory);
 
-  // Edit a story
-  app.put('/api/stories/edit/:storyId', handlerFunctions.editStory);
+// Edit a story
+app.put("/api/stories/edit/:storyId", handlerFunctions.editStory);
 
-  // Delete story
-  app.delete('/api/stories/delete/:storyId', handlerFunctions.deleteStory);
+// Delete story
+app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 
 //#endregion Stories
 
-
 //#region Appointments
 
-  // Get all appointments
-  app.get('/api/appointments', handlerFunctions.getAppointments);
+// Get all appointments
+app.get("/api/appointments", handlerFunctions.getAppointments);
 
-  // Get appointment by Id
-  app.get('/api/appointments/:appointmentId', handlerFunctions.getAppointmentById);
+// Get appointment by Id
+app.get(
+  "/api/appointments/:appointmentId",
+  handlerFunctions.getAppointmentById
+);
 
-  // Create new appointment
-  app.post('/api/appointments/create', handlerFunctions.createAppointment);
+// Create new appointment
+app.post("/api/appointments/create", handlerFunctions.createAppointment);
 
-  // Edit a appointment
-  app.put('/api/appointments/edit/:appointmentId', handlerFunctions.editAppointment);
+// Edit a appointment
+app.put(
+  "/api/appointments/edit/:appointmentId",
+  handlerFunctions.editAppointment
+);
 
-  // Delete appointment
-  app.delete('/api/storieappointmentss/delete/:appointmentId', handlerFunctions.deleteAppointment);
+// Delete appointment
+app.delete(
+  "/api/storieappointmentss/delete/:appointmentId",
+  handlerFunctions.deleteAppointment
+);
 
 //#endregion Appointments

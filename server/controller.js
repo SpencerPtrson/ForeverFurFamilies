@@ -113,7 +113,6 @@ const handlerFunctions = {
 
   //#endregion Users
 
-
   //#region Pets
 
   getPets: async (req, res) => {
@@ -239,7 +238,6 @@ const handlerFunctions = {
 
   //#endregion Pets
 
-
   //#region Stories
 
   getStories: async (req, res) => {
@@ -334,7 +332,6 @@ const handlerFunctions = {
   },
 
   //#endregion Stories
-
 
   //#region Appointments
   getAppointments: async (req, res) => {
