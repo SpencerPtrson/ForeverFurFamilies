@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PrivateRoutes } from "./Components/PrivateRoutes.jsx";
@@ -11,6 +11,8 @@ import { MeetTheTeam } from "./Components/User Items/MeetTheTeam.jsx";
 import { Login } from "./Components/User Items/Login.jsx";
 import { Register } from "./Components/User Items/Register.jsx";
 import { SuccessStory } from "./Components/User Items/SuccessStory.jsx";
+import AllPetsList from "./Components/Pets/AllPetsList.jsx";
+import SpecificPet from "./Components/Pets/SpecificPet.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,33 +49,16 @@ const router = createBrowserRouter([
         path: "/successStory",
         element: <SuccessStory />,
       },
+      {
+        path: "/AllPets",
+        element: <AllPetsList />,
+      },
+      {
+        path: "/SpecificPet",
+        element: <SpecificPet />,
+      },
     ],
   },
-  {
-    path: "/meetTheTeam",
-    element: <MeetTheTeam />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/successStory",
-    element: <SuccessStory />,
-  },
-  //* Will be added after next commit
-  // {
-  //   path: "/AllPets",
-  //   element: <AllPetsList />,
-  // },
-  // {
-  //   path: "/SpecificPet",
-  //   element: <SpecificPet />,
-  // },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
