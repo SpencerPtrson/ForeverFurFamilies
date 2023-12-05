@@ -10,7 +10,6 @@ function App() {
     <div>
       <NavigationBar />
       <Outlet/>
-      <HomePage />
     </div>
   );
 }
