@@ -158,8 +158,8 @@ Appointment.init(
     },
 );
 
-User.hasMany(Pet);
-Pet.belongsTo(User);
+User.hasMany(Pet)
+Pet.belongsTo(User)
 
 User.hasMany(Story);
 Story.belongsTo(User);
@@ -169,4 +169,7 @@ Appointment.belongsTo(User);
 
 Pet.hasOne(Story);
 Story.belongsTo(Pet);
+
+Pet.hasMany(Appointment);
+Appointment.belongsTo(Pet);
 
