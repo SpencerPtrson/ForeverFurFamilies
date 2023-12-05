@@ -1,29 +1,90 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --color-primary: #2f67ec;
+}
+body{
+  font-family:'Courier New', Courier, monospace;
+  background: #ffffff;
+  color:#080808;
+  margin:0;
+  height: 100vh;
+  display: grid;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+nav {
+  position: relative;
+  background: green;
+  font-weight: 900;
+  font-size: 10;
+  display:flexbox;
+  padding: 0px;
+  width: 100%;
+}
+
+nav .item {
+  color: white;
+  font-size: 1rem;
+  display: inline-block;
+  position: relative;
+  padding: 0 20px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  z-index: 5;
+  min-width: 16.6666%;
+  line-height: 60px;
+  text-align: center;
 }
-button:hover {
-  border-color: #646cff;
-} */
+.dropdown {
+  overflow:hidden;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 62px;
+}
+.dropdown > div {
+  transform: translate(0,-100%);
+  transition: 0.5s 0.1s;
+  position: relative;
+}
+.dropdown a {
+  color: white;
+  display: block;
+  padding:0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: green;
+}
+.dropdown a:hover {
+  background: lightgreen;
+  color:black
+}
+.underline{
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  height: 6px;
+  width: 16.6666%;
+  background: lightgreen;
+  transition: 0.35s;
+  transform: translateX(0);
+}
+nav .item:hover > .dropdown > div{
+  transform:translate(0);
+}
+nav .item:nth-child(1):hover ~ .underline{
+  transform:translate(0);
+}
+nav .item:nth-child(2):hover ~ .underline{
+  transform: translate(100%, 0);
+}
+nav .item:nth-child(3):hover ~ .underline{
+  transform: translate(200%, 0);
+}
+nav .item:nth-child(4):hover ~ .underline{
+  transform: translate(300%, 0);
+}
+nav .item:nth-child(5):hover ~ .underline{
+  transform: translate(400%, 0);
+}
+nav .item:nth-child(6):hover ~ .underline{
+  transform: translate(500%, 0);
+}
