@@ -1,6 +1,60 @@
 import { User, Pet, Story, Appointment } from "./database/models.js";
+import bcryptjs from "bcryptjs";
+
+import session from "express-session";
 
 const handlerFunctions = {
+  //#region AccountManagement
+  login: async (req, res) => {
+    const { email, password } = req.body;
+    console.log(req.body);
+
+    try {
+      console.log("Attempting Login");
+      const user = await User.scope("withPassword").findOne({
+        where: { email },
+      });
+      console.log(user);
+
+      if (!user) {
+        console.log("user not found");
+        return res
+          .status(401)
+          .json({ success: false, message: "User not found" });
+      }
+
+      const isMatch = bcryptjs.compareSync(password, user.password);
+      console.log("password value:", password);
+      console.log("user password value:", user.password);
+      console.log("is match value:");
+      console.log(isMatch);
+
+      if (!isMatch) {
+        console.log("no match found:");
+        return res
+          .status(401)
+          .json({ success: false, message: "Incorrect password" });
+      }
+
+      req.session.firstName = user.firstName;
+      req.session.email = user.email;
+      req.session.userId = user.userId;
+      req.session.isAdmin = user.isAdmin;
+
+      res.json({
+        success: true,
+        userId: user.userId,
+        username: user.firstName,
+      });
+      console.log("inside 43");
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).send("Internal server error");
+    }
+  },
+
+  //#endregion AccountManagement
+
   //#region Users
 
   getUsers: async (req, res) => {
