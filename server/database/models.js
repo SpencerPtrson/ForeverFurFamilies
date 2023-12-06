@@ -101,7 +101,7 @@ Pet.init(
     gender: DataTypes.STRING,
     picture: DataTypes.STRING,
     state: DataTypes.STRING,
-    zipCode: DataTypes.INTEGER,
+    zipCode: DataTypes.STRING,
     cityName: DataTypes.STRING,
     medicalHistory: DataTypes.TEXT,
     personality: DataTypes.TEXT,
