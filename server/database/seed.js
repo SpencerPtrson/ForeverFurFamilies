@@ -1,50 +1,46 @@
-import bcrypt from "bcryptjs";
-import { User, Pet, Story, Appointment, db } from "./models.js";
-import axios from "axios";
+import { User, Pet, Story, Appointment, db } from './models.js'
 
 async function seed() {
-  console.log("Syncing database...");
-  await db.sync({ force: true });
+    console.log('Syncing database...');
+    await db.sync({ force: true });
 
-  console.log("Seeding Users table...");
-  const users = [
-    {
-      email: "spencer@example.com",
-      password: await bcrypt.hash("spencerspassword", 12),
-      phoneNumber: "555-1234",
-      firstName: "Spencer",
-      lastName: "Peterson",
-      profilePicture: "profile1.jpg",
-    },
-    {
-      email: "wyatt@example.com",
-      password: await bcrypt.hash("wyattspassword", 12),
-      phoneNumber: "555-5678",
-      firstName: "Wyatt",
-      lastName: "Thayer",
-      profilePicture: "profile2.jpg",
-    },
-    {
-      email: "justin@example.com",
-      password: await bcrypt.hash("justinspassword", 12),
-      phoneNumber: "555-4321",
-      firstName: "Justin",
-      lastName: "Nelson",
-      profilePicture: "profile3.jpg",
-    },
-    {
-      email: "tito@example.com",
-      password: await bcrypt.hash("titospassword", 12),
-      phoneNumber: "555-8765",
-      firstName: "Tito",
-      lastName: "Nanni",
-      profilePicture: "profile4.jpg",
-    },
-  ];
+    console.log('Seeding Users table...');
+    const users = [
+        {
+            email:'spencer@example.com',
+            password: 'password',
+            phoneNumber: '555-1234',
+            firstName: 'Spencer',
+            lastName: 'Peterson',
+            profilePicture: 'profile1.jpg',
+        }, {
+            email:'wyatt@example.com',
+            password: 'password',
+            phoneNumber: '555-5678',
+            firstName: 'Wyatt',
+            lastName: 'Thayer',
+            profilePicture: 'profile2.jpg'
+        }, {
+            email: 'justin@example.com',
+            password: 'password',
+            phoneNumber: '555-4321',
+            firstName: 'Justin',
+            lastName: 'Nelson',
+            profilePicture: 'profile3.jpg'
+        }, {
+            email: 'tito@example.com',
+            password: 'password',
+            phoneNumber: '555-8765',
+            firstName: 'Tito',
+            lastName: 'Nanni',
+            profilePicture: 'profile4.jpg'
+        }
+    ];
 
-  for (const userData of users) {
-    await User.create(userData);
-  }
+    for (const userData of users) {
+        await User.create(userData);
+    }
+
 
   console.log("Seeding Pets table...");
   const pets = [
@@ -301,6 +297,6 @@ async function seed() {
   console.log("Data has been seeded from PetFinder API successfully");
 }
 
-seed().catch(console.error);
+    await seed().catch(console.error)
 
-// await db.close()
+    await db.close()
