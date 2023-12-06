@@ -1,9 +1,9 @@
-import { User, Pet, Story, Appointment, db} from "./models.js"
+import { User, Pet, Story, Appointment, db } from "./models.js";
 
 const specificSpeciesPets = await Pet.findAll({
-    where: {
-        species: 'Dog'
-    }
+  where: {
+    species: "Dog",
+  },
 });
 
 console.log(specificSpeciesPets);
