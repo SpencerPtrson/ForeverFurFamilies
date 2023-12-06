@@ -92,7 +92,7 @@ app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 app.get("/api/appointments", handlerFunctions.getAppointments);
 
 // Get Appointments by UserId
-app.get('/api/appointments/users/:userId')
+app.get('/api/appointments/users/:userId', handlerFunctions.getAppointmentsByUserId)
 
 // Get appointment by Id
 app.get(
