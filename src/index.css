@@ -31,7 +31,7 @@ nav .item {
   min-width: 16.6666%;
   line-height: 60px;
   text-align: center;
-  text-decoration: none;
+  text-decoration:none;
 }
 .dropdown {
   overflow:hidden;
@@ -53,6 +53,7 @@ nav .item {
   height: 40px;
   line-height: 40px;
   background: green;
+  text-decoration: none;
 }
 .dropdown a:hover {
   background: lightgreen;
