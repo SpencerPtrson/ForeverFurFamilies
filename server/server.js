@@ -47,6 +47,9 @@ app.delete("/api/users/delete/:userId", handlerFunctions.deleteUser);
 // Get all pets
 app.get("/api/pets", handlerFunctions.getPets);
 
+// Get all not-adopted pets
+app.get('/api/pets/notAdopted', handlerFunctions.getNotAdoptedPets)
+
 // Get pet by Id
 app.get("/api/pets/:petId", handlerFunctions.getPetById);
 
@@ -66,6 +69,9 @@ app.delete("/api/pets/delete/:petId", handlerFunctions.deletePet);
 // Get all stories
 app.get("/api/stories", handlerFunctions.getStories);
 
+// Get stories by user id
+app.get('/api/stories/users/:userId', handlerFunctions.getStoriesByUserId);
+
 // Get story by Id
 app.get("/api/stories/:storyId", handlerFunctions.getStoryById);
 
@@ -84,6 +90,9 @@ app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 
 // Get all appointments
 app.get("/api/appointments", handlerFunctions.getAppointments);
+
+// Get Appointments by UserId
+app.get('/api/appointments/users/:userId')
 
 // Get appointment by Id
 app.get(

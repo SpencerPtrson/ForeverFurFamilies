@@ -128,6 +128,19 @@ const handlerFunctions = {
     }
   },
 
+  getNotAdoptedPets: async (req, res) => {
+    try {
+      const pets = await Pet.findAll({
+        where: { hasBeenAdopted: false },
+      });
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   getPetById: async (req, res) => {
     try {
       const { petId } = req.params;
@@ -253,6 +266,20 @@ const handlerFunctions = {
     }
   },
 
+  getStoriesByUserId: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const stories = await Story.findAll({
+        where: { userId: userId },
+      });
+      res.json({ success: true, stories });
+    } catch (error) {
+      console.log("Unable to get stories.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   getStoryById: async (req, res) => {
     try {
       const { storyId } = req.params;
@@ -338,6 +365,20 @@ const handlerFunctions = {
     try {
       const appointments = await Appointment.findAll({
         order: [["date", "DESC"]],
+      });
+      res.json({ success: true, appointments });
+    } catch (error) {
+      console.log("Unable to get appointments.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getAppointmentsByUserId: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const appointments = await Appointment.findAll({
+        where: { userId: userId },
       });
       res.json({ success: true, appointments });
     } catch (error) {
