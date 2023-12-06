@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import util from 'util';
-import connectToDB from "./db";
+import connectToDB from "./db.js";
+import bcryptjs from 'bcryptjs'
 
 export const db = await connectToDB('postgresql:///foreverfurfamilies');
 
@@ -65,7 +66,7 @@ User.init(
           attributes: {
             exclude: ["password"],
           },
-          order: [["id", "DESC"]],
+          order: [["userId", "DESC"]],
         },
         scopes: {
           withPassword: {
@@ -95,7 +96,9 @@ Pet.init(
         name: DataTypes.STRING,
         species:DataTypes.STRING,
         breed:DataTypes.STRING,
-        age: DataTypes.INTEGER,
+        age: DataTypes.STRING,
+        gender: DataTypes.STRING,
+        picture: DataTypes.STRING,
         state: DataTypes.STRING,
         zipCode: DataTypes.INTEGER,
         cityName: DataTypes.STRING,
@@ -127,7 +130,13 @@ Story.init(
         content: DataTypes.TEXT,
         adoptionDate: DataTypes.DATE,
         userSubmittedImage: DataTypes.STRING,
-        // userId if stories are user-specific?
+        // userId: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: User,
+        //         key: 'userId'
+        //     }
+        // }
     },
     {
         modelName: 'story',
@@ -150,7 +159,20 @@ Appointment.init(
             primaryKey: true,
         },
         date: DataTypes.DATE,
-        // add other fields maybe? like location?
+        // petId: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: Pet,
+        //         key: 'petId'
+        //     },
+        // },
+        // userId: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: User,
+        //         key: 'userId'
+        //     },
+        // },
     },
     {
         modelName: 'appointment',
@@ -158,18 +180,17 @@ Appointment.init(
     },
 );
 
-User.hasMany(Pet)
-Pet.belongsTo(User)
+User.hasMany(Pet, { foreignKey: "userId" })
+Pet.belongsTo(User, { foreignKey: "userId" })
 
-User.hasMany(Story);
-Story.belongsTo(User);
+User.hasMany(Story, { foreignKey: "userId" });
+Story.belongsTo(User, { foreignKey: "userId" });
 
-User.hasMany(Appointment);
-Appointment.belongsTo(User);
+User.hasMany(Appointment, { foreignKey: "userId" });
+Appointment.belongsTo(User, { foreignKey: "userId" });
 
 Pet.hasOne(Story);
 Story.belongsTo(Pet);
 
-Pet.hasMany(Appointment);
-Appointment.belongsTo(Pet);
-
+Pet.hasMany(Appointment, { foreignKey: "petId" });
+Appointment.belongsTo(Pet, { foreignKey: "petId" });

@@ -2,6 +2,7 @@ import { User, Pet, Story, Appointment } from "./database/models";
 
 const handlerFunctions = {
   //#region Users
+
   getUsers: async (req, res) => {
     try {
       const users = await User.findAll({
@@ -35,11 +36,11 @@ const handlerFunctions = {
         firstName,
         lastName,
         phoneNumber,
-        profilePicURL,
+        profilePicture,
       } = req.body;
 
       console.log(
-        `Creating user ${firstName} ${lastName} with email: ${email}, password: ${password}, phone: ${phoneNumber}, and profilePicURL: ${profilePicURL}`
+        `Creating user ${firstName} ${lastName} with email: ${email}, password: ${password}, phone: ${phoneNumber}, and profilePicURL: ${profilePicture}`
       );
       const newUser = await User.create({
         email,
@@ -47,7 +48,7 @@ const handlerFunctions = {
         firstName,
         lastName,
         phoneNumber,
-        profilePicURL,
+        profilePicture,
       });
 
       // REPLACE WITH COOKIES
@@ -56,11 +57,40 @@ const handlerFunctions = {
       req.session.firstName = newUser.firstName;
       req.session.lastName = newUser.lastName;
       req.session.phoneNumber = newUser.phoneNumber;
-      req.session.profilePicURL = newUser.profilePicURL;
+      req.session.profilePicture = newUser.profilePicture;
 
       res.json({ success: true, newUser });
     } catch (error) {
       console.log("Unable to create account");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  editUser: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const {
+        email,
+        password,
+        firstName,
+        lastName,
+        phoneNumber,
+        profilePicture,
+      } = req.body;
+
+      const user = await User.findByPk(userId);
+      user.email = email;
+      user.password = password;
+      user.firstName = firstName;
+      user.lastName = lastName;
+      user.phoneNumber = phoneNumber;
+      user.profilePicture = profilePicture;
+      await user.save();
+
+      res.json({ success: true, user });
+    } catch (error) {
+      console.log("Unable to edit account");
       console.log("Error", error);
       res.json({ success: false, error });
     }
@@ -80,13 +110,28 @@ const handlerFunctions = {
       res.json({ success: false, error });
     }
   },
+
   //#endregion Users
 
   //#region Pets
+
   getPets: async (req, res) => {
     try {
       const pets = await Pet.findAll({
         order: [["name", "ASC"]],
+      });
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getNotAdoptedPets: async (req, res) => {
+    try {
+      const pets = await Pet.findAll({
+        where: { hasBeenAdopted: false },
       });
       res.json({ success: true, pets });
     } catch (error) {
@@ -151,6 +196,44 @@ const handlerFunctions = {
     }
   },
 
+  editPet: async (req, res) => {
+    try {
+      const { petId } = req.params;
+      const {
+        name,
+        species,
+        breed,
+        age,
+        state,
+        cityName,
+        medicalHistory,
+        personalHistory,
+        hasBeenAdopted,
+        images,
+      } = req.body;
+
+      const pet = await Pet.findByPk(petId);
+      pet.name = name;
+      pet.species = species;
+      pet.breed = breed;
+      pet.age = age;
+      pet.state = state;
+      pet.cityName = cityName;
+      pet.medicalHistory = medicalHistory;
+      pet.personalHistory = personalHistory;
+      pet.hasBeenAdopted = hasBeenAdopted;
+
+      // NEED TO EDIT CORRESPONDING IMAGES IN AN IMAGE TABLE
+      await pet.save();
+
+      res.json({ success: true, pet });
+    } catch (error) {
+      console.log("Unable to edit pet");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   deletePet: async (req, res) => {
     try {
       const { petId } = req.body;
@@ -165,13 +248,29 @@ const handlerFunctions = {
       res.json({ success: false, error });
     }
   },
+
   //#endregion Pets
 
   //#region Stories
+
   getStories: async (req, res) => {
     try {
       const stories = await Story.findAll({
         order: [["userId", "ASC"]],
+      });
+      res.json({ success: true, stories });
+    } catch (error) {
+      console.log("Unable to get stories.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getStoriesByUserId: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const stories = await Story.findAll({
+        where: { userId: userId },
       });
       res.json({ success: true, stories });
     } catch (error) {
@@ -219,6 +318,31 @@ const handlerFunctions = {
     }
   },
 
+  editStory: async (req, res) => {
+    try {
+      const { storyId } = req.params;
+      const { content, adoptionDate, userSubmittedImage, petId } = req.body;
+
+      // Edit story fields
+      const story = await Story.findByPk(storyId);
+      story.content = content;
+      story.adoptionDate = adoptionDate;
+      story.userSubmittedImage = userSubmittedImage;
+
+      // set story's pet
+      const pet = await Pet.findByPk(petId);
+      await story.setPet(pet);
+
+      await story.save();
+
+      res.json({ success: true, story });
+    } catch (error) {
+      console.log("Unable to edit story");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   deleteStory: async (req, res) => {
     try {
       const { storyId } = req.body;
@@ -233,6 +357,7 @@ const handlerFunctions = {
       res.json({ success: false, error });
     }
   },
+
   //#endregion Stories
 
   //#region Appointments
@@ -240,6 +365,20 @@ const handlerFunctions = {
     try {
       const appointments = await Appointment.findAll({
         order: [["date", "DESC"]],
+      });
+      res.json({ success: true, appointments });
+    } catch (error) {
+      console.log("Unable to get appointments.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getAppointmentsByUserId: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const appointments = await Appointment.findAll({
+        where: { userId: userId },
       });
       res.json({ success: true, appointments });
     } catch (error) {
@@ -289,6 +428,33 @@ const handlerFunctions = {
     }
   },
 
+  editAppointment: async (req, res) => {
+    try {
+      const { appointmentId } = req.params;
+      const { date, userId, petId } = req.body;
+
+      // Edit appointment fields
+      const appointment = await Appointment.findByPk(appointmentId);
+      appointment.date = date;
+
+      // set appointment's pet
+      const pet = await Pet.findByPk(petId);
+      await appointment.setPet(pet);
+
+      // Set appointment's user (person setting up the appointment)
+      const user = await User.findByPk(userId);
+      await appointment.setUser(user);
+
+      await appointment.save();
+
+      res.json({ success: true, appointment });
+    } catch (error) {
+      console.log("Unable to edit appointment");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   deleteAppointment: async (req, res) => {
     try {
       const { appointmentId } = req.body;
@@ -305,3 +471,5 @@ const handlerFunctions = {
   },
   //#endregion Appointments
 };
+
+export default handlerFunctions;
