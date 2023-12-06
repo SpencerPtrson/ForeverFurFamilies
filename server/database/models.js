@@ -96,7 +96,7 @@ Pet.init(
         name: DataTypes.STRING,
         species:DataTypes.STRING,
         breed:DataTypes.STRING,
-        age: DataTypes.INTEGER,
+        age: DataTypes.STRING,
         gender: DataTypes.STRING,
         picture: DataTypes.STRING,
         state: DataTypes.STRING,
