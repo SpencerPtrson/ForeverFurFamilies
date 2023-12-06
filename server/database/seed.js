@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs'
 import { User, Pet, Story, Appointment, db } from './models.js'
 
 async function seed() {
@@ -9,28 +8,28 @@ async function seed() {
     const users = [
         {
             email:'spencer@example.com',
-            password: await bcrypt.hash('spencerspassword', 12),
+            password: 'password',
             phoneNumber: '555-1234',
             firstName: 'Spencer',
             lastName: 'Peterson',
             profilePicture: 'profile1.jpg',
         }, {
             email:'wyatt@example.com',
-            password: await bcrypt.hash('wyattspassword', 12),
+            password: 'password',
             phoneNumber: '555-5678',
             firstName: 'Wyatt',
             lastName: 'Thayer',
             profilePicture: 'profile2.jpg'
         }, {
             email: 'justin@example.com',
-            password: await bcrypt.hash('justinspassword', 12),
+            password: 'password',
             phoneNumber: '555-4321',
             firstName: 'Justin',
             lastName: 'Nelson',
             profilePicture: 'profile3.jpg'
         }, {
             email: 'tito@example.com',
-            password: await bcrypt.hash('titospassword', 12),
+            password: 'password',
             phoneNumber: '555-8765',
             firstName: 'Tito',
             lastName: 'Nanni',
@@ -214,6 +213,6 @@ async function seed() {
  
     }
 
-    seed().catch(console.error)
+    await seed().catch(console.error)
 
-    // await db.close()
+    await db.close()

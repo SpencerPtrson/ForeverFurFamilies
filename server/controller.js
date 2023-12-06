@@ -1,4 +1,4 @@
-import { User, Pet, Story, Appointment } from "./database/models";
+import { User, Pet, Story, Appointment } from "./database/models.js";
 
 const handlerFunctions = {
   //#region Users
