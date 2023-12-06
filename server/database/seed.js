@@ -1,4 +1,5 @@
 import { User, Pet, Story, Appointment, db } from './models.js'
+import axios from 'axios';
 
 async function seed() {
     console.log('Syncing database...');

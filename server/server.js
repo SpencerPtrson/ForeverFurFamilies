@@ -152,7 +152,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 ViteExpress.listen(app, PORT, () => {
-  console.log('server is live at PORT 8000')
+  console.log(`server is live at PORT http://localhost:${PORT}`)
 })
 
 //#endregion Appointments
