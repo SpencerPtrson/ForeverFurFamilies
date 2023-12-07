@@ -10,7 +10,7 @@ export const MeetTheTeam = () => {
             {
                 name: "Wyatt Thayer",
                 bio: "Wyatt loves birds",
-                image: "path-to-bob-image.jpg" 
+                image: "path-to-wyatt-image.jpg" 
             }, {
                 name: "Justin Nelson",
                 bio: "Justin loves cats",
