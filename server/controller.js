@@ -42,15 +42,22 @@ const handlerFunctions = {
           .json({ success: false, message: "Incorrect password" });
       }
 
-      req.session.firstName = user.firstName;
-      req.session.email = user.email;
+      // REPLACE WITH COOKIES EVENTUALLY
       req.session.userId = user.userId;
+      req.session.email = user.email;
+      req.session.firstName = user.firstName;
+      req.session.lastName = user.lastName;
+      req.session.phoneNumber = user.phoneNumber;
+      req.session.profilePicture = user.profilePicture;
       req.session.isAdmin = user.isAdmin;
 
       res.json({
         success: true,
         userId: user.userId,
-        username: user.firstName,
+        email: user.email,
+        firstName: user.firstName,
+        profilePicture: user.profilePicture,
+        isAdmin: user.isAdmin
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -69,7 +76,24 @@ const handlerFunctions = {
       if (req.session.userId) {
         console.log("Session userId is valid.");
         const user = await User.findByPk(req.session.userId);
-  
+        console.log("Found User: ", user);
+
+        res.send({
+          success: true,
+          userId: user?.userId ?? null,
+          email: user?.email ?? null,
+          firstName: user?.firstName ?? null,
+          isAdmin: user?.isAdmin ?? false
+        });
+      } else {
+        console.log("No session.userId available.");
+        res.send({
+          success: false,
+          userId: null,
+          email: null,
+          firstName: null,
+          isAdmin: false
+        });
       }
     } catch (error) {
       console.log("User check failed");
@@ -136,6 +160,7 @@ const handlerFunctions = {
       req.session.lastName = newUser.lastName;
       req.session.phoneNumber = newUser.phoneNumber;
       req.session.profilePicture = newUser.profilePicture;
+      req.session.isAdmin = false;
 
       res.json({ success: true, newUser });
     } catch (error) {
@@ -615,7 +640,7 @@ const handlerFunctions = {
     try {
       const { userId, petId } = req.body;
       console.log(userId);
-      console.log("Pet Id:", petId)
+      console.log("Pet Id:", petId);
       const user = await User.findByPk(userId);
       const pet = await Pet.findByPk(petId);
 
