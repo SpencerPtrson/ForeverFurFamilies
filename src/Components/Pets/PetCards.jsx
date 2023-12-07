@@ -4,12 +4,12 @@ import Card from "react-bootstrap/Card";
 export default function PetCards({pet}) {
   //  const { pets } = useLoaderData();  // Will be added later
 
-  const { petId, image, name, species, breed, cityname, state, gender, age } = pet;
-
+  const { petId, picture, name, species, breed, cityname, state, gender, age } = pet;
+console.log(picture)
   return (
     <Card key={petId}>
       <Link to={`/pets/${petId}`}>
-        <Card.Img variant="top" src={image} />
+        <Card.Img variant="top" src={picture} />
         <Card.Body>
           <Card.Text>{name}</Card.Text>
           <Card.Text>
