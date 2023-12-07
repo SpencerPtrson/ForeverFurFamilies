@@ -297,7 +297,7 @@ async function seed() {
       age: pet.age,
       gender: pet.gender,
       picture: pet.photos[0]?.large ?? replacementImage,
-      state: pet.contact.address.city ?? null,
+      state: pet.contact.address.state ?? null,
       zipCode: pet.contact.address.postcode ?? null,
       cityName: pet.contact.address.city ?? null,
       medicalHistory: medicalHistory,
