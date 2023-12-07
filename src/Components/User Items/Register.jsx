@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Register.css'
 
 
 export const Register = () => {
@@ -45,7 +46,8 @@ export const Register = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className='register-container'>
+        <form onSubmit={handleSubmit} className="register-form">
             <h2>Sign Up Now</h2>
             <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
             <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
@@ -55,5 +57,6 @@ export const Register = () => {
             <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="Phone Number"/>
             <button type="submit">Register</button>
         </form>
+        </div>
     );
 };
