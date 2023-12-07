@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PetCards from "./PetCards";
+import './AllPets.css'
 
 export default function AllPetsList() {
   const pets = [
