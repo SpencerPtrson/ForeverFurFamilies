@@ -25,6 +25,15 @@ app.use(
 // Import Handler Functions
 import handlerFunctions from "./controller.js";
 
+//#region AccountManagement
+
+// User authentication
+app.post("/api/login", handlerFunctions.login);
+
+
+//#endregion AccountManagement
+
+
 //#region Users
 
 // Get all users
@@ -43,6 +52,7 @@ app.put("/api/users/edit/:userId", handlerFunctions.editUser);
 app.delete("/api/users/delete/:userId", handlerFunctions.deleteUser);
 
 //#endregion Users
+
 
 //#region Pets
 
@@ -69,6 +79,7 @@ app.delete("/api/pets/delete/:petId", handlerFunctions.deletePet);
 
 //#endregion Pets
 
+
 //#region Stories
 
 // Get all stories
@@ -90,6 +101,7 @@ app.put("/api/stories/edit/:storyId", handlerFunctions.editStory);
 app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 
 //#endregion Stories
+
 
 //#region Appointments
 
@@ -123,49 +135,8 @@ app.delete(
   handlerFunctions.deleteAppointment
 );
 
-// User authentication
-app.post("/api/login", async (req, res) => {
-  const { email, password } = req.body;
-  console.log(req.body);
-
-  try {
-    console.log("inside try");
-    const user = await User.scope("withPassword").findOne({ where: { email } });
-    console.log(user);
-
-    if (!user) {
-      console.log("inside try 2");
-      return res
-        .status(401)
-        .json({ success: false, message: "User not found" });
-    }
-
-    const isMatch = bcryptjs.compareSync(password, user.password);
-    console.log("password value:", password);
-    console.log("user password value:", user.password);
-    console.log("is match value:");
-    console.log(isMatch);
-
-    if (!isMatch) {
-      console.log("no match found:");
-      return res
-        .status(401)
-        .json({ success: false, message: "Incorrect password" });
-    }
-
-    res.json({ success: true, userId: user.userId, username: user.firstName });
-    console.log("inside 43");
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).send("Internal server error");
-  }
-});
-
-ViteExpress.listen(app, PORT, () => {
-  console.log(`server is live at PORT http://localhost:${PORT}`);
-});
-
 //#endregion Appointments
+
 
 //#region FavoritePets
 // Get all favorite pets
@@ -184,3 +155,8 @@ app.post("/api/favoritePets/create", handlerFunctions.createFavoritePet);
 app.delete("/api/favoritePets/delete/:favoritePetId", handlerFunctions.deleteFavoritePet);
 
 //#endregion FavoritePets
+
+
+ViteExpress.listen(app, PORT, () => {
+  console.log(`server is live at PORT http://localhost:${PORT}`);
+});

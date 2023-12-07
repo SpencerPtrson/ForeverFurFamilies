@@ -14,15 +14,18 @@ export const Login = () => {
         e.preventDefault();
 
         try {
-            console.log('attempting try')
+            console.log('Attempting Login')
             const response = await axios.post('http://localhost:8000/api/login', { email, password });
-
+            console.log(response.data);
             if (response.data.success) {
                 dispatch({
                     type: 'LOGIN',
                     payload: {
                         userId: response.data.userId,
-                        username: response.data.username,
+                        email: response.data.email,
+                        firstName: response.data.firstName,
+                        profilePicture: response.data.profilePicture,
+                        isAdmin: response.data.isAdmin
                     }
                 });
 

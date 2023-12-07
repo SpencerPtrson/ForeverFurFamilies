@@ -1,18 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
-  username: "",
   userId: "",
+  email: "",
+  firstName: "",
+  profilePicture: "",
+  isAdmin: false,
   isAuth: false,
 };
 
 const reducer = (state = initialState, action) => {
+  console.log("Reducer - State:", state)
+  console.log("Action:", action);
   switch (action.type) {
     case "LOGIN":
       return {
         ...state,
         userId: action.payload?.userId,
-        username: action.payload?.username,
+        email: action.payload?.email,
+        firstName: action.payload?.firstName,
+        profilePicture: action.payload?.profilePicture,
+        isAdmin: action.payload?.isAdmin,
         isAuth: true,
       };
 
@@ -20,7 +28,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userId: "",
-        username: "",
+        email: "",
+        firstName: "",
+        profilePicture: "",
+        isAdmin: false,
         isAuth: false,
       };
 
