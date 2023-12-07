@@ -5,6 +5,10 @@ async function seed() {
     console.log('Syncing database...');
     await db.sync({ force: true });
 
+    let replacementImage = 'https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png';
+    let catImage = 'https://img.freepik.com/premium-vector/cat-vector-illustration-black-white-cat-coloring-book-page-children_160901-6328.jpg?w=740';
+    let dogImage = 'https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png';
+
     console.log('Seeding Users table...');
     const users = [
         {
@@ -51,7 +55,7 @@ async function seed() {
       breed: "Labrador Retriever",
       age: "2",
       gender: "Male",
-      picture: `picture1.jpg`,
+      picture: dogImage,
       state: "UT",
       zipCode: '84117',
       cityName: "Millcreek",
@@ -65,7 +69,7 @@ async function seed() {
       breed: "Siamese",
       age: 'Senior',
       gender: "Male",
-      picture: `picture2.jpg`,
+      picture: catImage,
       state: "UT",
       zipCode: '84663',
       cityName: "Springville",
@@ -79,7 +83,7 @@ async function seed() {
       breed: "Orange",
       age: "Senior",
       gender: "Male",
-      picture: `picture3.jpg`,
+      picture: catImage,
       state: "UT",
       zipCode: '84043',
       cityName: "Lehi",
@@ -93,7 +97,7 @@ async function seed() {
       breed: "Black",
       age: "Senior",
       gender: "Male",
-      picture: `picture4.jpg`,
+      picture: catImage,
       state: "UT",
       zipCode: '84117',
       cityName: "Millcreek",
@@ -107,7 +111,7 @@ async function seed() {
       breed: `Crocker Spaniel`,
       age: "Senior",
       gender: "Male",
-      picture: "picture5.jpg",
+      picture: dogImage,
       state: "UT",
       zipCode: '84093',
       cityName: "Sandy",
@@ -121,7 +125,7 @@ async function seed() {
       breed: "Boxer",
       age: "Senior",
       gender: "Female",
-      picture: `picture6.jpg`,
+      picture: dogImage,
       state: "UT",
       zipCode: '84047',
       cityName: "Midvale",
@@ -135,7 +139,7 @@ async function seed() {
       breed: "German Shepherd",
       age: "Senior",
       gender: "Female",
-      picture: `picture7.jpg`,
+      picture: dogImage,
       state: "UT",
       zipCode: '84009',
       cityName: "South Jordan",
@@ -149,7 +153,7 @@ async function seed() {
       breed: "Bulldog",
       age: "Senior",
       gender: "Male",
-      picture: `picture8.jpg`,
+      picture: dogImage,
       state: "UT",
       zipCode: '84097',
       cityName: "Provo",
@@ -259,11 +263,10 @@ async function seed() {
     console.log(pet);
 
 
-    let replacementImage = 'https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png';
     // If the pet has no large photo, set a stock image based on the species
     if (!pet.photos[0]?.large) {
-      if (/cat/gi.test(pet.species)) replacementImage = 'https://img.freepik.com/premium-vector/cat-vector-illustration-black-white-cat-coloring-book-page-children_160901-6328.jpg?w=740';
-      else if (/dog/gi.test(pet.species)) replacementImage = 'https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png';
+      if (/cat/gi.test(pet.species)) replacementImage = catImage;
+      else if (/dog/gi.test(pet.species)) replacementImage = dogImage;
     }
 
     let medicalHistory = "";

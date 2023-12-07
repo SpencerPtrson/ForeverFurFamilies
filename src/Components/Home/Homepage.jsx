@@ -12,7 +12,7 @@ const HomePage = () => {
   useEffect(() => {
     const getSeniorPets = async () => {
       try {
-        const response = await axios.get(`/api/pets/senior`);
+        const response = await axios.get(`/api/pets`);
         setSeniorPets(response.data.pets);
         console.log(response.data.pets);
       } catch (error) {
