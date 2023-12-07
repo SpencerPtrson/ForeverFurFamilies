@@ -168,6 +168,19 @@ ViteExpress.listen(app, PORT, () => {
 //#endregion Appointments
 
 //#region FavoritePets
+// Get all favorite pets
+app.get("/api/favoritePets", handlerFunctions.getAllFavoritePets);
 
+// Get all pets favorited by a user
+app.get("/api/favoritePets/users/:userId", handlerFunctions.getFavoritePetsByUserId);
+
+// Get all users who favorited a pet
+app.get('/api/favoritePets/pets/:petId', handlerFunctions.getUsersByFavoritePetId);
+
+// Create new pet
+app.post("/api/favoritePets/create", handlerFunctions.createFavoritePet);
+
+// Delete pet
+app.delete("/api/favoritePets/delete/:favoritePetId", handlerFunctions.deleteFavoritePet);
 
 //#endregion FavoritePets
