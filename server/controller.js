@@ -135,7 +135,19 @@ const handlerFunctions = {
       });
       res.json({ success: true, pets });
     } catch (error) {
-      console.log("Unable to get pets.");
+      console.log("Unable to get adoptable pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getSeniorPets: async (req, res) => {
+    try {
+      let pets = await Pet.findAll();
+      pets = pets.filter(pet => /senior/gi.test(pet.age));
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get senior pets.");
       console.log("Error", error);
       res.json({ success: false, error });
     }
@@ -470,6 +482,17 @@ const handlerFunctions = {
     }
   },
   //#endregion Appointments
+
+  //#region FavoritePets
+  getAllFavoritePets: async (req, res) => {
+
+  },
+
+  getFavoritePetsByUserId: async (req, res) => {
+
+  }
+  
+  //#endregion FavoritePets
 };
 
 export default handlerFunctions;
