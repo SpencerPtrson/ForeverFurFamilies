@@ -12,7 +12,7 @@ body{
 
 nav {
   position: relative;
-  background: green;
+  background: rgb(16, 16, 194);
   font-weight: 900;
   font-size: 10;
   display:flexbox;
@@ -46,18 +46,18 @@ nav .item {
   position: relative;
 }
 .dropdown a {
-  color: white;
+  color: black;
   display: block;
   padding:0;
   width: 100%;
   height: 40px;
   line-height: 40px;
-  background: green;
+  background: silver;
   text-decoration: none;
 }
 .dropdown a:hover {
-  background: lightgreen;
-  color:black
+  background: rgb(16, 16, 194);
+  color:white
 }
 .underline{
   position: absolute;
@@ -65,7 +65,7 @@ nav .item {
   bottom: 0;
   height: 6px;
   width: 16.6666%;
-  background: lightgreen;
+  background: silver;
   transition: 0.35s;
   transform: translateX(0);
 }
