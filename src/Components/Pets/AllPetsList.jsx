@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import PetCards from "./PetCards";
+import './AllPets.css'
+import { useSearchParams } from "react-router-dom";
 
-export default function AllPetsList() {
+
+export default function AllPetsList({ type }) {
+  // const [searchParams] = useSearchParams();
+  // const filter = searchParams.get("filter")
   const pets = [
     {
       petId: "1",

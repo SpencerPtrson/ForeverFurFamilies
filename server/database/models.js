@@ -178,6 +178,27 @@ Appointment.init(
   }
 );
 
+export class FavoritePet extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+FavoritePet.init(
+  {
+    favoritePetId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+  },
+  {
+    modelName: "favoritepet",
+    sequelize: db,
+  }
+);
+
+//#region TABLE RELATIONSHIPS
 User.hasMany(Pet, { foreignKey: "userId" });
 Pet.belongsTo(User, { foreignKey: "userId" });
 
@@ -192,3 +213,11 @@ Story.belongsTo(Pet);
 
 Pet.hasMany(Appointment, { foreignKey: "petId" });
 Appointment.belongsTo(Pet, { foreignKey: "petId" });
+
+Pet.hasMany(FavoritePet, { foreignKey: "petId" });
+FavoritePet.belongsTo(Pet, { foreignKey: "petId" });
+
+User.hasMany(FavoritePet, { foreignKey: "userId" });
+FavoritePet.belongsTo(User, { foreignKey: "userId" });
+
+//#endregion TABLE RELATIONSHIPS
