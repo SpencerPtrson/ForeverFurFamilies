@@ -52,6 +52,9 @@ app.get("/api/pets", handlerFunctions.getPets);
 // Get all not-adopted pets
 app.get("/api/pets/notAdopted", handlerFunctions.getNotAdoptedPets);
 
+// Get all senior pets
+app.get('/api/pets/senior', handlerFunctions.getSeniorPets);
+
 // Get pet by Id
 app.get("/api/pets/:petId", handlerFunctions.getPetById);
 
@@ -163,3 +166,8 @@ ViteExpress.listen(app, PORT, () => {
 });
 
 //#endregion Appointments
+
+//#region FavoritePets
+
+
+//#endregion FavoritePets
