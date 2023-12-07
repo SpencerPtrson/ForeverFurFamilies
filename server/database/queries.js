@@ -1,9 +1,6 @@
 import { User, Pet, Story, Appointment, db } from "./models.js";
 
-const specificSpeciesPets = await Pet.findAll({
-  where: {
-    species: "Dog",
-  },
-});
+const users = await User.findAll()
 
-console.log(specificSpeciesPets);
+console.log(users)
+await db.close()
