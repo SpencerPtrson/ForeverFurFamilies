@@ -46,6 +46,7 @@ export const Register = () => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <h2>Sign Up Now</h2>
             <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
             <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
             <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" required />
