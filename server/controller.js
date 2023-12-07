@@ -7,8 +7,6 @@ import {
 } from "./database/models.js";
 import bcryptjs from "bcryptjs";
 
-import session from "express-session";
-
 const handlerFunctions = {
   //#region AccountManagement
   login: async (req, res) => {

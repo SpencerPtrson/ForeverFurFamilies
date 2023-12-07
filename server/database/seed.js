@@ -258,6 +258,14 @@ async function seed() {
   for (const pet of animals) {
     console.log(pet);
 
+
+    let replacementImage = 'https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png';
+    // If the pet has no large photo, set a stock image based on the species
+    if (!pet.photos[0]?.large) {
+      if (/cat/gi.test(pet.species)) replacementImage = 'https://img.freepik.com/premium-vector/cat-vector-illustration-black-white-cat-coloring-book-page-children_160901-6328.jpg?w=740';
+      else if (/dog/gi.test(pet.species)) replacementImage = 'https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png';
+    }
+
     let medicalHistory = "";
     medicalHistory += `${pet.name} is${
       pet.attributes.spayed_neutered ? " " : " not "
@@ -285,7 +293,7 @@ async function seed() {
       breed: pet.breeds.primary,
       age: pet.age,
       gender: pet.gender,
-      picture: pet.photos[0]?.large ?? null,
+      picture: pet.photos[0]?.large ?? replacementImage,
       state: pet.contact.address.city ?? null,
       zipCode: pet.contact.address.postcode ?? null,
       cityName: pet.contact.address.city ?? null,
