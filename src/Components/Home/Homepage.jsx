@@ -11,7 +11,8 @@ const HomePage = () => {
     const getSeniorPets = async () => {
       try {
         const response = await axios.get(`/api/pets/senior`);
-        setSeniorPets(response.data);
+        setSeniorPets(response.data.pets);
+        console.log(response.data.pets)
       } catch (error) {
         console.error("error finding pet", error);
       }
