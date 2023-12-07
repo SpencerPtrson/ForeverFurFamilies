@@ -33,6 +33,7 @@ app.post("/api/login", handlerFunctions.login);
 
 //#endregion AccountManagement
 
+
 //#region Users
 
 // Get all users
@@ -51,6 +52,7 @@ app.put("/api/users/edit/:userId", handlerFunctions.editUser);
 app.delete("/api/users/delete/:userId", handlerFunctions.deleteUser);
 
 //#endregion Users
+
 
 //#region Pets
 
@@ -77,6 +79,7 @@ app.delete("/api/pets/delete/:petId", handlerFunctions.deletePet);
 
 //#endregion Pets
 
+
 //#region Stories
 
 // Get all stories
@@ -98,6 +101,7 @@ app.put("/api/stories/edit/:storyId", handlerFunctions.editStory);
 app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 
 //#endregion Stories
+
 
 //#region Appointments
 
