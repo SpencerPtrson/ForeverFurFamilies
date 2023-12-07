@@ -119,7 +119,8 @@ const handlerFunctions = {
   getUserById: async (req, res) => {
     try {
       const { userId } = req.params;
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(+userId);
+      console.log(user)
       res.json({ success: true, user });
     } catch (error) {
       console.log("Unable to get user by id.");
