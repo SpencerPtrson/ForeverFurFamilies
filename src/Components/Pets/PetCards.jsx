@@ -3,14 +3,14 @@ import Card from "react-bootstrap/Card";
 
 export default function PetCards({pet}) {
 
-  const { petId, picture, name, species, breed, cityname, state, gender, age } = pet;
+  const { petId, picture, name, species, breed, cityName, state, gender, age } = pet;
   let locationString = '';
+  if (cityName) locationString += cityName;
+  if (state && cityName) locationString += ', ';
   if (state) locationString += state;
-  if (state && cityname) locationString += ', ';
-  if (cityname) locationString += cityname;
 
   return (
-    <Card key={petId}>
+    <Card key={petId} style={{ backgroundColor: 'lightblue'}}>
       <Link to={`/SpecificPet/${petId}`}>
         <Card.Img variant="top" src={picture} />
         <Card.Body>
