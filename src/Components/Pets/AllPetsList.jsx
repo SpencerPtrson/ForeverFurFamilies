@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PetCards from "./PetCards";
+import './AllPets.css'
 import { useSearchParams } from "react-router-dom";
+
 
 export default function AllPetsList({ type }) {
   // const [searchParams] = useSearchParams();
