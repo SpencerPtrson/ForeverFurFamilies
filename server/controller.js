@@ -17,7 +17,7 @@ const handlerFunctions = {
       console.log(user);
 
       if (!user) {
-        console.log("user not found");
+        console.log("User not found");
         return res
           .status(401)
           .json({ success: false, message: "User not found" });
@@ -30,7 +30,7 @@ const handlerFunctions = {
       console.log(isMatch);
 
       if (!isMatch) {
-        console.log("no match found:");
+        console.log("Incorrect Password");
         return res
           .status(401)
           .json({ success: false, message: "Incorrect password" });
@@ -46,10 +46,28 @@ const handlerFunctions = {
         userId: user.userId,
         username: user.firstName,
       });
-      console.log("inside 43");
     } catch (error) {
       console.error("Login error:", error);
       res.status(500).send("Internal server error");
+    }
+  },
+
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.json({ success: true });
+  },
+
+  userCheck: async (req, res) => {
+    try {
+      console.log("User Check called!");
+      if (req.session.userId) {
+        console.log("Session userId is valid.");
+        const user = await User.findByPk(req.session.userId);
+  
+      }
+    } catch (error) {
+      console.log("User check failed");
+      console.log("Error:", error);
     }
   },
 
