@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   APIProvider,
   Map,
@@ -13,25 +13,24 @@ import axios from "axios";
 export default function PetLocation() {
   let cityName = 'neenah';
   let state = 'wisconsin';
-  let lat = 53.54;
-  let lng = 10;
 
-  // const getLatLng = async () => {
-  //   const geocodeRes = await axios.get(`https://geocode.maps.co/search?city=${cityName}&state=${state}`)
-  //   console.log("Geocode Data:", geocodeRes.data);
-  //   geocodeRes.data.lat ? lat = +(geocodeRes.data.lat) : lat;
-  //   geocodeRes.data.lon ? lng = +(geocodeRes.data.lon) : lng ;
-  // }
+  const [lat, setLat] = useState(54.2);
+  const [lng, setLng] = useState(10);
 
-  // getLatLng();
 
+  const getLatLng = async () => {
+    const geocodeRes = await axios.get(`https://geocode.maps.co/search?city=${cityName}&state=${state}`)
+    console.log("Geocode Data:", geocodeRes.data[0]);
+    setLat(+geocodeRes.data[0].lat);
+    setLng(+geocodeRes.data[0].lon);
+  }
+
+  useEffect(() => {
+    getLatLng()
+  }, []);
 
   let mapPosition = { lat, lng };
   console.log("Map Position:", mapPosition);
-
-
-
-
 
   const [open, setOpen] = useState(false);
 
