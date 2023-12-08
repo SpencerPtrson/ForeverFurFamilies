@@ -55,7 +55,7 @@ const handlerFunctions = {
         email: user.email,
         firstName: user.firstName,
         profilePicture: user.profilePicture,
-        isAdmin: user.isAdmin
+        isAdmin: user.isAdmin,
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -81,7 +81,7 @@ const handlerFunctions = {
           userId: user?.userId ?? null,
           email: user?.email ?? null,
           firstName: user?.firstName ?? null,
-          isAdmin: user?.isAdmin ?? false
+          isAdmin: user?.isAdmin ?? false,
         });
       } else {
         console.log("No session.userId available.");
@@ -90,7 +90,7 @@ const handlerFunctions = {
           userId: null,
           email: null,
           firstName: null,
-          isAdmin: false
+          isAdmin: false,
         });
       }
     } catch (error) {
@@ -120,7 +120,7 @@ const handlerFunctions = {
     try {
       const { userId } = req.params;
       const user = await User.findByPk(+userId);
-      console.log(user)
+      console.log(user);
       res.json({ success: true, user });
     } catch (error) {
       console.log("Unable to get user by id.");
@@ -200,7 +200,8 @@ const handlerFunctions = {
 
   deleteUser: async (req, res) => {
     try {
-      const { userId } = req.body;
+      const { userId } = req.params;
+      console.log(userId);
       console.log(`Attempting to delete user with id: ${userId}`);
       const deletedUser = await User.destroy({
         where: { userId: userId },
