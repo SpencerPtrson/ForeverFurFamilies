@@ -20,7 +20,6 @@ export default function PetLocation() {
         <Map zoom={9} center={mapPosition} mapId={process.env.REACT_APP_MAPS_ID_KEY}>
           <AdvancedMarker position={mapPosition} onClick={() => setOpen(true)}>
             <Pin background={'grey'}/>
-
             {
               open && <InfoWindow position={mapPosition} onCloseClick={() => setOpen(false)}>
                 <p>I'm in Hamburg!</p>
