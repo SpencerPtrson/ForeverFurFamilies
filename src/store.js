@@ -10,8 +10,8 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log("Reducer - State:", state)
-  console.log("Action:", action);
+  // console.log("Reducer - State:", state)
+  // console.log("Action:", action);
   switch (action.type) {
     case "LOGIN":
       return {

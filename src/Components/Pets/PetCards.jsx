@@ -1,19 +1,24 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import { FavoriteButton } from "./FavoriteButton";
+import { useSelector } from "react-redux";
 
-export default function PetCards({pet}) {
+export default function PetCards({ pet }) {
+  const userId = useSelector((state) => state.userId);
 
-  const { petId, picture, name, species, breed, cityName, state, gender, age } = pet;
-  let locationString = '';
+  const { petId, picture, name, species, breed, cityName, state, gender, age } =
+    pet;
+  let locationString = "";
   if (cityName) locationString += cityName;
-  if (state && cityName) locationString += ', ';
+  if (state && cityName) locationString += ", ";
   if (state) locationString += state;
-
   return (
-    <Card key={petId} style={{ backgroundColor: 'lightblue'}}>
+    <Card key={petId} style={{ backgroundColor: "lightblue" }}>
       <Link to={`/SpecificPet/${petId}`}>
         <Card.Img variant="top" src={picture} />
-        <Card.Body>
+      </Link>
+      <Card.Body>
+        <Link to={`/SpecificPet/${petId}`}>
           <Card.Text>{name}</Card.Text>
           <Card.Text>
             {species}, {breed}
@@ -22,12 +27,10 @@ export default function PetCards({pet}) {
           <Card.Text>
             {gender}, {age}
           </Card.Text>
-          <Card.Text>
-            {locationString}
-          </Card.Text>
-        </Card.Body>
-      </Link>
+          <Card.Text>{locationString}</Card.Text>
+        </Link>
+        {userId !== "" && <FavoriteButton petId={petId} />}
+      </Card.Body>
     </Card>
   );
 }
-
