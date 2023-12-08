@@ -3,6 +3,7 @@ import PetCards from "../Pets/PetCards";
 import "./homepage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PetLocation from "../Pets/PetLocation";
 
 const HomePage = () => {
   const [seniorPets, setSeniorPets] = useState([]);
@@ -66,6 +67,7 @@ const HomePage = () => {
           </ol>
         </section>
       </Row>
+      <PetLocation />
     </Container>
   );
 };

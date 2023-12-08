@@ -7,9 +7,9 @@ export const PrivateRoutes = () => {
   
   const location = useLocation();
 
-  if (isAuth === undefined) {
-    return null; 
-  }
+  // if (isAuth === undefined) {
+  //   return null; 
+  // }
 
   return isAuth ? (
     <Outlet />

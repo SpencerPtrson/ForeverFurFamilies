@@ -4,6 +4,7 @@ import ViteExpress from "vite-express";
 import morgan from "morgan";
 import bcryptjs from "bcryptjs";
 import { User } from "./database/models.js";
+import env from 'dotenv';
 
 // create express instance
 const app = express();
@@ -21,6 +22,8 @@ app.use(
     resave: false,
   })
 );
+env.config();
+
 
 // Import Handler Functions
 import handlerFunctions from "./controller.js";
@@ -30,6 +33,8 @@ import handlerFunctions from "./controller.js";
 // User authentication
 app.post("/api/login", handlerFunctions.login);
 
+// Check if session id has corresponding user
+app.get('/userCheck', handlerFunctions.userCheck);
 
 //#endregion AccountManagement
 

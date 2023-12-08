@@ -1,53 +1,59 @@
-import { Carousel } from "react-bootstrap";
+import { Carousel, Row, Col } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useLoaderData } from "react-router";
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import axios from "axios";
 
 export default function SpecificPet() {
-  const { petId } = useParams();
-
-  const {
-    pet: {
-      name,
-      species,
-      breed,
-      age,
-      gender,
-      picture,
-      medicalHistory,
-      personality,
-      cityName,
-      state,
-    },
-  } = useLoaderData();
-
-  const [pets, setPets] = useState([]);
+  const { id } = useParams();
+  const [pet, setPet] = useState(null);
 
   useEffect(() => {
-    fetch("/api/pets")
-      .then((response) => response.json())
-      .then((data) => setPets(data))
-      .catch((error) => console.error("Error fetching pets:", error));
-  }, []);
+    const getPet = async () => {
+      try {
+        const response = await axios.get(`/api/pets/${id}`);
+        setPet(response.data.pet);
+      } catch (error) {
+        console.log("error getting pet", error);
+      }
+    };
+    getPet();
+  }, [id]);
+  console.log(pet);
+
+  if (!pet) {
+    return <div>Loading...</div>;
+  }
+
+  const {
+    name,
+    species,
+    breed,
+    age,
+    gender,
+    picture,
+    medicalHistory,
+    personality,
+    cityName,
+    state,
+  } = pet;
 
   return (
     <>
       <Row>
-        <Carousel>
-          {pets.map((pet) => (
-            <Carousel.Item key={petId}>
-              <img
-                className="d-block w-100"
-                src={picture}
-                alt={`Slide ${name}`}
-              />
-            </Carousel.Item>
-          ))}
+      <Carousel>
+          <Carousel.Item>
+            <img className="d-block w-100" src={picture} alt={`Slide ${name}`} />
+          </Carousel.Item>
         </Carousel>
       </Row>
 
       <Row>
-        <h1>Hi! I'm {name}!</h1>
+        <Col><h1>Hi! I'm {name}!</h1></Col>
+        <Col><Link to="/Adoption">
+      <Button variant="primary">Adopt Me!</Button>
+    </Link></Col>
       </Row>
       <p>
         I'm a {species} located in {cityName},{state}.

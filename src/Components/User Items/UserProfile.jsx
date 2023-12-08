@@ -22,6 +22,7 @@ export const UserProfile = () => {
   const [appointmentsError, setAppointmentsError] = useState(null);
 
 
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
