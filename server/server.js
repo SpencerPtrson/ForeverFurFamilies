@@ -33,6 +33,8 @@ import handlerFunctions from "./controller.js";
 // User authentication
 app.post("/api/login", handlerFunctions.login);
 
+// Check if session id has corresponding user
+app.get('/userCheck', handlerFunctions.userCheck);
 
 //#endregion AccountManagement
 

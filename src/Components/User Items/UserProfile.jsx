@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export const UserProfile = () => {
+    console.log("Reached User Profile Page!");
     const navigate = useNavigate();
     const [isEditMode, setIsEditMode] = useState(false);
     const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ export const UserProfile = () => {
     const [error, setError] = useState(null);
     const userId = useSelector((state) => state.userId)
 
-    console.log(formData)
+    console.log("Form Data:", formData)
 
     useEffect(() => {
         const fetchUserData = async () => {
