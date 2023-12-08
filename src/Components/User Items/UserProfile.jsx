@@ -16,6 +16,8 @@ export const UserProfile = () => {
   const [error, setError] = useState(null);
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
+  const [pet,setPet] = useState([])
+  const [petPic,setPetPic] = useState('')
 
   const [appointments, setAppointments] = useState([]);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(false);
@@ -44,14 +46,21 @@ export const UserProfile = () => {
     try {
       setIsAppointmentsLoading(true);
       const response = await axios.get(`/api/appointments/users/${userId}`);
+      console.log("pet ID",response.data.appointments[0].petId)
+       const getPet = await axios.get(`/api/pets/${response.data.appointments[0].petId}`)
       setAppointments(response.data.appointments);
       setIsAppointmentsLoading(false);
+      console.log(getPet)
+     setPet(getPet.data.pet.name)
+     setPetPic(getPet.data.pet.picture)
     } catch (error) {
       console.error('Error fetching appointments', error);
       setAppointmentsError(error);
       setIsAppointmentsLoading(false);
     }
   }
+  console.log(pet)
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -169,6 +178,8 @@ export const UserProfile = () => {
                   <div key={appointment.id}>
                     <p> Appointment Date: {appointment.date}</p>
                     <p>Pet:{appointment.petId}</p>
+                    <p>petName:{pet}</p>
+                    <p>petPic:{petPic}</p>
                     </div>
                 ))}
                 </div>
