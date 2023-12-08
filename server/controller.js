@@ -81,7 +81,8 @@ const handlerFunctions = {
           userId: user?.userId ?? null,
           email: user?.email ?? null,
           firstName: user?.firstName ?? null,
-          isAdmin: user?.isAdmin ?? false
+          isAdmin: user?.isAdmin ?? false,
+          isAuth: true
         });
       } else {
         console.log("No session.userId available.");
@@ -90,7 +91,8 @@ const handlerFunctions = {
           userId: null,
           email: null,
           firstName: null,
-          isAdmin: false
+          isAdmin: false,
+          isAuth: false
         });
       }
     } catch (error) {
