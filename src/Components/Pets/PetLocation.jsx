@@ -8,9 +8,30 @@ import {
   Pin,
   InfoWindow,
 } from "@vis.gl/react-google-maps";
+import axios from "axios";
 
 export default function PetLocation() {
-  const mapPosition = { lat: 53.54, lng: 10 };
+  let cityName = 'neenah';
+  let state = 'wisconsin';
+  let lat = 53.54;
+  let lng = 10;
+
+  // const getLatLng = async () => {
+  //   const geocodeRes = await axios.get(`https://geocode.maps.co/search?city=${cityName}&state=${state}`)
+  //   console.log("Geocode Data:", geocodeRes.data);
+  //   geocodeRes.data.lat ? lat = +(geocodeRes.data.lat) : lat;
+  //   geocodeRes.data.lon ? lng = +(geocodeRes.data.lon) : lng ;
+  // }
+
+  // getLatLng();
+
+
+  let mapPosition = { lat, lng };
+  console.log("Map Position:", mapPosition);
+
+
+
+
 
   const [open, setOpen] = useState(false);
 

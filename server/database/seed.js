@@ -1,51 +1,56 @@
-import { User, Pet, Story, Appointment, db } from './models.js'
-import axios from 'axios';
+import { User, Pet, Story, Appointment, db } from "./models.js";
+import axios from "axios";
 
 async function seed() {
-    console.log('Syncing database...');
-    await db.sync({ force: true });
+  console.log("Syncing database...");
+  await db.sync({ force: true });
 
-    let replacementImage = 'https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png';
-    let catImage = 'https://img.freepik.com/premium-vector/cat-vector-illustration-black-white-cat-coloring-book-page-children_160901-6328.jpg?w=740';
-    let dogImage = 'https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png';
+  let replacementImage =
+    "https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png";
+  let catImage =
+    "https://img.freepik.com/premium-vector/cat-vector-illustration-black-white-cat-coloring-book-page-children_160901-6328.jpg?w=740";
+  let dogImage =
+    "https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png";
 
-    console.log('Seeding Users table...');
-    const users = [
-        {
-            email:'spencer@example.com',
-            password: 'password',
-            phoneNumber: '555-1234',
-            firstName: 'Spencer',
-            lastName: 'Peterson',
-            profilePicture: 'profile1.jpg',
-        }, {
-            email:'wyatt@example.com',
-            password: 'password',
-            phoneNumber: '555-5678',
-            firstName: 'Wyatt',
-            lastName: 'Thayer',
-            profilePicture: 'profile2.jpg'
-        }, {
-            email: 'justin@example.com',
-            password: 'password',
-            phoneNumber: '555-4321',
-            firstName: 'Justin',
-            lastName: 'Nelson',
-            profilePicture: 'profile3.jpg'
-        }, {
-            email: 'tito@example.com',
-            password: 'password',
-            phoneNumber: '555-8765',
-            firstName: 'Tito',
-            lastName: 'Nanni',
-            profilePicture: 'profile4.jpg'
-        }
-    ];
+  console.log("Seeding Users table...");
+  const users = [
+    {
+      email: "spencer@example.com",
+      password: "password",
+      phoneNumber: "555-1234",
+      firstName: "Spencer",
+      lastName: "Peterson",
+      profilePicture: "profile1.jpg",
+    },
+    {
+      email: "wyatt@example.com",
+      password: "password",
+      phoneNumber: "555-5678",
+      firstName: "Wyatt",
+      lastName: "Thayer",
+      profilePicture: "profile2.jpg",
+    },
+    {
+      email: "justin@example.com",
+      password: "password",
+      phoneNumber: "555-4321",
+      firstName: "Justin",
+      lastName: "Nelson",
+      profilePicture: "profile3.jpg",
+    },
+    {
+      email: "tito@example.com",
+      password: "password",
+      phoneNumber: "555-8765",
+      firstName: "Tito",
+      lastName: "Nanni",
+      profilePicture: "profile4.jpg",
+    },
+  ];
 
-    for (const userData of users) {
-        await User.create(userData);
-    }
-
+  for (const userData of users) {
+    await User.create(userData);
+  }
 
   console.log("Seeding Pets table...");
   const pets = [
@@ -57,7 +62,7 @@ async function seed() {
       gender: "Male",
       picture: dogImage,
       state: "UT",
-      zipCode: '84117',
+      zipCode: "84117",
       cityName: "Millcreek",
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly and loves to play fetch",
@@ -67,11 +72,11 @@ async function seed() {
       name: "Blue",
       species: "Cat",
       breed: "Siamese",
-      age: 'Senior',
+      age: "Senior",
       gender: "Male",
       picture: catImage,
       state: "UT",
-      zipCode: '84663',
+      zipCode: "84663",
       cityName: "Springville",
       medicalHistory: "Fully vaccinated",
       personality: "Timid and friendly",
@@ -85,7 +90,7 @@ async function seed() {
       gender: "Male",
       picture: catImage,
       state: "UT",
-      zipCode: '84043',
+      zipCode: "84043",
       cityName: "Lehi",
       medicalHistory: "Fully vaccinated, has one eye",
       personality: "Very friendly and patient",
@@ -99,7 +104,7 @@ async function seed() {
       gender: "Male",
       picture: catImage,
       state: "UT",
-      zipCode: '84117',
+      zipCode: "84117",
       cityName: "Millcreek",
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly with humans and dogs",
@@ -113,7 +118,7 @@ async function seed() {
       gender: "Male",
       picture: dogImage,
       state: "UT",
-      zipCode: '84093',
+      zipCode: "84093",
       cityName: "Sandy",
       medicalHistory: "Fully vaccinated",
       personality: "Trusting and loyal",
@@ -127,7 +132,7 @@ async function seed() {
       gender: "Female",
       picture: dogImage,
       state: "UT",
-      zipCode: '84047',
+      zipCode: "84047",
       cityName: "Midvale",
       medicalHistory: "Fully vaccinated, not spayed",
       personality: "Energetic and playful",
@@ -141,7 +146,7 @@ async function seed() {
       gender: "Female",
       picture: dogImage,
       state: "UT",
-      zipCode: '84009',
+      zipCode: "84009",
       cityName: "South Jordan",
       medicalHistory: "Fully vaccinated, spayed",
       personality: "Laidback and affectionate",
@@ -155,7 +160,7 @@ async function seed() {
       gender: "Male",
       picture: dogImage,
       state: "UT",
-      zipCode: '84097',
+      zipCode: "84097",
       cityName: "Provo",
       medicalHistory: "Fully vaccinated",
       personality: "Independent and timid",
@@ -259,9 +264,10 @@ async function seed() {
 
   const { animals } = response.data;
 
+
+
   for (const pet of animals) {
     console.log(pet);
-
 
     // If the pet has no large photo, set a stock image based on the species
     if (!pet.photos[0]?.large) {
@@ -309,6 +315,6 @@ async function seed() {
   console.log("Data has been seeded from PetFinder API successfully");
 }
 
-    await seed().catch(console.error)
+await seed().catch(console.error);
 
-    await db.close()
+await db.close();
