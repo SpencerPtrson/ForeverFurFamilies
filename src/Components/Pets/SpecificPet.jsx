@@ -3,18 +3,24 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-
+import axios from "axios";
 
 export default function SpecificPet() {
   const { id } = useParams();
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/pets/${id}`)
-      .then((response) => response.json())
-      .then((data) => setPet(data))
-      .catch((error) => console.error("Error fetching specific pet:", error));
+    const getPet = async () => {
+      try {
+        const response = await axios.get(`/api/pets/${id}`);
+        setPet(response.data.pet);
+      } catch (error) {
+        console.log("error getting pet", error);
+      }
+    };
+    getPet();
   }, [id]);
+  console.log(pet);
 
   if (!pet) {
     return <div>Loading...</div>;
