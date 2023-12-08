@@ -67,6 +67,7 @@ const HomePage = () => {
           </ol>
         </section>
       </Row>
+      <PetLocation />
     </Container>
   );
 };
