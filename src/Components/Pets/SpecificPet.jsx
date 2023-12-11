@@ -1,9 +1,26 @@
-import { Carousel, Row, Col } from "react-bootstrap";
+import { Carousel, Row, Col, Container } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import './SpecificPet.css'
+import styled from "styled-components";
+import PetCards from "./PetCards";
+
+const StyledText = styled.h1`
+    font-family: 'Bubblegum Sans', sans-serif;
+    font-size: calc(1.375rem + 1.5vw);
+`;
+
+const StyledH3 = styled.h3`
+    font-family: 'Bubblegum Sans', sans-serif;
+    font-size: calc(1.3rem + .6vw);
+`;
+
+const StyledBold = styled.p`
+    font-weight: bold;
+`;
 
 export default function SpecificPet() {
   const { id } = useParams();
@@ -41,16 +58,19 @@ export default function SpecificPet() {
 
   return (
     <>
-      <Row>
-      <Carousel>
-          <Carousel.Item>
-            <img className="d-block w-100" src={picture} alt={`Slide ${name}`} />
-          </Carousel.Item>
-        </Carousel>
+      <Row className="carousel-container">
+      <Carousel className="PetDetails">
+      <Carousel.Item>
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: 'black' }}>
+          <img className="img-fluid" src={picture} alt={`Slide ${name}`} />
+        </div>
+      </Carousel.Item>
+    </Carousel>
       </Row>
 
-      <Row>
-        <Col><h1>Hi! I'm {name}!</h1></Col>
+      <Container>
+      <Row> 
+        <Col><StyledText>Hi! I'm {name}!</StyledText></Col>
         <Col><Link to="/Adoption">
       <Button variant="primary">Adopt Me!</Button>
     </Link></Col>
@@ -60,7 +80,7 @@ export default function SpecificPet() {
       </p>
 
       <Row>
-        <h3>Facts about me</h3>
+        <StyledH3>Facts about me</StyledH3>
       </Row>
       <Row>
         <Col>Breed: {breed}</Col>
@@ -72,9 +92,12 @@ export default function SpecificPet() {
       </Row>
 
       <Row>
-        <h3>Medical History</h3>
+        <StyledH3>Medical History</StyledH3>
       </Row>
-      <Row>{medicalHistory}</Row>
+      <Row>
+        <Col>{medicalHistory}</Col>
+      </Row>
+      </Container>      
     </>
   );
 }
