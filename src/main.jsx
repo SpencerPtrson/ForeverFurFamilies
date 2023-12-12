@@ -18,6 +18,8 @@ import SpecificPet from "./Components/Pets/SpecificPet.jsx";
 import NavigationBar from "./Components/Home/NavBar.jsx";
 import HomePage from "./Components/Home/Homepage.jsx";
 
+import axios from "axios";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +42,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        loader: async () => {
+          const res = await axios.get('/api/pets');
+          console.log("Main.jsx - loader:", res.data.pets);
+          return { pets: res.data.pets }
+        },
       },
       {
         path: "/meetTheTeam",
