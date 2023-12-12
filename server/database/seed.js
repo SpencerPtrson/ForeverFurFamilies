@@ -12,6 +12,14 @@ async function seed() {
   let dogImage =
     "https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png";
 
+    let bingoImage =
+    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702420642/Bingo_utvu9f.jpg"
+
+    let chitzoImage =
+    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702421701/kitty_gnshnv.jpg"
+
+
+
   console.log("Seeding Users table...");
   const users = [
     {
@@ -60,7 +68,7 @@ async function seed() {
       breed: "Labrador Retriever",
       age: "2",
       gender: "Male",
-      picture: dogImage,
+      picture: bingoImage,
       state: "UT",
       zipCode: "84117",
       cityName: "Millcreek",
@@ -102,7 +110,7 @@ async function seed() {
       breed: "Black",
       age: "Senior",
       gender: "Male",
-      picture: catImage,
+      picture: chitzoImage,
       state: "UT",
       zipCode: "84117",
       cityName: "Millcreek",
@@ -178,28 +186,28 @@ async function seed() {
       content:
         "Bingo has been such a joy to our family! He provides us so much energy and love",
       adoptionDate: new Date(),
-      userSubmittedImage: `bingo-happy.jpg`,
+      userSubmittedImage: bingoImage,
       userId: 4,
     },
     {
       content:
         "Blue has been the perfect addition to our family, we are so happy he is apart of our lives",
       adoptionDate: new Date(),
-      userSubmittedImage: `blue-happy.jpg`,
+      userSubmittedImage: catImage,
       userId: 2,
     },
     {
       content:
         "Thor is an amazing pet and I can not imagine life without him. One of the best decisions our family ever made",
       adoptionDate: new Date(),
-      userSubmittedImage: `thor-happy.jpg`,
+      userSubmittedImage: catImage,
       userId: 3,
     },
     {
       content:
         "Chitzo fills our hearts with joy day in and day out. We are so thankful for him",
       adoptionDate: new Date(),
-      userSubmittedImage: `chitzo-happy.jpg`,
+      userSubmittedImage: chitzoImage,
       userId: 4,
     },
   ];
@@ -318,3 +326,4 @@ async function seed() {
 await seed().catch(console.error);
 
 await db.close();
+
