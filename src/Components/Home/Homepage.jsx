@@ -4,11 +4,16 @@ import "./homepage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PetLocation from "../Pets/PetLocation";
+import AllPetsMap from "../Pets/AllPetsMap";
+import { useLoaderData } from "react-router-dom";
 
 const HomePage = () => {
   const [seniorPets, setSeniorPets] = useState([]);
   const [story, setStory] = useState([]);
   const [pic, setPic] = useState([]);
+
+  const { pets } = useLoaderData();
+  console.log("Loader Data:", pets);
 
   useEffect(() => {
     const getSeniorPets = async () => {
@@ -20,10 +25,6 @@ const HomePage = () => {
         console.error("error finding pet", error);
       }
     };
-    getSeniorPets();
-  }, []);
-
-  useEffect(() => {
     const getStory = async () => {
       try {
         const response = await axios.get(`/api/stories/1`);
@@ -35,6 +36,7 @@ const HomePage = () => {
       }
     };
     getStory();
+    getSeniorPets();
   }, []);
 
   const petCards = seniorPets.map((pet) => {
@@ -42,7 +44,12 @@ const HomePage = () => {
   });
 
   return (
-    <Container>
+    <>
+    <div className="homepage-banner">
+        <h1>Welcome to the ForeverFur Families WebPage</h1>
+        <p>Find your new best friend today!</p>
+      </div>
+        <Container>
       <Row>
         <Col>
           Total pets reHomed
@@ -67,8 +74,13 @@ const HomePage = () => {
           </ol>
         </section>
       </Row>
-      <PetLocation />
+      <Row>
+        <Col>
+          <AllPetsMap petList={pets} />
+        </Col>
+      </Row>
     </Container>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './SuccessStory.css';
 
 export const SuccessStory = () => {
     const [stories, setStories] = useState([]);
@@ -20,16 +21,16 @@ export const SuccessStory = () => {
     }, []);
 
     return (
-        <div>
+        <div className='success-stories-container'>
             <h2>Success Stories</h2>
             {stories.length > 0 ? (
                 <div>
                     {stories.map(story => (
-                        <div key={story.storyId}>
-                            <p>{story.content}</p>
-                            <p>Date: {new Date(story.adoptionDate).toLocaleDateString()}</p>
+                        <div key={story.storyId} className='story-card'>
+                            <p className='story-content'>{story.content}</p>
+                            <p className='story-date'>Date: {new Date(story.adoptionDate).toLocaleDateString()}</p>
                             {story.userSubmittedImage && (
-                                <img src={story.userSubmittedImage} alt="Story" style={{ maxWidth: '100%' }} />
+                                <img src={story.userSubmittedImage} alt="Story" />
                             )}
                         </div>
                     ))}
