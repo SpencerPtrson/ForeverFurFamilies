@@ -1,5 +1,6 @@
 .carousel-container {
 --bs-gutter-x: 0rem;
+height: 100px;
 }
 
 .PetDetails::before, .PetDetails::after {
