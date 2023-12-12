@@ -76,3 +76,22 @@ ol,col{
     background-position: 50%;
     border:10px solid #ffffff;
 }
+
+.homepage-banner {
+    background-color:  #2f67ec;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin: 0px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.homepage-banner h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.homepage-banner p {
+    font-size: 1.2em;
+}
