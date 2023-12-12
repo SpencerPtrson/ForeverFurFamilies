@@ -48,7 +48,8 @@ export const Login = () => {
     }
 
     return(
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <div className='register-container'>
+        <form onSubmit={(e) => handleSubmit(e)} className="register-form">
             <h2>Login</h2>
             <div>
                 <label>Email:</label>
@@ -60,5 +61,6 @@ export const Login = () => {
             </div>
             <button type="submit">Login</button>
         </form>
+        </div>
     )
 }
