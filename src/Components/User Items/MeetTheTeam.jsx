@@ -1,4 +1,5 @@
 import React from 'react';
+import './MeetTheTeam.css'
 
 export const MeetTheTeam = () => {
         const teamMembers = [
@@ -23,11 +24,11 @@ export const MeetTheTeam = () => {
         ];
 
     return (
-        <div>
+        <div className="team-container">
             <h2>Meet the Team</h2>
             <div>
                 {teamMembers.map(member => (
-                    <div key={member.name}>
+                    <div key={member.name} className="team-member-card">
                         <img src={member.image} alt={member.name} />
                         <h3>{member.name}</h3>
                         <p>{member.bio}</p>
