@@ -71,7 +71,7 @@ export default function SpecificPet() {
       <Container>
       <Row> 
         <Col><StyledText>Hi! I'm {name}!</StyledText></Col>
-        <Col><Link to="/Adoption">
+        <Col><Link to={`/Adoption/${id}`}>
       <Button variant="primary">Adopt Me!</Button>
     </Link></Col>
       </Row>
