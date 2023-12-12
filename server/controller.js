@@ -495,6 +495,9 @@ const handlerFunctions = {
       const { userId } = req.params;
       const appointments = await Appointment.findAll({
         where: { userId: userId },
+        include: {
+          model: Pet
+        }
       });
       res.json({ success: true, appointments });
     } catch (error) {
