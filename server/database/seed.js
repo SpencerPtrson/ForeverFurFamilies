@@ -290,7 +290,7 @@ async function seed() {
     } have special needs.\n`;
     medicalHistory += `${pet.name} is ${
       pet.attributes.shots_current || null ? "" : "not"
-    }up to date on their shots.\n`;
+    } up to date on their shots.\n`;
     console.log(medicalHistory);
 
     let isAdoptable = true;
