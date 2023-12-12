@@ -1,45 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow,
-} from "@vis.gl/react-google-maps";
 import { NavLink } from "react-bootstrap";
 import axios from "axios";
 
 export default function AllPetsMap({ petList }) {
-  console.log("Pet List:", petList);
-
-  const [lat, setLat] = useState(50);
+  let MAP_CIRCLE_RADIUS_MILES = 50;
+  const [displayCircle, setDisplayCircle] = useState(true);
+  const [lat, setLat] = useState(60);
   const [lng, setLng] = useState(-110);
-  const [open, setOpen] = useState(false);
   const [petLocationArr, setPetLocationArr] = useState([]);
-  console.log("Pet + Location:", petLocationArr);
 
   // Default Map Position
   let mapPosition = { lat, lng };
-  console.log("Map Position:", mapPosition);
-
-  // If device location is available, get current device location and update map position
-  if (navigator.geolocation) {
-    console.log("Geolocation is supported by this browser.");
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
 
   function showPosition(position) {
     setLat(position.coords.latitude);
     setLng(position.coords.longitude);
   }
 
-  // Display a circle radius around the user
-
-  // Load Latitude and Longitude
+  // Load Pet Information
   const loadPetLocation = async (pL) => {
     const plA = [];
     for (let pet of pL) {
@@ -56,38 +36,61 @@ export default function AllPetsMap({ petList }) {
     }
     setPetLocationArr(plA);
   };
-
-  // Create markers for each pet
-  const markerList = petLocationArr.map((el) => {
-    return (
-      <AdvancedMarker position={el} onClick={() => setOpen(true)}>
-        <Pin background={"blue"} />
-        {open && (
-          <InfoWindow position={el} onCloseClick={() => setOpen(false)}>
-            <NavLink href={`/SpecificPet/${el.petId}`}>
-              Here's {el.name}
-            </NavLink>
-          </InfoWindow>
-        )}
-      </AdvancedMarker>
-    );
-  });
+  
+  // If device location is available, get current device location and update map position
+  if (navigator.geolocation) {
+    console.log("Geolocation is supported by this browser.");
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
 
   useEffect(() => {
     loadPetLocation(petList);
+    initMap();
   }, []);
 
-  return (
-    <APIProvider apiKey={process.env.REACT_APP_MAPS_API_KEY}>
-      <div style={{ height: "80vh" }} id="AllPetsMap">
-        <Map
-          zoom={6}
-          center={mapPosition}
-          mapId={process.env.REACT_APP_MAPS_ID_KEY}
-        >
-          {markerList}
-        </Map>
-      </div>
-    </APIProvider>
-  );
+  useEffect(() => {
+    initMap();
+  }, [lat, lng, petLocationArr])
+
+  // INIT MAP FUNCTION TO CREATE MAP
+
+  let map;
+  async function initMap() {
+    const {AdvancedMarkerElement} = await google.maps.importLibrary('marker');
+
+    // Create the map.
+    console.log("Map Position:", mapPosition);
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6,
+      center: mapPosition,
+      mapId: process.env.REACT_APP_MAPS_API_KEY
+    });
+
+    if (displayCircle) {
+      const userCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map,
+        center: mapPosition,
+        radius: MAP_CIRCLE_RADIUS_MILES * 1609.344,
+      });
+    }
+    
+    petLocationArr.forEach((pl) => {
+      const newMarker = new AdvancedMarkerElement({
+        map,
+        position: { lat: pl.lat, lng: pl.lng}
+      })
+      console.log("New Marker created!");
+    })
+
+  }
+  window.initMap = initMap;
+
+  return <div style={{ height: "80vh" }} id="map"></div>;
 }
