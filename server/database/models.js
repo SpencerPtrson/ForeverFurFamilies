@@ -103,6 +103,8 @@ Pet.init(
     state: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     cityName: DataTypes.STRING,
+    latitude: DataTypes.STRING,
+    longitude: DataTypes.STRING,
     medicalHistory: DataTypes.TEXT,
     personality: DataTypes.TEXT,
     hasBeenAdopted: DataTypes.BOOLEAN,
