@@ -77,7 +77,7 @@ async function seed() {
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly and loves to play fetch",
       hasBeenAdopted: true,
-      latitude: 40.391617,
+      latitude: 40.0,
       longitude: -111.850769,
     },
     {
@@ -93,7 +93,7 @@ async function seed() {
       medicalHistory: "Fully vaccinated",
       personality: "Timid and friendly",
       hasBeenAdopted: true,
-      latitude: 40.391617,
+      latitude: 40.1,
       longitude: -111.850769,
     },
     {
@@ -109,7 +109,7 @@ async function seed() {
       medicalHistory: "Fully vaccinated, has one eye",
       personality: "Very friendly and patient",
       hasBeenAdopted: true,
-      latitude: 40.391617,
+      latitude: 40.2,
       longitude: -111.850769,
     },
     {
@@ -125,7 +125,7 @@ async function seed() {
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly with humans and dogs",
       hasBeenAdopted: true,
-      latitude: 40.391617,
+      latitude: 40.3,
       longitude: -111.850769,
     },
     {
@@ -142,7 +142,7 @@ async function seed() {
       personality: "Trusting and loyal",
       hasBeenAdopted: false,
       latitude: 40.391617,
-      longitude: -111.850769,
+      longitude: -111.8,
     },
     {
       name: "Bailey",
@@ -158,7 +158,7 @@ async function seed() {
       personality: "Energetic and playful",
       hasBeenAdopted: false,
       latitude: 40.391617,
-      longitude: -111.850769,
+      longitude: -111.9,
     },
     {
       name: "Daisy",
@@ -174,7 +174,7 @@ async function seed() {
       personality: "Laidback and affectionate",
       hasBeenAdopted: false,
       latitude: 40.391617,
-      longitude: -111.850769,
+      longitude: -112,
     },
     {
       name: "Max",
@@ -189,8 +189,8 @@ async function seed() {
       medicalHistory: "Fully vaccinated",
       personality: "Independent and timid",
       hasBeenAdopted: false,
-      latitude: 40.391617,
-      longitude: -111.850769,
+      latitude: 41,
+      longitude: -112,
     },
   ];
 
@@ -343,7 +343,7 @@ async function seed() {
       cityName: pet.contact.address.city ?? null,
       medicalHistory: medicalHistory,
       personality: pet.description,
-      hasBeenAdopted: isAdoptable,
+      hasBeenAdopted: !isAdoptable,
       latitude: geocodeRes.data[0].lat,
       longitude: geocodeRes.data[0].lon,
     });
