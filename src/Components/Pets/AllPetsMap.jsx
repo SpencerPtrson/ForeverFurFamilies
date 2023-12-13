@@ -54,8 +54,6 @@ export default function AllPetsMap({ petList }) {
     setPetLocationArr(plA);
   };
 
-
-
   // If device location is available, get current device location and update map position
   if (navigator.geolocation) {
     // console.log("Geolocation is supported by this browser.");
@@ -99,7 +97,7 @@ export default function AllPetsMap({ petList }) {
       });
     }
 
-    // Create an info window to share between markers
+    // Create an info window to share betwenen markers
     const infoWindow = new InfoWindow();
 
     petLocationArr.forEach((pl) => {
@@ -113,8 +111,9 @@ export default function AllPetsMap({ petList }) {
         const { target } = domEvent;
         infoWindow.close();
         const contentString = `<div>
-          <a href="/SpecificPet/${pl.petId}">Here's ${pl.name}</a>
-          <img src=${pl.petIMG} />
+          <div align="center"><a href="/SpecificPet/${pl.petId}">Here's ${pl.name}!</a></div>
+          <br />
+          <img width=200 src=${pl.petIMG} />
         </div>`;
 
         infoWindow.setContent(contentString);
@@ -127,7 +126,7 @@ export default function AllPetsMap({ petList }) {
 
   return (
     <div>
-      <div style={{ height: "80vh" }} id="map"></div>
+      <div style={{ height: "80vh", border: '1px solid black' }} id="map"></div>
     </div>
   );
 }
