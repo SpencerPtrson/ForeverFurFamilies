@@ -10,7 +10,7 @@ export default function AllPetsMap({ petList }) {
   const [displayCircle, setDisplayCircle] = useState(true);
   const [lat, setLat] = useState(60);
   const [lng, setLng] = useState(-110);
-  const [petLocationArr, setPetLocationArr] = useState([]);
+  const [petLocationArr, setPetLocationArr] = useState(petList);
 
   // Default Map Position
   let mapPosition = { lat, lng };
@@ -39,12 +39,30 @@ export default function AllPetsMap({ petList }) {
   //   setPetLocationArr(plA);
   // };
 
+  const loadPetLocation = async (pL) => {
+    const plA = [];
+    for (let pet of pL) {
+      console.log("Pet for loadPetLocatin:", pet);
+      const petLocation = {
+        lat: +pet.latitude,
+        lng: +pet.longitude,
+        name: pet.name,
+        petId: pet.petId,
+        petIMG: pet.picture,
+      };
+      plA.push(petLocation);
+    }
+    setPetLocationArr(plA);
+  };
+
+
+
   // If device location is available, get current device location and update map position
   if (navigator.geolocation) {
-    console.log("Geolocation is supported by this browser.");
+    // console.log("Geolocation is supported by this browser.");
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    // console.log("Geolocation is not supported by this browser.");
   }
 
   // Update map
@@ -86,6 +104,7 @@ export default function AllPetsMap({ petList }) {
     const infoWindow = new InfoWindow();
 
     petLocationArr.forEach((pl) => {
+      console.log("Pl for marker maker:", pl);
       const newMarker = new AdvancedMarkerElement({
         map,
         position: { lat: pl.lat, lng: pl.lng },

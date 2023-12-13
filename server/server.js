@@ -64,6 +64,9 @@ app.get("/api/pets", handlerFunctions.getPets);
 // Get all not-adopted pets
 app.get("/api/pets/notAdopted", handlerFunctions.getNotAdoptedPets);
 
+// Get adopted pets by userId
+app.get('/api/pets/adopted/:userId', handlerFunctions.getAdoptedPetsByUserId);
+
 // Get all senior pets
 app.get("/api/pets/senior", handlerFunctions.getSeniorPets);
 
