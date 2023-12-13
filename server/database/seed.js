@@ -2,7 +2,7 @@ import { User, Pet, Story, Appointment, db } from "./models.js";
 import axios from "axios";
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function seed() {
@@ -290,12 +290,7 @@ async function seed() {
 
   const { animals } = response.data;
 
-
-
-
   for (const pet of animals) {
-
-
     console.log(pet);
 
     // If the pet has no large photo, set a stock image based on the species
@@ -329,7 +324,7 @@ async function seed() {
       `https://geocode.maps.co/search?city=${pet.contact.address.city}&state=${pet.contact.address.state}`
     );
 
-    console.log("Geocode Data:", geocodeRes.data[0])
+    console.log("Geocode Data:", geocodeRes.data[0]);
 
     await Pet.create({
       name: pet.name,
@@ -348,10 +343,18 @@ async function seed() {
       longitude: geocodeRes.data[0].lon,
     });
 
-
-
-    await sleep(2000); 
+    await sleep(2000);
   }
+
+
+  for (let i = 1; i <= 4; i++) {
+    let pet = await Pet.findByPk(i);
+    let user = await User.findByPk(i);
+
+    await pet.setUser(user);
+    console.log("Set user:", user.email, "for pet:", pet.name);
+  }
+
 
   console.log("Data has been seeded from PetFinder API successfully");
 }

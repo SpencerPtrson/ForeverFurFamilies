@@ -246,10 +246,14 @@ const handlerFunctions = {
   getAdoptedPetsByUserId: async (req, res) => {
     try {
       const { userId } = req.params;
-      const pet = await Pet.findAll({
-        where: [{ hasBeenAdopted: true }, { userId: userId }],
+      console.log(userId);
+      const pets = await Pet.findAll({
+        where: {
+          hasBeenAdopted: true,
+          userId: userId
+        }
       });
-      res.json({ success: true, pet });
+      res.json({ success: true, pets });
     } catch (error) {
       console.log("Unable to get pet by id.");
       console.log("Error", error);
