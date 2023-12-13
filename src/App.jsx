@@ -8,13 +8,10 @@ import axios from "axios";
 import Footer from "./Components/Home/Footer";
 
 function App() {
-
-
-
   return (
     <div>
       <NavigationBar />
-      <Outlet/>
+      <Outlet />
       <Footer />
     </div>
   );

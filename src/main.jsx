@@ -43,9 +43,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: async () => {
-          const res = await axios.get('/api/pets');
+          const res = await axios.get("/api/pets");
           console.log("Main.jsx - loader:", res.data.pets);
-          return { pets: res.data.pets }
+          return { pets: res.data.pets };
         },
       },
       {
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

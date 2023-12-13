@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import "./footer.css";
 
 // Add the Font Awesome brand icons to the library
@@ -32,19 +32,19 @@ export default function Footer() {
             {/* Right Section */}
             <div>
               <a href="" className="text-white me-4">
-                <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
               </a>
               <a href="" className="text-white me-4">
-                <FontAwesomeIcon icon={['fab', 'twitter']} />
+                <FontAwesomeIcon icon={["fab", "twitter"]} />
               </a>
               <a href="" className="text-white me-4">
-                <FontAwesomeIcon icon={['fab', 'instagram']} />
+                <FontAwesomeIcon icon={["fab", "instagram"]} />
               </a>
               <a href="" className="text-white me-4">
-                <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
+                <FontAwesomeIcon icon={["fab", "linkedin-in"]} />
               </a>
               <a href="" className="text-white me-4">
-                <FontAwesomeIcon icon={['fab', 'youtube']} />
+                <FontAwesomeIcon icon={["fab", "youtube"]} />
               </a>
             </div>
             {/* End of Right Section */}
@@ -59,7 +59,9 @@ export default function Footer() {
                 {/* Grid Column */}
                 <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                   {/* Company Name */}
-                  <h6 className="text-uppercase fw-bold">ForeverFur Families</h6>
+                  <h6 className="text-uppercase fw-bold">
+                    ForeverFur Families
+                  </h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
                     style={{
@@ -68,9 +70,7 @@ export default function Footer() {
                       height: "2px",
                     }}
                   />
-                  <p>
-                    Helping you find your forever pets since 2023!
-                  </p>
+                  <p>Helping you find your forever pets since 2023!</p>
                 </div>
                 {/* Grid Column */}
 
@@ -86,16 +86,24 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">Adopting a Pet</a>
+                    <a href="#!" className="text-white">
+                      Adopting a Pet
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Benefits of Multiple Pets</a>
+                    <a href="#!" className="text-white">
+                      Benefits of Multiple Pets
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Animal Shelters & Rescues</a>
+                    <a href="#!" className="text-white">
+                      Animal Shelters & Rescues
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Other Types of Pets</a>
+                    <a href="#!" className="text-white">
+                      Other Types of Pets
+                    </a>
                   </p>
                 </div>
 
@@ -111,25 +119,39 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">Dog Adoption</a>
+                    <a href="#!" className="text-white">
+                      Dog Adoption
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Dog Breeds</a>
+                    <a href="#!" className="text-white">
+                      Dog Breeds
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Feeding Your Dog</a>
+                    <a href="#!" className="text-white">
+                      Feeding Your Dog
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Dog Behavior</a>
+                    <a href="#!" className="text-white">
+                      Dog Behavior
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Dog Health & Wellness</a>
+                    <a href="#!" className="text-white">
+                      Dog Health & Wellness
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Dog Training</a>
+                    <a href="#!" className="text-white">
+                      Dog Training
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Other Dog Information</a>
+                    <a href="#!" className="text-white">
+                      Other Dog Information
+                    </a>
                   </p>
                 </div>
 
@@ -145,25 +167,39 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">Cat Adoption</a>
+                    <a href="#!" className="text-white">
+                      Cat Adoption
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Cat Breeds</a>
+                    <a href="#!" className="text-white">
+                      Cat Breeds
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Feeding Your Cat</a>
+                    <a href="#!" className="text-white">
+                      Feeding Your Cat
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Cat Behavior</a>
+                    <a href="#!" className="text-white">
+                      Cat Behavior
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Cat Health & Wellness</a>
+                    <a href="#!" className="text-white">
+                      Cat Health & Wellness
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Cat Training</a>
+                    <a href="#!" className="text-white">
+                      Cat Training
+                    </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">Other Cat Information</a>
+                    <a href="#!" className="text-white">
+                      Other Cat Information
+                    </a>
                   </p>
                 </div>
 
@@ -180,7 +216,6 @@ export default function Footer() {
             style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
           >
             ©2023 ForeverFurFamilies
-            
           </div>
           {/* End of Copyright */}
         </footer>

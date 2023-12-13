@@ -15,8 +15,8 @@ export default function PetCards({ pet }) {
   return (
     <Card key={petId} style={{ backgroundColor: "lightblue" }}>
       <Link to={`/SpecificPet/${petId}`}>
-        <div style={{maxHeight:'250px',overflow:'hidden'}}>
-        <Card.Img variant="top" src={picture} style={{maxHeight:'100%'}}/>
+        <div style={{ maxHeight: "250px", overflow: "hidden" }}>
+          <Card.Img variant="top" src={picture} style={{ maxHeight: "100%" }} />
         </div>
       </Link>
       <Card.Body>
