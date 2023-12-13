@@ -412,7 +412,7 @@ const handlerFunctions = {
 
   createStory: async (req, res) => {
     try {
-      const { content, adoptionDate, userSubmittedImage, petId } = req.body;
+      const { content, adoptionDate, userSubmittedImage, petId } = req.params;
       console.log(
         `Creating story for pet with id ${petId} with adoptionDate ${adoptionDate} and an imgURL.`
       );

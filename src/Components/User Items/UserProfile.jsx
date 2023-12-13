@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios, { all } from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import CreateStoryForm from "./CreateStoryForm";
 
 export const UserProfile = () => {
   const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState(false);
+  const [showStoryForm, setShowStoryForm] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,6 +18,7 @@ export const UserProfile = () => {
   const [error, setError] = useState(null);
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
+
   const [pet, setPet] = useState([]);
   const [petPic, setPetPic] = useState("");
 
@@ -115,6 +118,10 @@ export const UserProfile = () => {
     return <div>Error Loading Profile</div>;
   }
 
+  const toggleStoryForm = () => {
+    setShowStoryForm(!showStoryForm)
+  }
+
   return (
     <div>
       <h1>User Profile</h1>
@@ -171,20 +178,16 @@ export const UserProfile = () => {
           <button onClick={toggleEditMode}>Edit</button>
           <button onClick={handleLogout}>Logout</button>
           <button onClick={fetchAppointments}>View Appointments</button>
+          <button onClick={toggleStoryForm}>
+            {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
+          </button>
+          {showStoryForm && <CreateStoryForm userId={userId} />}
 
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
           {!isAppointmentsLoading && appointments.length > 0 && (
             <div>
               <h2>My Appointments</h2>
-              {/* {appointments.map(appointment => (
-                  <div key={appointment.id}>
-                    <p> Appointment Date: {appointment.date}</p>
-                    <p>Pet:{appointment.petId}</p>
-                    <p>petName:{pet}</p>
-                    <p>petPic:{petPic}</p>
-                    </div>
-                ))}  */}
               {appointments}
             </div>
           )}
@@ -193,3 +196,4 @@ export const UserProfile = () => {
     </div>
   );
 };
+
