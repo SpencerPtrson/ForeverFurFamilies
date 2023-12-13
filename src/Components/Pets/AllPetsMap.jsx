@@ -42,7 +42,6 @@ export default function AllPetsMap({ petList }) {
   const loadPetLocation = async (pL) => {
     const plA = [];
     for (let pet of pL) {
-      console.log("Pet for loadPetLocatin:", pet);
       const petLocation = {
         lat: +pet.latitude,
         lng: +pet.longitude,
@@ -80,7 +79,7 @@ export default function AllPetsMap({ petList }) {
     const { InfoWindow } = await google.maps.importLibrary("maps");
 
     // Create the map.
-    console.log("Map Position:", mapPosition);
+    // console.log("Map Position:", mapPosition);
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: mapPosition,
@@ -104,10 +103,10 @@ export default function AllPetsMap({ petList }) {
     const infoWindow = new InfoWindow();
 
     petLocationArr.forEach((pl) => {
-      console.log("Pl for marker maker:", pl);
+      // console.log("LatLng for marker maker:", pl.lat, pl.lng, "for pet:", pl.name);
       const newMarker = new AdvancedMarkerElement({
         map,
-        position: { lat: pl.lat, lng: pl.lng },
+        position: { lat: +pl.lat, lng: +pl.lng },
         title: pl.name,
       });
       newMarker.addListener("click", ({ domEvent, latLng }) => {
@@ -118,7 +117,6 @@ export default function AllPetsMap({ petList }) {
           <img src=${pl.petIMG} />
         </div>`;
 
-        console.log(contentString);
         infoWindow.setContent(contentString);
         infoWindow.open(newMarker.map, newMarker);
       });
