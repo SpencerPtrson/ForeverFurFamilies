@@ -247,7 +247,9 @@ const handlerFunctions = {
 
   getSeniorPets: async (req, res) => {
     try {
-      let pets = await Pet.findAll();
+      let pets = await Pet.findAll({
+        where: { hasBeenAdopted: false }
+      });
       pets = pets.filter((pet) => /senior/gi.test(pet.age));
       res.json({ success: true, pets });
     } catch (error) {
