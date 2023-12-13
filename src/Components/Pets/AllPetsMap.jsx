@@ -1,9 +1,7 @@
 "use client";
 
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { useState, useEffect } from "react";
-import { Nav, NavLink } from "react-bootstrap";
-import axios from "axios";
-import { InfoWindow } from "@vis.gl/react-google-maps";
 
 export default function AllPetsMap({ petList }) {
   let MAP_CIRCLE_RADIUS_MILES = 50;
@@ -20,28 +18,11 @@ export default function AllPetsMap({ petList }) {
     setLng(position.coords.longitude);
   }
 
-  // Load Pet Information
-  // const loadPetLocation = async (pL) => {
-  //   const plA = [];
-  //   for (let pet of pL) {
-  //     const { data } = await axios.get(
-  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${pet.zipCode}&key=${process.env.REACT_APP_MAPS_API_KEY}`
-  //     );
-  //     const petLocation = {
-  //       lat: data.results[0].geometry.location.lat,
-  //       lng: data.results[0].geometry.location.lng,
-  //       name: pet.name,
-  //       petId: pet.petId,
-  //       petIMG: pet.picture,
-  //     };
-  //     plA.push(petLocation);
-  //   }
-  //   setPetLocationArr(plA);
-  // };
-
   const loadPetLocation = async (pL) => {
     const plA = [];
     for (let pet of pL) {
+      let sharedLocation = false;
+
       const petLocation = {
         lat: +pet.latitude,
         lng: +pet.longitude,
@@ -49,6 +30,31 @@ export default function AllPetsMap({ petList }) {
         petId: pet.petId,
         petIMG: pet.picture,
       };
+
+      if (
+        plA.filter(
+          (pet) => pet.lat === petLocation.lat && pet.lng === petLocation.lng
+        ).length > 0
+      ) {
+        console.log(pet.name, "shares a location with another.")
+        sharedLocation = true;
+      }
+
+      while (sharedLocation) {
+        console.log("Moving pet slightly laterally.")
+        petLocation.lng += 0.00001;
+        console.log("Current Pet Lcoation:", petLocation.lat, petLocation.lng);
+        console.log("Checking if pet still shares a location");
+        if (
+          plA.filter(
+            (pet) => pet.lat === petLocation.lat && pet.lng === petLocation.lng
+          ).length === 0
+        ) {
+          console.log("Pet no longer shares a location.")
+          sharedLocation = false;
+        }
+      }
+
       plA.push(petLocation);
     }
     setPetLocationArr(plA);
@@ -84,6 +90,7 @@ export default function AllPetsMap({ petList }) {
       mapId: process.env.REACT_APP_MAPS_API_KEY,
     });
 
+    // Create Display Circle
     if (displayCircle) {
       const userCircle = new google.maps.Circle({
         strokeColor: "#FF0000",
@@ -100,7 +107,8 @@ export default function AllPetsMap({ petList }) {
     // Create an info window to share betwenen markers
     const infoWindow = new InfoWindow();
 
-    petLocationArr.forEach((pl) => {
+    // Create Markers
+    const markers = petLocationArr.map((pl) => {
       // console.log("LatLng for marker maker:", pl.lat, pl.lng, "for pet:", pl.name);
       const newMarker = new AdvancedMarkerElement({
         map,
@@ -108,7 +116,6 @@ export default function AllPetsMap({ petList }) {
         title: pl.name,
       });
       newMarker.addListener("click", ({ domEvent, latLng }) => {
-        const { target } = domEvent;
         infoWindow.close();
         const contentString = `<div>
           <div align="center"><a href="/SpecificPet/${pl.petId}">Here's ${pl.name}!</a></div>
@@ -119,14 +126,17 @@ export default function AllPetsMap({ petList }) {
         infoWindow.setContent(contentString);
         infoWindow.open(newMarker.map, newMarker);
       });
+
+      return newMarker;
     });
+    new MarkerClusterer({ markers, map });
   }
 
   window.initMap = initMap;
 
   return (
     <div>
-      <div style={{ height: "80vh", border: '1px solid black' }} id="map"></div>
+      <div style={{ height: "80vh", border: "1px solid black" }} id="map"></div>
     </div>
   );
 }
