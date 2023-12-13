@@ -11,14 +11,13 @@ const handlerFunctions = {
   //#region AccountManagement
   login: async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
 
     try {
-      console.log("Attempting Login");
+      // console.log("Attempting Login");
       const user = await User.scope("withPassword").findOne({
         where: { email },
       });
-      console.log(user);
+      // console.log(user);
 
       if (!user) {
         console.log("User not found");
@@ -28,10 +27,10 @@ const handlerFunctions = {
       }
 
       const isMatch = bcryptjs.compareSync(password, user.password);
-      console.log("password value:", password);
-      console.log("user password value:", user.password);
-      console.log("is match value:");
-      console.log(isMatch);
+      // console.log("password value:", password);
+      // console.log("user password value:", user.password);
+      // console.log("is match value:");
+      // console.log(isMatch);
 
       if (!isMatch) {
         console.log("Incorrect Password");
@@ -70,11 +69,11 @@ const handlerFunctions = {
 
   userCheck: async (req, res) => {
     try {
-      console.log("User Check called!");
+      // console.log("User Check called!");
       if (req.session.userId) {
-        console.log("Session userId is valid.");
+        // console.log("Session userId is valid.");
         const user = await User.findByPk(req.session.userId);
-        console.log("Found User: ", user);
+        // console.log("Found User: ", user);
 
         res.send({
           success: true,
@@ -85,7 +84,7 @@ const handlerFunctions = {
           isAuth: true,
         });
       } else {
-        console.log("No session.userId available.");
+        // console.log("No session.userId available.");
         res.send({
           success: false,
           userId: null,
@@ -121,7 +120,7 @@ const handlerFunctions = {
     try {
       const { userId } = req.params;
       const user = await User.findByPk(+userId);
-      console.log(user);
+      // console.log(user);
       res.json({ success: true, user });
     } catch (error) {
       console.log("Unable to get user by id.");
@@ -141,9 +140,9 @@ const handlerFunctions = {
         profilePicture,
       } = req.body;
 
-      console.log(
-        `Creating user ${firstName} ${lastName} with email: ${email}, password: ${password}, phone: ${phoneNumber}, and profilePicURL: ${profilePicture}`
-      );
+      // console.log(
+      //   `Creating user ${firstName} ${lastName} with email: ${email}, password: ${password}, phone: ${phoneNumber}, and profilePicURL: ${profilePicture}`
+      // );
       const newUser = await User.create({
         email,
         password,
@@ -202,8 +201,7 @@ const handlerFunctions = {
   deleteUser: async (req, res) => {
     try {
       const { userId } = req.params;
-      console.log(userId);
-      console.log(`Attempting to delete user with id: ${userId}`);
+      // console.log(`Attempting to delete user with id: ${userId}`);
       const deletedUser = await User.destroy({
         where: { userId: userId },
       });
@@ -240,6 +238,20 @@ const handlerFunctions = {
       res.json({ success: true, pets });
     } catch (error) {
       console.log("Unable to get adoptable pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getAdoptedPetsByUserId: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const pet = await Pet.findAll({
+        where: [{ hasBeenAdopted: true }, { userId: userId }],
+      });
+      res.json({ success: true, pet });
+    } catch (error) {
+      console.log("Unable to get pet by id.");
       console.log("Error", error);
       res.json({ success: false, error });
     }
@@ -355,7 +367,7 @@ const handlerFunctions = {
   deletePet: async (req, res) => {
     try {
       const { petId } = req.body;
-      console.log(`Attempting to delete pet with id: ${petId}`);
+      // console.log(`Attempting to delete pet with id: ${petId}`);
       const deletedPet = await Pet.destroy({
         where: { petId: petId },
       });
@@ -413,9 +425,9 @@ const handlerFunctions = {
   createStory: async (req, res) => {
     try {
       const { content, adoptionDate, userSubmittedImage, petId } = req.params;
-      console.log(
-        `Creating story for pet with id ${petId} with adoptionDate ${adoptionDate} and an imgURL.`
-      );
+      // console.log(
+      //   `Creating story for pet with id ${petId} with adoptionDate ${adoptionDate} and an imgURL.`
+      // );
 
       // Create new pet
       const newStory = await Story.create({
@@ -464,7 +476,7 @@ const handlerFunctions = {
   deleteStory: async (req, res) => {
     try {
       const { storyId } = req.body;
-      console.log(`Attempting to delete story with id: ${storyId}`);
+      // console.log(`Attempting to delete story with id: ${storyId}`);
       const deletedStory = await Story.destroy({
         where: { storyId: storyId },
       });
@@ -579,7 +591,7 @@ const handlerFunctions = {
   deleteAppointment: async (req, res) => {
     try {
       const { appointmentId } = req.body;
-      console.log(`Attempting to delete appointment with id: ${appointmentId}`);
+      // console.log(`Attempting to delete appointment with id: ${appointmentId}`);
       const deletedAppointment = await Appointment.destroy({
         where: { appointmentId: appointmentId },
       });
@@ -645,8 +657,8 @@ const handlerFunctions = {
   createFavoritePet: async (req, res) => {
     try {
       const { userId, petId } = req.body;
-      console.log(userId);
-      console.log("Pet Id:", petId);
+      // console.log(userId);
+      // console.log("Pet Id:", petId);
       const user = await User.findByPk(userId);
       const pet = await Pet.findByPk(petId);
 
@@ -665,9 +677,9 @@ const handlerFunctions = {
   deleteFavoritePet: async (req, res) => {
     try {
       const { favoritePetId } = req.params;
-      console.log(
-        `Attempting to delete favorite pet instance with favoritePetId: ${favoritePetId}`
-      );
+      // console.log(
+      //   `Attempting to delete favorite pet instance with favoritePetId: ${favoritePetId}`
+      // );
       const deletedFavoritePet = await FavoritePet.destroy({
         where: { favoritePetId: favoritePetId },
       });

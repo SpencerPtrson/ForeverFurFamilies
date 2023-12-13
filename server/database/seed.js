@@ -183,7 +183,7 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: dogImage,
-      state: "Utah",
+      state: "UT",
       zipCode: "84097",
       cityName: "Provo",
       medicalHistory: "Fully vaccinated",
@@ -329,6 +329,8 @@ async function seed() {
       `https://geocode.maps.co/search?city=${pet.contact.address.city}&state=${pet.contact.address.state}`
     );
 
+    console.log("Geocode Data:", geocodeRes.data[0])
+
     await Pet.create({
       name: pet.name,
       species: pet.species,
@@ -343,7 +345,7 @@ async function seed() {
       personality: pet.description,
       hasBeenAdopted: isAdoptable,
       latitude: geocodeRes.data[0].lat,
-      lng: geocodeRes.data[0].lon,
+      longitude: geocodeRes.data[0].lon,
     });
 
 
