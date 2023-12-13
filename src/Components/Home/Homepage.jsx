@@ -114,7 +114,7 @@ const HomePage = () => {
         </Row>
         <Row>
           <Col>
-            <AllPetsMap petList={pets} />
+            {/* <AllPetsMap petList={pets} /> */}
           </Col>
         </Row>
       </Container>

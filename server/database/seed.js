@@ -1,6 +1,10 @@
 import { User, Pet, Story, Appointment, db } from "./models.js";
 import axios from "axios";
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function seed() {
   console.log("Syncing database...");
   await db.sync({ force: true });
@@ -286,10 +290,11 @@ async function seed() {
 
   const { animals } = response.data;
 
+
+
+
   for (const pet of animals) {
-    setTimeout(() => {
-      console.log("1 second delay");
-    }, 1000);
+
 
     console.log(pet);
 
@@ -340,6 +345,10 @@ async function seed() {
       latitude: geocodeRes.data[0].lat,
       lng: geocodeRes.data[0].lon,
     });
+
+
+
+    await sleep(2000); 
   }
 
   console.log("Data has been seeded from PetFinder API successfully");
