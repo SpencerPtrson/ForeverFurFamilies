@@ -19,14 +19,12 @@ export const UserProfile = () => {
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
   const [petList,setPetList] = useState([])
-
   const [pet, setPet] = useState([]);
   const [petPic, setPetPic] = useState("");
-
   const [appointments, setAppointments] = useState([]);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(false);
   const [appointmentsError, setAppointmentsError] = useState(null);
-
+  const [petName,setPetName] = useState([])
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -35,14 +33,18 @@ export const UserProfile = () => {
         setFormData(response.data.user);
         setIsLoading(false);
         const res = await axios.get(`/api/pets/adopted/${userId}`)
-          console.log(res.data)
-          setPetList(res.data)
+        console.log(res)
+          setPetList(res.data.pets.map((pets)=>{
+            return pets
+          }))
+
       } catch (error) {
         console.error("Error fetching user data", error);
         setError(error);
         setIsLoading(false);
       }
     };
+    
 
     fetchUserData();
   }, [userId]);
@@ -125,7 +127,7 @@ export const UserProfile = () => {
   const toggleStoryForm = () => {
     setShowStoryForm(!showStoryForm)
   }
-
+console.log(petName)
   return (
     <div>
       <h1>User Profile</h1>
@@ -185,7 +187,7 @@ export const UserProfile = () => {
           <button onClick={toggleStoryForm}>
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
-          {showStoryForm && <CreateStoryForm userId={userId} />}
+          {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
 
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
