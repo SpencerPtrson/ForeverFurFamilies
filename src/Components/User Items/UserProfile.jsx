@@ -18,6 +18,7 @@ export const UserProfile = () => {
   const [error, setError] = useState(null);
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
+  const [petList,setPetList] = useState([])
 
   const [pet, setPet] = useState([]);
   const [petPic, setPetPic] = useState("");
@@ -33,6 +34,9 @@ export const UserProfile = () => {
         const response = await axios.get(`/api/users/${userId}`);
         setFormData(response.data.user);
         setIsLoading(false);
+        const res = await axios.get(`/api/pets/adopted/${userId}`)
+          console.log(res.data)
+          setPetList(res.data)
       } catch (error) {
         console.error("Error fetching user data", error);
         setError(error);
