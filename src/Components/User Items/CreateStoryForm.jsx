@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 
-const CreateStoryForm = ({ userId }) => {
+const CreateStoryForm = ({ userId, petList }) => {
     const [storyData, setStoryData] = useState({
         content: '',
         adoptionDate: '',
         userSubmittedImage: '',
         petId: '',
     });
+    console.log(storyData)
 
 
     const handleStoryChange = (e) => {
@@ -31,6 +32,13 @@ const CreateStoryForm = ({ userId }) => {
         }
     }
 
+    const petOptions = petList.map(pet => {
+        return (
+            <option key={pet.petId} value={pet.petId}>{pet.name}</option>
+        )
+    })
+    console.log(storyData.petId)
+
     return (
         <Form onSubmit={handleStorySubmit}>
             <Form.Label>Story Content:</Form.Label>
@@ -43,8 +51,9 @@ const CreateStoryForm = ({ userId }) => {
             <input type="text" name="userSubmittedImage" onChange={handleStoryChange} value={storyData.userSubmittedImage} />
 
             <Form.Label>Select pet</Form.Label>
-            <Form.Select onChange={handleStoryChange} value={storyData.petId} >
-                <option value={storyData}></option>
+            <Form.Select onChange={handleStoryChange} defaultValue={storyData.petId} name='petId'>
+                <option value='' disabled>Please choose a pet</option>
+                {petOptions}
             </Form.Select>
 
             <button type="submit">Submit Story</button>
