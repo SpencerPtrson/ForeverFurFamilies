@@ -44,7 +44,12 @@ const HomePage = () => {
   });
 
   return (
-    <Container>
+    <>
+    <div className="homepage-banner">
+        <h1>Welcome to the ForeverFur Families WebPage</h1>
+        <p>Find your new best friend today!</p>
+      </div>
+        <Container>
       <Row>
         <Col>
           Total pets reHomed
@@ -75,6 +80,7 @@ const HomePage = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

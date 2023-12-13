@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios, { all } from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 export const UserProfile = () => {
@@ -46,20 +46,27 @@ export const UserProfile = () => {
     try {
       setIsAppointmentsLoading(true);
       const response = await axios.get(`/api/appointments/users/${userId}`);
-      console.log("pet ID",response.data.appointments[0].petId)
-       const getPet = await axios.get(`/api/pets/${response.data.appointments[0].petId}`)
-      setAppointments(response.data.appointments);
-      setIsAppointmentsLoading(false);
-      console.log(getPet)
-     setPet(getPet.data.pet.name)
-     setPetPic(getPet.data.pet.picture)
+      console.log("pet ID",response.data.appointments[0])
+
+      const allAppointments = response.data.appointments.map((appt) => {
+        console.log(appt)
+        return (
+          <div key={appt.appointmentId}>
+            <p> Appointment Date: {appt.date}</p>
+            <img src={appt.pet.picture} style={{width:'20%'}}></img>
+            <p>Name: {appt.pet.name}</p>
+            
+          </div>
+        )
+      })
+      setAppointments(allAppointments)
+      setIsAppointmentsLoading(false)
     } catch (error) {
       console.error('Error fetching appointments', error);
       setAppointmentsError(error);
       setIsAppointmentsLoading(false);
     }
   }
-  console.log(pet)
   
 
   const handleChange = (e) => {
@@ -174,14 +181,15 @@ export const UserProfile = () => {
             {!isAppointmentsLoading && appointments.length > 0 && (
               <div>
                 <h2>My Appointments</h2>
-                {appointments.map(appointment => (
+                {/* {appointments.map(appointment => (
                   <div key={appointment.id}>
                     <p> Appointment Date: {appointment.date}</p>
                     <p>Pet:{appointment.petId}</p>
                     <p>petName:{pet}</p>
                     <p>petPic:{petPic}</p>
                     </div>
-                ))}
+                ))}  */}
+                {appointments}
                 </div>
       )}
       </div>

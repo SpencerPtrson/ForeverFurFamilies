@@ -33,12 +33,15 @@ nav .item {
   text-align: center;
   text-decoration:none;
 }
-.dropdown {
-  overflow:hidden;
+nav .item .dropdown {
+  display: none;
   position: absolute;
   width: 100%;
   left: 0;
   top: 62px;
+}
+nav .item:hover .dropdown{
+  display: block;
 }
 .dropdown > div {
   transform: translate(0,-100%);
