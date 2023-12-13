@@ -4,7 +4,7 @@ import ViteExpress from "vite-express";
 import morgan from "morgan";
 import bcryptjs from "bcryptjs";
 import { User } from "./database/models.js";
-import env from 'dotenv';
+import env from "dotenv";
 
 // create express instance
 const app = express();
@@ -24,7 +24,6 @@ app.use(
 );
 env.config();
 
-
 // Import Handler Functions
 import handlerFunctions from "./controller.js";
 
@@ -34,10 +33,9 @@ import handlerFunctions from "./controller.js";
 app.post("/api/login", handlerFunctions.login);
 
 // Check if session id has corresponding user
-app.get('/userCheck', handlerFunctions.userCheck);
+app.get("/userCheck", handlerFunctions.userCheck);
 
 //#endregion AccountManagement
-
 
 //#region Users
 
@@ -58,7 +56,6 @@ app.delete("/api/users/delete/:userId", handlerFunctions.deleteUser);
 
 //#endregion Users
 
-
 //#region Pets
 
 // Get all pets
@@ -68,7 +65,7 @@ app.get("/api/pets", handlerFunctions.getPets);
 app.get("/api/pets/notAdopted", handlerFunctions.getNotAdoptedPets);
 
 // Get all senior pets
-app.get('/api/pets/senior', handlerFunctions.getSeniorPets);
+app.get("/api/pets/senior", handlerFunctions.getSeniorPets);
 
 // Get pet by Id
 app.get("/api/pets/:petId", handlerFunctions.getPetById);
@@ -83,7 +80,6 @@ app.put("/api/pets/edit/:petId", handlerFunctions.editPet);
 app.delete("/api/pets/delete/:petId", handlerFunctions.deletePet);
 
 //#endregion Pets
-
 
 //#region Stories
 
@@ -106,7 +102,6 @@ app.put("/api/stories/edit/:storyId", handlerFunctions.editStory);
 app.delete("/api/stories/delete/:storyId", handlerFunctions.deleteStory);
 
 //#endregion Stories
-
 
 //#region Appointments
 
@@ -142,25 +137,32 @@ app.delete(
 
 //#endregion Appointments
 
-
 //#region FavoritePets
 // Get all favorite pets
 app.get("/api/favoritePets", handlerFunctions.getAllFavoritePets);
 
 // Get all pets favorited by a user
-app.get("/api/favoritePets/users/:userId", handlerFunctions.getFavoritePetsByUserId);
+app.get(
+  "/api/favoritePets/users/:userId",
+  handlerFunctions.getFavoritePetsByUserId
+);
 
 // Get all users who favorited a pet
-app.get('/api/favoritePets/pets/:petId', handlerFunctions.getUsersByFavoritePetId);
+app.get(
+  "/api/favoritePets/pets/:petId",
+  handlerFunctions.getUsersByFavoritePetId
+);
 
 // Create new pet
 app.post("/api/favoritePets/create", handlerFunctions.createFavoritePet);
 
 // Delete pet
-app.delete("/api/favoritePets/delete/:favoritePetId", handlerFunctions.deleteFavoritePet);
+app.delete(
+  "/api/favoritePets/delete/:favoritePetId",
+  handlerFunctions.deleteFavoritePet
+);
 
 //#endregion FavoritePets
-
 
 ViteExpress.listen(app, PORT, () => {
   console.log(`server is live at PORT http://localhost:${PORT}`);

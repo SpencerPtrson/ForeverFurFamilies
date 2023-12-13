@@ -61,7 +61,7 @@ export default function SpecificPet() {
       <Container>
         <Row>
           <Col>
-            <Row className="carousel-container" >
+            <Row className="carousel-container">
               <Carousel className="PetDetails">
                 <Carousel.Item>
                   <div

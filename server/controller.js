@@ -248,7 +248,7 @@ const handlerFunctions = {
   getSeniorPets: async (req, res) => {
     try {
       let pets = await Pet.findAll({
-        where: { hasBeenAdopted: false }
+        where: { hasBeenAdopted: false },
       });
       pets = pets.filter((pet) => /senior/gi.test(pet.age));
       res.json({ success: true, pets });
@@ -498,8 +498,8 @@ const handlerFunctions = {
       const appointments = await Appointment.findAll({
         where: { userId: userId },
         include: {
-          model: Pet
-        }
+          model: Pet,
+        },
       });
       res.json({ success: true, appointments });
     } catch (error) {

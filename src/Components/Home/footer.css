@@ -1,7 +1,7 @@
 a.text-white {
-    text-decoration: none;
-    font-size: 14px;
-  }
-  a.text-white:hover {
-    text-decoration: underline; 
-  }  
+  text-decoration: none;
+  font-size: 14px;
+}
+a.text-white:hover {
+  text-decoration: underline;
+}

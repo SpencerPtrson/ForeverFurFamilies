@@ -9,20 +9,26 @@ const NavigationBar = () => {
 
   const userCheck = async () => {
     console.log("Calling userCheck in app.jsx");
-    const { data } = await axios.get('/userCheck');
+    const { data } = await axios.get("/userCheck");
     console.log("Data from userCheck:", data);
     if (data.email) {
       dispatch({
-        type: 'LOGIN',
-        payload: { email: data.email, firstName: data.firstName, isAdmin: data.isAdmin, success: data.success, userId: data.userId, isAuth: data.isAuth }
-      })
+        type: "LOGIN",
+        payload: {
+          email: data.email,
+          firstName: data.firstName,
+          isAdmin: data.isAdmin,
+          success: data.success,
+          userId: data.userId,
+          isAuth: data.isAuth,
+        },
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    userCheck()
+    userCheck();
   }, []);
-
 
   return (
     <div>

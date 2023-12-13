@@ -19,6 +19,9 @@ export const UserProfile = () => {
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
 
+  const [pet, setPet] = useState([]);
+  const [petPic, setPetPic] = useState("");
+
   const [appointments, setAppointments] = useState([]);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(false);
   const [appointmentsError, setAppointmentsError] = useState(null);
@@ -44,28 +47,26 @@ export const UserProfile = () => {
     try {
       setIsAppointmentsLoading(true);
       const response = await axios.get(`/api/appointments/users/${userId}`);
-      console.log("pet ID",response.data.appointments[0])
+      console.log("pet ID", response.data.appointments[0]);
 
       const allAppointments = response.data.appointments.map((appt) => {
-        console.log(appt)
+        console.log(appt);
         return (
           <div key={appt.appointmentId}>
             <p> Appointment Date: {appt.date}</p>
-            <img src={appt.pet.picture} style={{width:'20%'}}></img>
+            <img src={appt.pet.picture} style={{ width: "20%" }}></img>
             <p>Name: {appt.pet.name}</p>
-            
           </div>
-        )
-      })
-      setAppointments(allAppointments)
-      setIsAppointmentsLoading(false)
+        );
+      });
+      setAppointments(allAppointments);
+      setIsAppointmentsLoading(false);
     } catch (error) {
-      console.error('Error fetching appointments', error);
+      console.error("Error fetching appointments", error);
       setAppointmentsError(error);
       setIsAppointmentsLoading(false);
     }
-  }
-  
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,9 +106,9 @@ export const UserProfile = () => {
   };
 
   const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-    navigate('/login')
-  }
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -169,7 +170,7 @@ export const UserProfile = () => {
           <button onClick={handleDeleteAccount}>Delete My Account</button>
         </form>
       ) : (
-          <div>
+        <div>
           <p>First Name: {formData.firstName}</p>
           <p>Last Name: {formData.lastName}</p>
           <p>Email: {formData.email}</p>
@@ -184,12 +185,15 @@ export const UserProfile = () => {
 
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
-            {!isAppointmentsLoading && appointments.length > 0 && (
-              <div>
-                <h2>My Appointments</h2>
-                {appointments}
-                </div>
+          {!isAppointmentsLoading && appointments.length > 0 && (
+            <div>
+              <h2>My Appointments</h2>
+              {appointments}
+            </div>
+          )}
+        </div>
       )}
-      </div>
-       )} </div>
-  )};
+    </div>
+  );
+};
+
