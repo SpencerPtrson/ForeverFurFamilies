@@ -12,13 +12,11 @@ async function seed() {
   let dogImage =
     "https://i.pinimg.com/originals/62/c3/05/62c305a9e793feb3dffd53c6a448c3f9.png";
 
-    let bingoImage =
-    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702420642/Bingo_utvu9f.jpg"
+  let bingoImage =
+    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702420642/Bingo_utvu9f.jpg";
 
-    let chitzoImage =
-    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702421701/kitty_gnshnv.jpg"
-
-
+  let chitzoImage =
+    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702421701/kitty_gnshnv.jpg";
 
   console.log("Seeding Users table...");
   const users = [
@@ -69,12 +67,14 @@ async function seed() {
       age: "2",
       gender: "Male",
       picture: bingoImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84117",
       cityName: "Millcreek",
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly and loves to play fetch",
       hasBeenAdopted: true,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Blue",
@@ -83,12 +83,14 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: catImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84663",
       cityName: "Springville",
       medicalHistory: "Fully vaccinated",
       personality: "Timid and friendly",
       hasBeenAdopted: true,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Thor",
@@ -97,12 +99,14 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: catImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84043",
       cityName: "Lehi",
       medicalHistory: "Fully vaccinated, has one eye",
       personality: "Very friendly and patient",
       hasBeenAdopted: true,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Chitzo",
@@ -111,12 +115,14 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: chitzoImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84117",
       cityName: "Millcreek",
       medicalHistory: "Fully vaccinated, neutered",
       personality: "Friendly with humans and dogs",
       hasBeenAdopted: true,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Charlie",
@@ -125,12 +131,14 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: dogImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84093",
       cityName: "Sandy",
       medicalHistory: "Fully vaccinated",
       personality: "Trusting and loyal",
       hasBeenAdopted: false,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Bailey",
@@ -139,12 +147,14 @@ async function seed() {
       age: "Senior",
       gender: "Female",
       picture: dogImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84047",
       cityName: "Midvale",
       medicalHistory: "Fully vaccinated, not spayed",
       personality: "Energetic and playful",
       hasBeenAdopted: false,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Daisy",
@@ -153,12 +163,14 @@ async function seed() {
       age: "Senior",
       gender: "Female",
       picture: dogImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84009",
       cityName: "South Jordan",
       medicalHistory: "Fully vaccinated, spayed",
       personality: "Laidback and affectionate",
       hasBeenAdopted: false,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
     {
       name: "Max",
@@ -167,12 +179,14 @@ async function seed() {
       age: "Senior",
       gender: "Male",
       picture: dogImage,
-      state: "UT",
+      state: "Utah",
       zipCode: "84097",
       cityName: "Provo",
       medicalHistory: "Fully vaccinated",
       personality: "Independent and timid",
       hasBeenAdopted: false,
+      latitude: 40.391617,
+      longitude: -111.850769,
     },
   ];
 
@@ -272,9 +286,11 @@ async function seed() {
 
   const { animals } = response.data;
 
-
-
   for (const pet of animals) {
+    setTimeout(() => {
+      console.log("1 second delay");
+    }, 1000);
+
     console.log(pet);
 
     // If the pet has no large photo, set a stock image based on the species
@@ -304,6 +320,10 @@ async function seed() {
     let isAdoptable = true;
     if (pet.status !== "adoptable") isAdoptable = false;
 
+    const geocodeRes = await axios.get(
+      `https://geocode.maps.co/search?city=${pet.contact.address.city}&state=${pet.contact.address.state}`
+    );
+
     await Pet.create({
       name: pet.name,
       species: pet.species,
@@ -317,6 +337,8 @@ async function seed() {
       medicalHistory: medicalHistory,
       personality: pet.description,
       hasBeenAdopted: isAdoptable,
+      latitude: geocodeRes.data[0].lat,
+      lng: geocodeRes.data[0].lon,
     });
   }
 
@@ -326,4 +348,3 @@ async function seed() {
 await seed().catch(console.error);
 
 await db.close();
-

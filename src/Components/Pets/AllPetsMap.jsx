@@ -21,23 +21,23 @@ export default function AllPetsMap({ petList }) {
   }
 
   // Load Pet Information
-  const loadPetLocation = async (pL) => {
-    const plA = [];
-    for (let pet of pL) {
-      const { data } = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${pet.zipCode}&key=${process.env.REACT_APP_MAPS_API_KEY}`
-      );
-      const petLocation = {
-        lat: data.results[0].geometry.location.lat,
-        lng: data.results[0].geometry.location.lng,
-        name: pet.name,
-        petId: pet.petId,
-        petIMG: pet.picture,
-      };
-      plA.push(petLocation);
-    }
-    setPetLocationArr(plA);
-  };
+  // const loadPetLocation = async (pL) => {
+  //   const plA = [];
+  //   for (let pet of pL) {
+  //     const { data } = await axios.get(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${pet.zipCode}&key=${process.env.REACT_APP_MAPS_API_KEY}`
+  //     );
+  //     const petLocation = {
+  //       lat: data.results[0].geometry.location.lat,
+  //       lng: data.results[0].geometry.location.lng,
+  //       name: pet.name,
+  //       petId: pet.petId,
+  //       petIMG: pet.picture,
+  //     };
+  //     plA.push(petLocation);
+  //   }
+  //   setPetLocationArr(plA);
+  // };
 
   // If device location is available, get current device location and update map position
   if (navigator.geolocation) {
