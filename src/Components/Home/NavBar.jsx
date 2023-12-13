@@ -40,9 +40,9 @@ const NavigationBar = () => {
           All pets
           <div className="dropdown">
             <div>
-              <Link to="/allPets" type="dog">Dogs</Link>
-              <Link to="/allPets">Cats</Link>
-              <Link to="/allPets">Other animals</Link>
+              <Link to="/allPets?type=Dog">Dogs</Link>
+              <Link to="/allPets?type=Cat">Cats</Link>
+              <Link to="/allPets?type=Other">Other animals</Link>
             </div>
           </div>
         </div>
