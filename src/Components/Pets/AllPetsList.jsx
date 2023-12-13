@@ -3,17 +3,18 @@ import PetCards from "./PetCards";
 import './AllPets.css'
 import axios from "axios";
 import { Row, Col, Container, Form, InputGroup, FormControl } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 export default function AllPetsList({ type }) {
-  // const [searchParams] = useSearchParams();
-  // const filter = searchParams.get("filter")
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const petType = searchParams.get('type')
   const [pets, setPets] = useState([]);
   const [petData, setPetData] = useState([]);
   const [filters, setFilters] = useState({
     age: "",
-    species: "",
+    species: petType,
     location: "",
   });
 
