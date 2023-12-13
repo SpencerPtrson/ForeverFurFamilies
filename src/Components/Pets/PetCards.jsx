@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { FavoriteButton } from "./FavoriteButton";
 import { useSelector } from "react-redux";
+import "./PetCards.css"
 
 export default function PetCards({ pet }) {
   const userId = useSelector((state) => state.userId);
@@ -13,15 +14,15 @@ export default function PetCards({ pet }) {
   if (state && cityName) locationString += ", ";
   if (state) locationString += state;
   return (
-    <Card key={petId} style={{ backgroundColor: "lightblue" }}>
+    <Card key={petId}>
       <Link to={`/SpecificPet/${petId}`}>
-        <div style={{ maxHeight: "250px", overflow: "hidden" }}>
+      <div class="ratio ratio-1x1">
           <Card.Img variant="top" src={picture} style={{ maxHeight: "100%" }} />
         </div>
       </Link>
       <Card.Body>
         <Link to={`/SpecificPet/${petId}`}>
-          <Card.Text>{name}</Card.Text>
+          <Card.Title>{name}</Card.Title>
           <Card.Text>
             {species}, {breed}
           </Card.Text>
