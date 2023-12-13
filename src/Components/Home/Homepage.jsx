@@ -16,18 +16,18 @@ const HomePage = () => {
   const [pic, setPic] = useState([]);
   const islogged = useSelector((state) => state.isAuth);
   const [show, setShow] = useState(!islogged);
-  console.log(islogged);
-  console.log(show);
+  // console.log(islogged);
+  // console.log(show);
 
   const { pets } = useLoaderData();
-  console.log("Loader Data:", pets);
+  // console.log("Loader Data:", pets);
 
   useEffect(() => {
     const getSeniorPets = async () => {
       try {
         const response = await axios.get(`/api/pets/senior`);
         setSeniorPets(response.data.pets);
-        console.log(response.data.pets);
+        // console.log(response.data.pets);
       } catch (error) {
         console.error("error finding pet", error);
       }
@@ -38,7 +38,7 @@ const HomePage = () => {
         const response = await axios.get(`/api/stories/1`);
         setStory(response.data.story.content);
         setPic(response.data.story.userSubmittedImage);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("error getting story", error);
       }

@@ -8,9 +8,9 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
 
   const userCheck = async () => {
-    console.log("Calling userCheck in app.jsx");
+    // console.log("Calling userCheck in app.jsx");
     const { data } = await axios.get("/userCheck");
-    console.log("Data from userCheck:", data);
+    // console.log("Data from userCheck:", data);
     if (data.email) {
       dispatch({
         type: "LOGIN",

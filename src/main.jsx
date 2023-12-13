@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
         loader: async () => {
           const res = await axios.get("/api/pets");
-          console.log("Main.jsx - loader:", res.data.pets);
+          // console.log("Main.jsx - loader:", res.data.pets);
           return { pets: res.data.pets };
         },
       },
