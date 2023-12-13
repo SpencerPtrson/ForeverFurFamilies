@@ -5,6 +5,7 @@ import HomePage from "./Components/Home/Homepage";
 import NavigationBar from "./Components/Home/NavBar";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
+import Footer from "./Components/Home/Footer";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
     <div>
       <NavigationBar />
       <Outlet/>
+      <Footer />
     </div>
   );
 }
