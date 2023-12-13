@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form } from 'react-bootstrap';
 
 const CreateStoryForm = ({ userId }) => {
     const [storyData, setStoryData] = useState({
@@ -8,6 +9,7 @@ const CreateStoryForm = ({ userId }) => {
         userSubmittedImage: '',
         petId: '',
     });
+
 
     const handleStoryChange = (e) => {
         const { name, value } = e.target;
@@ -30,21 +32,23 @@ const CreateStoryForm = ({ userId }) => {
     }
 
     return (
-        <form onSubmit={handleStorySubmit}>
-            <label>Story Content:</label>
+        <Form onSubmit={handleStorySubmit}>
+            <Form.Label>Story Content:</Form.Label>
             <textarea name="content" onChange={handleStoryChange} value={storyData.content} required />
 
-            <label>Adoption Date:</label>
+            <Form.Label>Adoption Date:</Form.Label>
             <input type="date" name="adoptionDate" onChange={handleStoryChange} value={storyData.adoptionDate} required />
             
-            <label>Image URL:</label>
+            <Form.Label>Image URL:</Form.Label>
             <input type="text" name="userSubmittedImage" onChange={handleStoryChange} value={storyData.userSubmittedImage} />
 
-            <label>Pet ID (optional):</label>
-            <input type="number" name="petId" onChange={handleStoryChange} value={storyData.petId} />
+            <Form.Label>Select pet</Form.Label>
+            <Form.Select onChange={handleStoryChange} value={storyData.petId} >
+                <option value={storyData}></option>
+            </Form.Select>
 
             <button type="submit">Submit Story</button>
-        </form>
+        </Form>
     );
 };
 
