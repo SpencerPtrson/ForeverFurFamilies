@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const NavigationBar = () => {
   const dispatch = useDispatch();
-
+  const authed = useSelector((state) => state.isAuth);
   const userCheck = async () => {
     // console.log("Calling userCheck in app.jsx");
     const { data } = await axios.get("/userCheck");
@@ -36,12 +37,24 @@ const NavigationBar = () => {
         <Link to="/" className="item">
           ForeverFur Families
         </Link>
-        <Link to="/login" className="item">
-          Login
-        </Link>
-        <Link to="/register" className="item">
-          Register
-        </Link>
+
+        {authed ? (
+            <>
+            <Link to="/UserProfile" className="item">
+              User Profile
+            </Link>
+          </>
+        ) : (
+               <>
+            <Link to="/login" className="item">
+              Login
+            </Link>
+            <Link to="/register" className="item">
+              Register
+            </Link>
+          </>
+        )}
+
         <div className="item">
           All pets
           <div className="dropdown">
