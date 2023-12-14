@@ -24,13 +24,13 @@ export default function Footer() {
             style={{ backgroundColor: "#1010c2" }}
           >
             {/* Left Section */}
-            <div className="me-5">
+            <div className="px-5">
               <span>Stay connected with us on social networks:</span>
             </div>
             {/* End of Left Section */}
 
             {/* Right Section */}
-            <div>
+            <div className="px-5">
               <a href="" className="text-white me-4">
                 <FontAwesomeIcon icon={["fab", "facebook-f"]} />
               </a>
