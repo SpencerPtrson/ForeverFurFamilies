@@ -28,7 +28,10 @@ export const SuccessStory = () => {
             <div key={story.storyId} className="story-card">
               <p className="story-content">{story.content}</p>
               <p className="story-date">
-                Date: {new Date(story.adoptionDate).toLocaleDateString()}
+                Date:{" "}
+                {new Date(
+                  story.adoptionDate.replace(/-/g, "/")
+                ).toLocaleDateString()}
               </p>
               {story.userSubmittedImage && (
                 <img src={story.userSubmittedImage} alt="Story" />

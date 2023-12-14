@@ -44,13 +44,9 @@ export const storyHandlerFunctions = {
   createStory: async (req, res) => {
     try {
       const { adoptionDate, content, userSubmittedImage, petId } = req.body;
-
-      console.log(req.params);
-      console.log(req.body);
-
-      console.log(
-        `Creating story for pet with id ${+petId} with adoptionDate ${adoptionDate} and an imgURL.`
-      );
+      // console.log(
+      //   `Creating story for pet with id ${+petId} with adoptionDate ${adoptionDate} and an imgURL.`
+      // );
 
       // Create new pet
       const newStory = await Story.create({
