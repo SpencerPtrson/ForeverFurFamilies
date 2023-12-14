@@ -16,9 +16,9 @@ export default function PetCards({ pet }) {
   return (
     <Card key={petId}>
       
-      <div class="ratio ratio-1x1">
+      <div className="cardtop">
       <Link to={`/SpecificPet/${petId}`}>
-          <Card.Img variant="top" src={picture} style={{ maxHeight: "100%" }} />
+          <Card.Img variant="top" src={picture} />
           </Link>
           {userId !== "" && ( <div className="heart-icon-wrapper">
       <div className="heart-icon"><FavoriteButton petId={petId} /> </div></div>)}
