@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios, { all } from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import CreateStoryForm from "./CreateStoryForm";
+import './UserProfile.css'
 
 export const UserProfile = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ export const UserProfile = () => {
     fetchUserData();
   }, [userId]);
 
+
   const fetchAppointments = async () => {
     try {
       setIsAppointmentsLoading(true);
@@ -58,7 +60,7 @@ export const UserProfile = () => {
       const allAppointments = response.data.appointments.map((appt) => {
         console.log(appt);
         return (
-          <div key={appt.appointmentId}>
+          <div key={appt.appointmentId} className="appointment-card">
             <p> Appointment Date: {appt.date}</p>
             <img src={appt.pet.picture} style={{ width: "20%" }}></img>
             <p>Name: {appt.pet.name}</p>
@@ -127,13 +129,16 @@ export const UserProfile = () => {
   const toggleStoryForm = () => {
     setShowStoryForm(!showStoryForm)
   }
+
+  
+
 console.log(petName)
   return (
-    <div>
+    <div className="user-profile-container">
       <h1>User Profile</h1>
       {isEditMode ? (
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="form-group">
             <label>First Name:</label>
             <input
               type="text"
@@ -142,7 +147,7 @@ console.log(petName)
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Last Name:</label>
             <input
               type="text"
@@ -151,7 +156,7 @@ console.log(petName)
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Email:</label>
             <input
               type="email"
@@ -160,7 +165,7 @@ console.log(petName)
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Phone Number:</label>
             <input
               type="tel"
@@ -169,11 +174,13 @@ console.log(petName)
               onChange={handleChange}
             />
           </div>
+          <div className="form-button-group">
           <button type="submit">Save</button>
           <button type="button" onClick={toggleEditMode}>
             Cancel
           </button>
           <button onClick={handleDeleteAccount}>Delete My Account</button>
+          </div>
         </form>
       ) : (
         <div>
@@ -181,18 +188,20 @@ console.log(petName)
           <p>Last Name: {formData.lastName}</p>
           <p>Email: {formData.email}</p>
           <p>Phone Number: {formData.phoneNumber}</p>
-          <button onClick={toggleEditMode}>Edit</button>
-          <button onClick={handleLogout}>Logout</button>
-          <button onClick={fetchAppointments}>View Appointments</button>
-          <button onClick={toggleStoryForm}>
+          <div>
+          <button className="user-profile-button edit-button" onClick={toggleEditMode}>Edit</button>
+          <button className="user-profile-button logout-button"onClick={handleLogout}>Logout</button>
+          <button className="user-profile-button view-appointments-button" onClick={fetchAppointments}>View Appointments</button>
+          <button className="user-profile-button share-story-button" onClick={toggleStoryForm}>
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
           {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
+          </div>
 
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
           {!isAppointmentsLoading && appointments.length > 0 && (
-            <div>
+            <div className="appointments-container">
               <h2>My Appointments</h2>
               {appointments}
             </div>

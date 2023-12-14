@@ -22,6 +22,12 @@ async function seed() {
   let chitzoImage =
     "https://res.cloudinary.com/deaxecn0z/image/upload/v1702421701/kitty_gnshnv.jpg";
 
+  let blueImage =
+    "https://res.cloudinary.com/deaxecn0z/image/upload/v1702509509/bluepic_fvsc5x.jpg";
+  
+  let thorImage =
+  "https://res.cloudinary.com/deaxecn0z/image/upload/v1702509865/thor_pic_jjyexc.jpg"
+
   console.log("Seeding Users table...");
   const users = [
     {
@@ -86,7 +92,7 @@ async function seed() {
       breed: "Siamese",
       age: "Senior",
       gender: "Male",
-      picture: catImage,
+      picture: blueImage,
       state: "Utah",
       zipCode: "84663",
       cityName: "Springville",
@@ -102,7 +108,7 @@ async function seed() {
       breed: "Orange",
       age: "Senior",
       gender: "Male",
-      picture: catImage,
+      picture: thorImage,
       state: "Utah",
       zipCode: "84043",
       cityName: "Lehi",
@@ -211,14 +217,14 @@ async function seed() {
       content:
         "Blue has been the perfect addition to our family, we are so happy he is apart of our lives",
       adoptionDate: new Date(),
-      userSubmittedImage: catImage,
+      userSubmittedImage: blueImage,
       userId: 2,
     },
     {
       content:
         "Thor is an amazing pet and I can not imagine life without him. One of the best decisions our family ever made",
       adoptionDate: new Date(),
-      userSubmittedImage: catImage,
+      userSubmittedImage: thorImage,
       userId: 3,
     },
     {

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Form } from "react-bootstrap";
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Form } from 'react-bootstrap';
+import "./CreateStoryForm.css"
 
 const CreateStoryForm = ({ userId, petList }) => {
   const [storyData, setStoryData] = useState({
@@ -39,15 +41,12 @@ const CreateStoryForm = ({ userId, petList }) => {
     );
   });
 
+
   return (
-    <Form onSubmit={handleStorySubmit}>
-      <Form.Label>Story Content:</Form.Label>
-      <textarea
-        name="content"
-        onChange={handleStoryChange}
-        value={storyData.content}
-        required
-      />
+     <Form onSubmit={handleStorySubmit} className="story-form">
+            <Form.Label>Story Content:</Form.Label>
+            <textarea name="content" onChange={handleStoryChange} value={storyData.content} required 
+            />
 
       <Form.Label>Adoption Date:</Form.Label>
       <input

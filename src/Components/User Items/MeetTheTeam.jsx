@@ -21,7 +21,7 @@ export const MeetTheTeam = () => {
     {
       name: "Tito Nanni",
       bio: "Tito loves dogs",
-      image: "path-to-tito-image.jpg",
+      image: "https://res.cloudinary.com/deaxecn0z/image/upload/v1702505933/linkedin_profile_pic_gdhjf4.jpg",
     },
   ];
 
@@ -31,7 +31,7 @@ export const MeetTheTeam = () => {
       <div>
         {teamMembers.map((member) => (
           <div key={member.name} className="team-member-card">
-            <img src={member.image} alt={member.name} />
+            <img src={member.image} alt={member.name} className={member.name === "Tito Nanni" ? "tito-image" : ""}/>
             <h3>{member.name}</h3>
             <p>{member.bio}</p>
           </div>
