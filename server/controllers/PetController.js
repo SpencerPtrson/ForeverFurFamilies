@@ -1,6 +1,21 @@
 import { Pet } from "../database/models.js";
 
 export const petHandlerFunctions = {
+  getPetCountAdopted: async (req, res) => {
+
+    try {
+      const count = await Pet.findAndCountAll({
+        where: { hasBeenAdopted: true }
+      })
+      console.log(count);
+      res.json({ success: true, count: count.count });
+    } catch (error) {
+      console.log("Unable to get adopted pet count.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   getPets: async (req, res) => {
     try {
       const pets = await Pet.findAll({
@@ -53,6 +68,99 @@ export const petHandlerFunctions = {
       res.json({ success: true, pets });
     } catch (error) {
       console.log("Unable to get pet by id.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getPetsByAgeGroups: async (req, res) => {
+    try {
+      // // Get Boolean age key-value pairs from req.body
+      // const { baby, young, adult, senior } = req.body;
+      // console.log("Baby:", baby);
+      // console.log("Young:", young);
+      // console.log("Adult:", adult);
+      // console.log("Senior:", senior);
+
+      // const filterArr = [];
+      // if (baby) filterArr.push('baby');
+      // if (young) filterArr.push('young');
+      // if (adult) filterArr.push('adult');
+      // if (senior) filterArr.push('senior');
+
+      // const pets = await Pet.findAll({
+      //   where: {
+      //     hasBeenAdopted: false,
+      //   },
+      // });
+
+      // // filter pets based on key value pairs
+      // console.log(filterArr);
+
+      // const filteredPets = pets.filter(pet => {
+      //  let meetsConditions = false;
+       
+
+      //  for (const ageGroup of filterArr) {
+      //   const regex = new RegExp(`/${ageGroup}/gi`)
+      //   console.log("Regex:", regex);
+      //   if (regex.test(pet.age)) {
+      //     console.log(pet.name, "is in the age group")
+      //   }
+      //  }
+       
+      //  return meetsConditions;
+      // })
+
+
+
+
+
+      // res.json({ success: true, pets: filteredPets });
+    } catch (error) {
+      console.log("Unable to get pets by age groups.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getBabyPets: async (req, res) => {
+    try {
+      let pets = await Pet.findAll({
+        where: { hasBeenAdopted: false },
+      });
+      pets = pets.filter((pet) => /baby/gi.test(pet.age));
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get senior pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getYoungPets: async (req, res) => {
+    try {
+      let pets = await Pet.findAll({
+        where: { hasBeenAdopted: false },
+      });
+      pets = pets.filter((pet) => /young/gi.test(pet.age));
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get senior pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
+  getAdultPets: async (req, res) => {
+    try {
+      let pets = await Pet.findAll({
+        where: { hasBeenAdopted: false },
+      });
+      pets = pets.filter((pet) => /adult/gi.test(pet.age));
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get senior pets.");
       console.log("Error", error);
       res.json({ success: false, error });
     }
