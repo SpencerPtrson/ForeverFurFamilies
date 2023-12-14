@@ -25,6 +25,7 @@ export const UserProfile = () => {
   const [appointments, setAppointments] = useState([]);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(false);
   const [appointmentsError, setAppointmentsError] = useState(null);
+  const [showAppointments, setShowAppointments] = useState(false);
   const [petName,setPetName] = useState([])
   useEffect(() => {
     const fetchUserData = async () => {
@@ -52,6 +53,10 @@ export const UserProfile = () => {
 
 
   const fetchAppointments = async () => {
+    if (showAppointments) {
+      setShowAppointments(false);
+      return;
+    }
     try {
       setIsAppointmentsLoading(true);
       const response = await axios.get(`/api/appointments/users/${userId}`);
@@ -69,6 +74,7 @@ export const UserProfile = () => {
       });
       setAppointments(allAppointments);
       setIsAppointmentsLoading(false);
+      setShowAppointments(true);
     } catch (error) {
       console.error("Error fetching appointments", error);
       setAppointmentsError(error);
@@ -191,7 +197,8 @@ console.log(petName)
           <div>
           <button className="user-profile-button edit-button" onClick={toggleEditMode}>Edit</button>
           <button className="user-profile-button logout-button"onClick={handleLogout}>Logout</button>
-          <button className="user-profile-button view-appointments-button" onClick={fetchAppointments}>View Appointments</button>
+          <button className="user-profile-button view-appointments-button" onClick={fetchAppointments}>
+            {showAppointments ? 'Hide Appointments' : 'View Appointments'}</button>
           <button className="user-profile-button share-story-button" onClick={toggleStoryForm}>
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
@@ -200,7 +207,7 @@ console.log(petName)
 
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
-          {!isAppointmentsLoading && appointments.length > 0 && (
+          {showAppointments && !isAppointmentsLoading && appointments.length > 0 && (
             <div className="appointments-container">
               <h2>My Appointments</h2>
               {appointments}
