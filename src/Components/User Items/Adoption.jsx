@@ -21,7 +21,7 @@ export const Adoption = () => {
   const userId = useSelector((state) => state.userId);
   const firstName = useSelector((state) => state.firstName);
   const [date, setDate] = useState(new Date());
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,11 +60,6 @@ export const Adoption = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (name === "password" && value !== "") {
-      setTimeout(() => {
-        setShowCalendar(true);
-      }, 2000); // Adjust the timeout value as needed (e.g., 2000 milliseconds or 2 seconds)
-    }
   };
 
   const handleSubmit = async (e) => {
