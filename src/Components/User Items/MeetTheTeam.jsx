@@ -6,17 +6,17 @@ export const MeetTheTeam = () => {
     {
       name: "Spencer Peterson",
       bio: "Spencer loves all animals",
-      image: "path-to-spencer-image.jpg",
+      image: "https://res.cloudinary.com/deaxecn0z/image/upload/v1702594687/spencerimage_lgyxjh.png",
     },
     {
       name: "Wyatt Thayer",
       bio: "Wyatt loves birds",
-      image: "path-to-wyatt-image.jpg",
+      image: "https://res.cloudinary.com/deaxecn0z/image/upload/v1702595711/wyattbees_yzbotb.jpg",
     },
     {
       name: "Justin Nelson",
       bio: "Justin loves cats",
-      image: "path-to-justin-image.jpg",
+      image: "https://res.cloudinary.com/deaxecn0z/image/upload/v1702594878/Justinpic_ejtg66.jpg",
     },
     {
       name: "Tito Nanni",
@@ -31,7 +31,7 @@ export const MeetTheTeam = () => {
       <div>
         {teamMembers.map((member) => (
           <div key={member.name} className="team-member-card">
-            <img src={member.image} alt={member.name} className={member.name === "Tito Nanni" ? "tito-image" : ""}/>
+            <img src={member.image} alt={member.name} className={member.name}/>
             <h3>{member.name}</h3>
             <p>{member.bio}</p>
           </div>
