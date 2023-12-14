@@ -346,7 +346,6 @@ async function seed() {
     await sleep(2000);
   }
 
-
   for (let i = 1; i <= 4; i++) {
     let pet = await Pet.findByPk(i);
     let user = await User.findByPk(i);
@@ -354,7 +353,6 @@ async function seed() {
     await pet.setUser(user);
     console.log("Set user:", user.email, "for pet:", pet.name);
   }
-
 
   console.log("Data has been seeded from PetFinder API successfully");
 }

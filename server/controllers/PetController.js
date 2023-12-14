@@ -126,7 +126,7 @@ export const petHandlerFunctions = {
         medicalHistory,
         personalHistory,
         hasBeenAdopted,
-        picture
+        picture,
       } = req.body;
 
       const pet = await Pet.findByPk(petId);
