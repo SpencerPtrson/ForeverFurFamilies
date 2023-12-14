@@ -32,8 +32,20 @@
     font-weight: 600;
 }
 
-.heart-icon-wrapper {
+.card-img-top{
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    height: 14rem;
+    
+}
+
+.cardtop {
     position: relative;
+}
+
+.heart-icon-wrapper {
+    position: absolute;
     top: 5px; 
     right: 5px; 
 }
