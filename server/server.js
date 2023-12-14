@@ -2,8 +2,6 @@ import express from "express";
 import session from "express-session";
 import ViteExpress from "vite-express";
 import morgan from "morgan";
-import bcryptjs from "bcryptjs";
-import { User } from "./database/models.js";
 import env from "dotenv";
 
 // create express instance
@@ -66,6 +64,10 @@ app.delete("/api/users/delete/:userId", userHandlerFunctions.deleteUser);
 
 //#region Pets
 
+// Get pet count
+app.get('/api/pets/count/adopted', petHandlerFunctions.getPetCountAdopted)
+
+
 // Get all pets
 app.get("/api/pets", petHandlerFunctions.getPets);
 
@@ -80,6 +82,18 @@ app.get(
   "/api/pets/adopted/:userId",
   petHandlerFunctions.getAdoptedPetsByUserId
 );
+
+// Get all pets by age categories
+// app.get('/api/pets/ageGroups', petHandlerFunctions.getPetsByAgeGroups);
+
+// Get all baby pets
+app.get("/api/pets/baby", petHandlerFunctions.getBabyPets);
+
+// Get all young pets
+app.get("/api/pets/young", petHandlerFunctions.getYoungPets);
+
+// Get all adult pets
+app.get("/api/pets/adult", petHandlerFunctions.getAdultPets);
 
 // Get all senior pets
 app.get("/api/pets/senior", petHandlerFunctions.getSeniorPets);
