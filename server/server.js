@@ -66,6 +66,9 @@ app.delete("/api/users/delete/:userId", userHandlerFunctions.deleteUser);
 // Get all pets
 app.get("/api/pets", petHandlerFunctions.getPets);
 
+// Get all adopted pets
+app.get('/api/pets/adopted', petHandlerFunctions.getAdoptedPets);
+
 // Get all not-adopted pets
 app.get("/api/pets/notAdopted", petHandlerFunctions.getNotAdoptedPets);
 

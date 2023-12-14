@@ -14,6 +14,19 @@ export const petHandlerFunctions = {
     }
   },
 
+  getAdoptedPets: async (req, res) => {
+    try {
+      const pets = await Pet.findAll({
+        where: { hasBeenAdopted: true },
+      });
+      res.json({ success: true, pets });
+    } catch (error) {
+      console.log("Unable to get adopted pets.");
+      console.log("Error", error);
+      res.json({ success: false, error });
+    }
+  },
+
   getNotAdoptedPets: async (req, res) => {
     try {
       const pets = await Pet.findAll({
