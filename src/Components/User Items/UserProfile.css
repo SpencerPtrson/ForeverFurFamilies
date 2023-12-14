@@ -1,0 +1,124 @@
+.user-profile-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-profile-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-button-group {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  .form-button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .form-button-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  .appointments-container {
+    margin-top: 20px;
+  }
+  
+  .appointment-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .appointment-card img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+
+.user-profile-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  
+  .edit-button {
+    background-color: #007bff; 
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .logout-button {
+    background-color: #dc3545; 
+    color: white;
+    margin-left: 10px; /* Spacing between buttons */
+  }
+  
+  .logout-button:hover {
+    background-color: #bd2130; 
+  }
+  
+  .view-appointments-button {
+    background-color: #28a745; 
+    color: white;
+    margin-left: 10px; 
+  }
+  
+  .view-appointments-button:hover {
+    background-color: #218838; 
+  }
+  
+  .share-story-button {
+    background-color: #20809d;
+    color: white;
+    margin-left: 10px; 
+  }
+  
+  .share-story-button:hover {
+    background-color: #196076;
+  }
+  
+  
+ 

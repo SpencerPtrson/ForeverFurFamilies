@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
+import "./CreateStoryForm.css"
 
 const CreateStoryForm = ({ userId, petList }) => {
     const [storyData, setStoryData] = useState({
@@ -40,7 +41,7 @@ const CreateStoryForm = ({ userId, petList }) => {
     console.log(storyData.petId)
 
     return (
-        <Form onSubmit={handleStorySubmit}>
+        <Form onSubmit={handleStorySubmit} className="story-form">
             <Form.Label>Story Content:</Form.Label>
             <textarea name="content" onChange={handleStoryChange} value={storyData.content} required />
 
