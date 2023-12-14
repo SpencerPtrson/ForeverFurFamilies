@@ -40,6 +40,9 @@ app.post("/api/login", accountManagementHandlerFunctions.login);
 // Check if session id has corresponding user
 app.get("/userCheck", accountManagementHandlerFunctions.userCheck);
 
+// Update user information and check password
+app.post('/api/appointmentCheck',accountManagementHandlerFunctions.appointmentCheck)
+
 //#endregion AccountManagement
 
 //#region Users
