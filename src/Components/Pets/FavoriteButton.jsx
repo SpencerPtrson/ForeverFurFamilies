@@ -1,7 +1,9 @@
-import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 
 export const FavoriteButton = ({ petId }) => {
   const [checked, setChecked] = useState(false);
@@ -31,17 +33,22 @@ export const FavoriteButton = ({ petId }) => {
   };
 
   return (
-    <div>
+    <>
       {checked ? (
-        <Button
-          style={{ backgroundColor: "green" }}
-          onClick={(e) => unFavorite()}
-        >
-          Liked
-        </Button>
+        <FontAwesomeIcon
+          icon={fasHeart}
+          size="xl"
+          style={{ color: "#1010c2", cursor: "pointer" }}
+          onClick={unFavorite}
+        />
       ) : (
-        <Button onClick={(e) => handleFavorite()}>Currently not liked </Button>
+        <FontAwesomeIcon
+          icon={farHeart}
+          size="xl"
+          style={{ color: "#1010c2", cursor: "pointer" }}
+          onClick={handleFavorite}
+        />
       )}
-    </div>
+      </>
   );
 };

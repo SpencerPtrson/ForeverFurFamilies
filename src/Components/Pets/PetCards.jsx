@@ -15,11 +15,15 @@ export default function PetCards({ pet }) {
   if (state) locationString += state;
   return (
     <Card key={petId}>
-      <Link to={`/SpecificPet/${petId}`}>
+      
       <div class="ratio ratio-1x1">
+      <Link to={`/SpecificPet/${petId}`}>
           <Card.Img variant="top" src={picture} style={{ maxHeight: "100%" }} />
+          </Link>
+          {userId !== "" && ( <div className="heart-icon-wrapper">
+      <div className="heart-icon"><FavoriteButton petId={petId} /> </div></div>)}
         </div>
-      </Link>
+        
       <Card.Body>
         <Link to={`/SpecificPet/${petId}`}>
           <Card.Title>{name}</Card.Title>
@@ -32,7 +36,7 @@ export default function PetCards({ pet }) {
           </Card.Text>
           <Card.Text>{locationString}</Card.Text>
         </Link>
-        {userId !== "" && <FavoriteButton petId={petId} />}
+        
       </Card.Body>
     </Card>
   );

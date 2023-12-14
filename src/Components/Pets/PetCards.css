@@ -31,3 +31,20 @@
     text-align: center;
     font-weight: 600;
 }
+
+.heart-icon-wrapper {
+    position: relative;
+    top: 5px; 
+    right: 5px; 
+}
+  
+.heart-icon-wrapper .heart-icon {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: inline-flex;
+    padding: 5px; 
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+

@@ -102,7 +102,7 @@ const HomePage = () => {
           </Col>
         </Row>
         <Row>
-          <section className="carousel">
+          <section className="carousel" style={{maxHeight:"85%"}}>
             <ol className="carousel_viewport">
               {petCards.map((card, index) => (
                 <li key={index} className="carousel_slide">
