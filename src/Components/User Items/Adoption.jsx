@@ -77,6 +77,7 @@ export const Adoption = () => {
         firstName:formData.firstName,
         lastName:formData.lastName,
         userId:userId,
+        phoneNumber:formData.phoneNumber
       });
       console.log("passed check", res.data)
       if (res.data.success) {
