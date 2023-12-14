@@ -14,7 +14,6 @@ export const Adoption = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
     firstName: "",
     lastName: "",
     phoneNumber: "",
@@ -22,7 +21,7 @@ export const Adoption = () => {
   const userId = useSelector((state) => state.userId);
   const firstName = useSelector((state) => state.firstName);
   const [date, setDate] = useState(new Date());
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,20 +60,36 @@ export const Adoption = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (name === "password" && value !== "") {
-      setTimeout(() => {
-        setShowCalendar(true);
-      }, 2000); // Adjust the timeout value as needed (e.g., 2000 milliseconds or 2 seconds)
-    }
   };
-  const handleSubmit = async () => {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log("Adoption handleSunmit")
     try {
-      const response = await axios.post("/api/appointments/create", {
-        userId: userId,
-        petId: petId,
-        date: date,
+      const res = await axios.post("/api/appointmentCheck", {
+        password:formData.password,
+        email:formData.email,
+        firstName:formData.firstName,
+        lastName:formData.lastName,
+        userId:userId,
+        phoneNumber:formData.phoneNumber
       });
-      navigate("/UserProfile");
+      console.log("passed check", res.data)
+      if (res.data.success) {
+        const response = await axios.post("/api/appointments/create", {
+          userId: userId,
+          petId: petId,
+          date: date,
+        });
+        console.log(response.data)
+        if (response.data.success) {
+          navigate("/UserProfile");
+        } else {
+          console.log("error creating appointment", response.data.message);
+        }
+      } else {
+        console.log("error checking password", res.data.message);
+      }
     } catch (error) {
       console.log("error setting appointment", error);
     }

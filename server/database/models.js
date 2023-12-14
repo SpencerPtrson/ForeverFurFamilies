@@ -129,7 +129,7 @@ Story.init(
       primaryKey: true,
     },
     content: DataTypes.TEXT,
-    adoptionDate: DataTypes.DATE,
+    adoptionDate: DataTypes.DATEONLY,
     userSubmittedImage: DataTypes.STRING,
     // userId: {
     //     type: DataTypes.INTEGER,
@@ -158,7 +158,7 @@ Appointment.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    date: DataTypes.DATE,
+    date: DataTypes.DATEONLY,
     // petId: {
     //     type: DataTypes.INTEGER,
     //     references: {

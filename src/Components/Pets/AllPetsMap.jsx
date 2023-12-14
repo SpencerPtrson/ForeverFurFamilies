@@ -36,12 +36,12 @@ export default function AllPetsMap({ petList }) {
           (pet) => pet.lat === petLocation.lat && pet.lng === petLocation.lng
         ).length > 0
       ) {
-        console.log(pet.name, "shares a location with another.")
+        console.log(pet.name, "shares a location with another.");
         sharedLocation = true;
       }
 
       while (sharedLocation) {
-        console.log("Moving pet slightly laterally.")
+        console.log("Moving pet slightly laterally.");
         petLocation.lng += 0.00001;
         console.log("Current Pet Lcoation:", petLocation.lat, petLocation.lng);
         console.log("Checking if pet still shares a location");
@@ -50,7 +50,7 @@ export default function AllPetsMap({ petList }) {
             (pet) => pet.lat === petLocation.lat && pet.lng === petLocation.lng
           ).length === 0
         ) {
-          console.log("Pet no longer shares a location.")
+          console.log("Pet no longer shares a location.");
           sharedLocation = false;
         }
       }
