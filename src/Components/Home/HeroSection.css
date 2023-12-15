@@ -1,0 +1,72 @@
+.container-fluid.hero {
+width: 100%;
+background: url('https://images.pexels.com/photos/5792905/pexels-photo-5792905.jpeg') no-repeat center center fixed;
+background-size: cover; 
+background-attachment: fixed !important;
+height: 75vh;
+}
+
+.hero > .container {
+    height: 100%;
+    display: flex;
+  }
+
+.hero1 {
+    width:100%;
+    background-attachment: fixed;
+    align-items: flex-end;
+}
+
+.title h1 {
+    color: #ffffff;
+    font-weight: 700;
+    padding-top: 5%;
+}
+
+.title h5 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.title {
+    flex-direction:column;
+}
+
+.petsearch {
+    flex-direction:row;
+    padding-bottom: 10px;
+}
+
+
+.square {
+    background-color: #ffffff;
+    height:150px;
+    width: 150px;
+    border-radius: .375rem;
+    border: 2px solid transparent; 
+    justify-content: center;
+    flex-direction: column;
+}
+
+.square:hover {
+    border: 2px solid #1010C2; 
+
+}
+.fa-2x {
+font-size: 5em;
+}
+
+.petsquare {
+    padding-top: 10px;
+
+}
+
+.petsquare p {
+    margin-bottom: 0rem; /* Remove default margin */
+    font-size: 16px; /* Adjust font size as needed */
+    color: #000; /* Adjust color as needed */
+}
+
+.petsearch a {
+    text-decoration: none;
+}

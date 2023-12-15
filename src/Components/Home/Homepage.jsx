@@ -8,6 +8,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import HeroSection from "./HeroSection";
 
 const HomePage = () => {
   const [seniorPets, setSeniorPets] = useState([]);
@@ -82,6 +83,9 @@ const HomePage = () => {
           </Row>
         </Modal.Body>
       </Modal>
+
+      <HeroSection />
+
       <div className="homepage-banner">
         <h1>Welcome to the ForeverFur Families WebPage</h1>
         <p>Find your new best friend today!</p>

@@ -1,5 +1,5 @@
 import { Button, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
@@ -34,27 +34,24 @@ const NavigationBar = () => {
   return (
     <div>
       <nav>
-        <Link to="/" className="item">
+        <NavLink to="/" className="item" activeClassName="active">
           ForeverFur Families
-        </Link>
+        </NavLink>
 
         {authed ? (
-            <>
-            <Link to="/UserProfile" className="item">
+          <>
+            <NavLink to="/UserProfile" className="item" activeClassName="active">
               User Profile
-            </Link>
-            <Link to="/RehomePet" className="item">
-              Re-Home a Pet
-            </Link>
+            </NavLink>
           </>
         ) : (
-               <>
-            <Link to="/login" className="item">
+          <>
+            <NavLink to="/login" className="item" activeClassName="active">
               Login
-            </Link>
-            <Link to="/register" className="item">
+            </NavLink>
+            <NavLink to="/register" className="item" activeClassName="active">
               Register
-            </Link>
+            </NavLink>
           </>
         )}
 
@@ -62,18 +59,18 @@ const NavigationBar = () => {
           All pets
           <div className="dropdown">
             <div>
-              <Link to="/allPets?type=Dog">Dogs</Link>
-              <Link to="/allPets?type=Cat">Cats</Link>
-              <Link to="/allPets?type=Other">Other animals</Link>
+              <NavLink to="/allPets?type=Dog">Dogs</NavLink>
+              <NavLink to="/allPets?type=Cat">Cats</NavLink>
+              <NavLink to="/allPets?type=Other">Other animals</NavLink>
             </div>
           </div>
         </div>
-        <Link to="/meetTheTeam" className="item">
+        <NavLink to="/meetTheTeam" className="item" activeClassName="active">
           Meet the team
-        </Link>
-        <Link to="/successStory" className="item">
+        </NavLink>
+        <NavLink to="/successStory" className="item" activeClassName="active">
           Success Stories
-        </Link>
+        </NavLink>
         <div className="underline"></div>
       </nav>
     </div>

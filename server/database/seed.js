@@ -222,7 +222,7 @@ async function seed() {
     },
     {
       content:
-        "Thor is an amazing pet and I can not imagine life without him. One of the best decisions our family ever made",
+        "I can not imagine life without Thor. One of the best decisions our family ever made",
       adoptionDate: new Date(),
       userSubmittedImage: thorImage,
       userId: 3,
