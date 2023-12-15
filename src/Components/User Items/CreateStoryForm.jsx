@@ -11,7 +11,7 @@ const CreateStoryForm = ({ userId, petList }) => {
     userSubmittedImage: "",
     petId: "",
   });
-  // console.log(storyData);
+  console.log(storyData);
 
   const handleStoryChange = (e) => {
     const { name, value } = e.target;

@@ -99,7 +99,7 @@ Pet.init(
     breed: DataTypes.STRING,
     age: DataTypes.STRING,
     gender: DataTypes.STRING,
-    picture: DataTypes.STRING,
+    picture: DataTypes.TEXT,
     state: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     cityName: DataTypes.STRING,
@@ -130,7 +130,7 @@ Story.init(
     },
     content: DataTypes.TEXT,
     adoptionDate: DataTypes.DATEONLY,
-    userSubmittedImage: DataTypes.STRING,
+    userSubmittedImage: DataTypes.TEXT,
     // userId: {
     //     type: DataTypes.INTEGER,
     //     references: {
