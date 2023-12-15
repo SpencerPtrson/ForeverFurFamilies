@@ -39,7 +39,7 @@ const router = createBrowserRouter([
             element: <Adoption />,
           },
           {
-            path: "/RehomePet",
+            path: "RehomePet",
             element: <RehomePetForm />
           }
         ],
