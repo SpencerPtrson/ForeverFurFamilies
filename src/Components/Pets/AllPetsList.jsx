@@ -23,6 +23,12 @@ export default function AllPetsList({ type }) {
     species: petType,
     location: "",
   });
+  useEffect(()=>{
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      species: petType
+    }))
+  },[searchParams])
 
   const handleFilterChange = (filterType, value) => {
     setFilters((prevFilters) => ({
