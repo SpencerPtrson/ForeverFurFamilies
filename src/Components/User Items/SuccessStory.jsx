@@ -21,27 +21,22 @@ export const SuccessStory = () => {
 
   return (
     <div className="success-stories-container">
-      <h2>Success Stories</h2>
-      {stories.length > 0 ? (
-        <div>
-          {stories.map((story) => (
+      <h2 className="success-stories-header">Success Stories</h2>
+      <div className="stories-grid">
+        {stories.length > 0 ? (
+          stories.map((story) => (
             <div key={story.storyId} className="story-card">
-              <p className="story-content">{story.content}</p>
-              <p className="story-date">
-                Date:{" "}
-                {new Date(
-                  story.adoptionDate.replace(/-/g, "/")
-                ).toLocaleDateString()}
-              </p>
-              {story.userSubmittedImage && (
-                <img src={story.userSubmittedImage} alt="Story" />
-              )}
+              <img src={story.userSubmittedImage} alt="Success Story" />
+              <div className="story-content">{story.content}</div>
+              <div className="story-date">
+                Date: {new Date(story.adoptionDate).toLocaleDateString()}
+              </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <p>No success stories available.</p>
-      )}
+          ))
+        ) : (
+          <p>No success stories available.</p>
+        )}
+      </div>
     </div>
-  );
-};
+  )
+ };
