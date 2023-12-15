@@ -38,6 +38,10 @@ const router = createBrowserRouter([
             path: "Adoption/:id",
             element: <Adoption />,
           },
+          {
+            path: "/RehomePet",
+            element: <RehomePetForm />
+          }
         ],
       },
       {
@@ -74,10 +78,6 @@ const router = createBrowserRouter([
         path: "/SpecificPet/:id",
         element: <SpecificPet />,
       },
-      {
-        path: "/RehomePet",
-        element: <RehomePetForm />
-      }
     ],
   },
 ]);
