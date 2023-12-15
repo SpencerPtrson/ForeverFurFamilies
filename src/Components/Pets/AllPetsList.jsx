@@ -10,7 +10,7 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function AllPetsList({ type }) {
   const location = useLocation();
@@ -23,12 +23,13 @@ export default function AllPetsList({ type }) {
     species: petType,
     location: "",
   });
-  useEffect(()=>{
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      species: petType
-    }))
-  },[searchParams])
+
+  useEffect(() => {
+    setFilters({
+      ...filters,
+      species: petType,
+    });
+  }, [location]);
 
   const handleFilterChange = (filterType, value) => {
     setFilters((prevFilters) => ({
@@ -38,7 +39,6 @@ export default function AllPetsList({ type }) {
   };
 
   useEffect(() => {
-    // Fetch pet data from your backend
     axios
       .get("/api/pets")
       .then((response) => {
