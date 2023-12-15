@@ -43,6 +43,9 @@ const NavigationBar = () => {
             <Link to="/UserProfile" className="item">
               User Profile
             </Link>
+            <Link to="/RehomePet" className="item">
+              Re-Home a Pet
+            </Link>
           </>
         ) : (
                <>
