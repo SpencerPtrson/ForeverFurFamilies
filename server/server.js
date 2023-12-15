@@ -67,7 +67,6 @@ app.delete("/api/users/delete/:userId", userHandlerFunctions.deleteUser);
 // Get pet count
 app.get('/api/pets/count/adopted', petHandlerFunctions.getPetCountAdopted)
 
-
 // Get all pets
 app.get("/api/pets", petHandlerFunctions.getPets);
 
