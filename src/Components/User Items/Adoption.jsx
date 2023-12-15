@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Form } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -63,25 +63,25 @@ export const Adoption = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("Adoption handleSunmit")
+    e.preventDefault();
+    console.log("Adoption handleSunmit");
     try {
       const res = await axios.post("/api/appointmentCheck", {
-        password:formData.password,
-        email:formData.email,
-        firstName:formData.firstName,
-        lastName:formData.lastName,
-        userId:userId,
-        phoneNumber:formData.phoneNumber
+        password: formData.password,
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        userId: userId,
+        phoneNumber: formData.phoneNumber,
       });
-      console.log("passed check", res.data)
+      console.log("passed check", res.data);
       if (res.data.success) {
         const response = await axios.post("/api/appointments/create", {
           userId: userId,
           petId: petId,
           date: date,
         });
-        console.log(response.data)
+        console.log(response.data);
         if (response.data.success) {
           navigate("/UserProfile");
         } else {
@@ -97,57 +97,65 @@ export const Adoption = () => {
 
   return (
     <div>
-      <h1>Thanks for considering the adoption of {name}! </h1>
-      <img style={{ width: "20%" }} className="img-fluid" src={picture} />
-      <div className="register-container">
-        <form onSubmit={handleSubmit} className="register-form">
-          <h2>Please update any information </h2>
-          <h2>and enter password</h2>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder={`${firstName}`}
-          />
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder={`${formData.lastName}`}
-          />
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            placeholder={`${formData.phoneNumber}`}
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder={`${formData.email}`}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          {showCalendar && (
-            <>
-              <Calendar onChange={setDate} value={date} />
-              <button type="submit">Set Appointment</button>
-            </>
-          )}
-        </form>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h1>Thanks for considering the adoption of {name}! </h1>
+            <img style={{ width: "75%" }} className="img-fluid" src={picture} />
+            </Col>
+            <Col>
+            <div className="register-container">
+              <form onSubmit={handleSubmit} className="register-form">
+                <h3 style={{textAlign:"center"}}>Please update any information </h3>
+                <h3 style={{textAlign:"center"}}>and enter your password</h3>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder={`${firstName}`}
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder={`${formData.lastName}`}
+                />
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  placeholder={`${formData.phoneNumber}`}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={`${formData.email}`}
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                  required
+                />
+                {showCalendar && (
+                  <>
+                    <Calendar onChange={setDate} value={date} />
+                    <button type="submit">Set Appointment</button>
+                  </>
+                )}
+              </form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
