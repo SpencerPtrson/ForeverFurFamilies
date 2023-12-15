@@ -3,7 +3,6 @@ import PetCards from "../Pets/PetCards";
 import "./homepage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PetLocation from "../Pets/PetLocation";
 import AllPetsMap from "../Pets/AllPetsMap";
 import { Link, useLoaderData } from "react-router-dom";
 import { Modal } from "react-bootstrap";
@@ -19,7 +18,7 @@ const HomePage = () => {
   // console.log(islogged);
   // console.log(show);
 
-  const { pets } = useLoaderData();
+  const { pets, adoptedPetCount } = useLoaderData();
   // console.log("Loader Data:", pets);
 
   useEffect(() => {
@@ -92,7 +91,7 @@ const HomePage = () => {
           <Col>
             Total pets reHomed
             <br />
-            INSERT NUMBER
+            {adoptedPetCount}
           </Col>
           <Col>
             <Card>
