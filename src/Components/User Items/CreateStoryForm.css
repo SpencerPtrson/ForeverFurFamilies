@@ -43,6 +43,42 @@
     background-color: #196076;
   }
   
+  .story-form .submit-story {
+    background-color: #20809d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
   
+  .story-form .submit-story:hover {
+    background-color: #196076;
+  }
+  
+  .success-message {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    color: #196076;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .submit-another-story {
+    background-color: #20809d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .submit-another-story:hover {
+    background-color: #196076;
+  }
   
   
