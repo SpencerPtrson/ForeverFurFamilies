@@ -23,10 +23,8 @@ const RehomePetForm = ({ userId }) => {
 
   const handlePetInfoChange = (e) => {
     const { name, value } = e.target;
-    console.log("Name of clicked element:", name);
-    console.log("Value:", value);
-
-    console.log(e.target);
+    // console.log("Name of clicked element:", name);
+    // console.log("Value:", value);
     if (
       name === "spayed_neutered" ||
       name === "house_trained" ||
@@ -41,14 +39,17 @@ const RehomePetForm = ({ userId }) => {
     setPetInfo({ ...petInfo, [name]: value });
   };
 
-  console.log("Pet Info:", petInfo);
+  // console.log("Pet Info:", petInfo);
 
   const handlePetInfoSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Pet Info sent to API:", petInfo);
-      const response = await axios.post("/api/pets/create", { ...petInfo, userId });
-      console.log(response.data);
+      // console.log("Pet Info sent to API:", petInfo);
+      const response = await axios.post("/api/pets/create", {
+        ...petInfo,
+        userId,
+      });
+      // console.log(response.data);
       setPetInfo({
         name: "",
         species: "",
@@ -167,7 +168,9 @@ const RehomePetForm = ({ userId }) => {
         />
 
         <Form.Label>Where is your pet located?</Form.Label>
-        <Form.Label>Location will default to State if an invalid city is given.</Form.Label>
+        <Form.Label>
+          Location will default to State if an invalid city is given.
+        </Form.Label>
         <input
           type="text"
           name="cityName"
