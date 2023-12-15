@@ -17,6 +17,7 @@ import AllPetsList from "./Components/Pets/AllPetsList.jsx";
 import SpecificPet from "./Components/Pets/SpecificPet.jsx";
 import NavigationBar from "./Components/Home/NavBar.jsx";
 import HomePage from "./Components/Home/Homepage.jsx";
+import RehomePetForm from "./Components/Pets/RehomePetForm.jsx";
 
 import axios from "axios";
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             path: "Adoption/:id",
             element: <Adoption />,
           },
+          {
+            path: "RehomePet",
+            element: <RehomePetForm />
+          }
         ],
       },
       {

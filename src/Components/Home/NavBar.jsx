@@ -43,6 +43,9 @@ const NavigationBar = () => {
             <NavLink to="/UserProfile" className="item" activeClassName="active">
               User Profile
             </NavLink>
+            <NavLink to="/RehomePet" className="item" activeClassName="active">
+              Rehome a Pet
+            </NavLink>
           </>
         ) : (
           <>
