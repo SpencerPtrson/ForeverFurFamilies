@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './Login.css';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,6 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       console.log("Attempting Login");
       const response = await axios.post("/api/login", {
@@ -44,6 +44,7 @@ export const Login = () => {
         alert("Invalid credentials");
       }
     } catch (error) {
+      alert('Login failed, please try again')
       console.error("Login error", error);
     }
   };
