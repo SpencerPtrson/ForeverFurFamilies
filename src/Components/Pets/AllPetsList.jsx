@@ -40,7 +40,7 @@ export default function AllPetsList({ type }) {
 
   useEffect(() => {
     axios
-      .get("/api/pets")
+      .get("/api/pets/notAdopted")
       .then((response) => {
         setPets(response.data.pets);
         setPetData(response.data.pets);
