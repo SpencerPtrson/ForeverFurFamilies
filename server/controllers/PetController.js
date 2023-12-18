@@ -185,7 +185,7 @@ export const petHandlerFunctions = {
   },
 
   createPet: async (req, res) => {
-    console.log("Creating Pet");
+    // console.log("Creating Pet");
 
     let replacementImage =
       "https://clipartcraft.com/images/paw-print-clip-art-transparent-8.png";
@@ -216,7 +216,9 @@ export const petHandlerFunctions = {
       if (/cat/gi.test(species)) replacementImage = catImage;
       else if (/dog/gi.test(species)) replacementImage = dogImage;
 
-      console.log("State:", state);
+      const isPictureFormat = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(
+        picture
+      );
 
       let medicalHistory = "";
       medicalHistory += `${name} is${
@@ -235,21 +237,19 @@ export const petHandlerFunctions = {
         shots_current || null ? "" : "not"
       } up to date on their shots.\n`;
 
-
       let geocodeRes = await axios.get(
         `https://geocode.maps.co/search?city=${cityName}&state=${state}`
       );
-      console.log("Geocode result data:", geocodeRes.data);
-      console.log("Result Length:", geocodeRes.data.length)
+      // console.log("Geocode result data:", geocodeRes.data);
+      // console.log("Result Length:", geocodeRes.data.length)
 
       if (geocodeRes.data === null || geocodeRes.data.length < 1) {
         await sleep(2000);
         geocodeRes = await axios.get(
           `https://geocode.maps.co/search?&state=${state}`
         );
-        console.log("New geocode data:", geocodeRes.data);
+        // console.log("New geocode data:", geocodeRes.data);
       }
-
 
       // Create new pet without images
       const newPet = await Pet.create({
@@ -258,7 +258,7 @@ export const petHandlerFunctions = {
         breed,
         age,
         gender,
-        picture: picture ?? replacementImage,
+        picture: isPictureFormat ? picture : replacementImage,
         state: state ?? null,
         zipCode: null,
         cityName: cityName ?? null,
