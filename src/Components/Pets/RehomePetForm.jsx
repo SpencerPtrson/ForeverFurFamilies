@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, FormCheck } from "react-bootstrap";
+import { Form, FormCheck, FormLabel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const RehomePetForm = ({ userId }) => {
+  const navigate = useNavigate();
   const [petInfo, setPetInfo] = useState({
     name: "",
     species: "",
@@ -49,7 +51,7 @@ const RehomePetForm = ({ userId }) => {
         ...petInfo,
         userId,
       });
-      // console.log(response.data);
+      navigate(`/SpecificPet/${response.data.newPet.petId}`);
       setPetInfo({
         name: "",
         species: "",
@@ -171,14 +173,6 @@ const RehomePetForm = ({ userId }) => {
         <Form.Label>
           Location will default to State if an invalid city is given.
         </Form.Label>
-        <input
-          type="text"
-          name="cityName"
-          onChange={handlePetInfoChange}
-          value={petInfo.cityName}
-          placeholder="City Name Only"
-          required
-        />
 
         <Form.Select
           value={petInfo.state}
@@ -239,12 +233,20 @@ const RehomePetForm = ({ userId }) => {
           <option value="WY">Wyoming</option>
         </Form.Select>
 
+        <input
+          type="text"
+          name="cityName"
+          onChange={handlePetInfoChange}
+          value={petInfo.cityName}
+          placeholder="City Name Only"
+          required
+        />
         <Form.Label>Medical Details</Form.Label>
 
         <div className="checkList">
           <div className="list-container">
             <div>
-              <span>Has your pet been spayed and neutered?</span>
+              <FormLabel>Has your pet been spayed and neutered?</FormLabel>
               <FormCheck
                 name="spayed_neutered"
                 onChange={handlePetInfoChange}
@@ -252,22 +254,36 @@ const RehomePetForm = ({ userId }) => {
             </div>
 
             <div>
-              <span>Has your pet been house trained?</span>
-              <FormCheck name="house_trained" onChange={handlePetInfoChange} />
+              <FormLabel>Has your pet been house trained?</FormLabel>
+              <FormCheck
+                name="house_trained"
+                onChange={handlePetInfoChange}
+                width={200}
+              />
             </div>
 
             <div>
-              <span>Has your pet been declawed? (leave blank if N/A)</span>
-              <FormCheck name="declawed" onChange={handlePetInfoChange} />
+              <FormLabel>
+                Has your pet been declawed? (leave blank if N/A)
+              </FormLabel>
+              <FormCheck
+                className="checkbox"
+                name="declawed"
+                onChange={handlePetInfoChange}
+              />
             </div>
 
             <div>
-              <span>Does your pet have special needs?</span>
-              <FormCheck name="special_needs" onChange={handlePetInfoChange} />
+              <FormLabel>Does your pet have special needs?</FormLabel>
+              <FormCheck
+                name="special_needs"
+                onChange={handlePetInfoChange}
+                width={200}
+              />
             </div>
 
             <div>
-              <span>Is your pet up to date on their shots?</span>
+              <FormLabel>Is your pet up to date on their shots?</FormLabel>
               <FormCheck name="shots_current" onChange={handlePetInfoChange} />
             </div>
           </div>

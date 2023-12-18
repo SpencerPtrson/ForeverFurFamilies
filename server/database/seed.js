@@ -291,7 +291,7 @@ async function seed() {
   };
 
   const response = await axios
-    .get(`https://api.petfinder.com/v2/animals`, config)
+    .get(`https://api.petfinder.com/v2/animals?limit=50`, config)
     .catch(console.log);
 
   const { animals } = response.data;
@@ -326,9 +326,17 @@ async function seed() {
     let isAdoptable = true;
     if (pet.status !== "adoptable") isAdoptable = false;
 
-    const geocodeRes = await axios.get(
-      `https://geocode.maps.co/search?city=${pet.contact.address.city}&state=${pet.contact.address.state}`
+    let geocodeRes = await axios.get(
+      `https://geocode.maps.co/search?postalcode=${pet.contact.address.postcode}`
     );
+
+    if (geocodeRes.data === null || geocodeRes.data.length < 1) {
+      await sleep(1100);
+      geocodeRes = await axios.get(
+        `https://geocode.maps.co/search?&state=${pet.contact.address.state}`
+      );
+      // console.log("New geocode data:", geocodeRes.data);
+    }
 
     console.log("Geocode Data:", geocodeRes.data[0]);
 
@@ -349,7 +357,7 @@ async function seed() {
       longitude: geocodeRes.data[0].lon,
     });
 
-    await sleep(2000);
+    await sleep(1100);
   }
 
   for (let i = 1; i <= 4; i++) {
