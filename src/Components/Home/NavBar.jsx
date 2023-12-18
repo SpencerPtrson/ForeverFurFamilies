@@ -1,17 +1,19 @@
 import { Button, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink,useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const NavigationBar = () => {
   const dispatch = useDispatch();
   const authed = useSelector((state) => state.isAuth);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
   const userCheck = async () => {
-    // console.log("Calling userCheck in app.jsx");
     const { data } = await axios.get("/userCheck");
-    // console.log("Data from userCheck:", data);
     if (data.email) {
       dispatch({
         type: "LOGIN",
@@ -30,17 +32,37 @@ const NavigationBar = () => {
   useEffect(() => {
     userCheck();
   }, []);
+  useEffect(()=>{
+    setMenuOpen(false)
+  },[location])
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <div>
-      <nav>
+      <div
+        className={`hamburger-menu${menuOpen ? " open" : ""}`}
+        onClick={handleToggleMenu}
+      >
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+
+      <nav className={`nav-menu${menuOpen ? " open" : ""}`}>
         <NavLink to="/" className="item" activeClassName="active">
           ForeverFur Families
         </NavLink>
 
         {authed ? (
           <>
-            <NavLink to="/UserProfile" className="item" activeClassName="active">
+            <NavLink
+              to="/UserProfile"
+              className="item"
+              activeClassName="active"
+            >
               User Profile
             </NavLink>
             <NavLink to="/RehomePet" className="item" activeClassName="active">
@@ -58,9 +80,9 @@ const NavigationBar = () => {
           </>
         )}
 
-        <div className="item">
+        <div className={`item${menuOpen ? " open" : ""}`}>
           All pets
-          <div className="dropdown">
+          <div className={`dropdown`}>
             <div>
               <NavLink to="/allPets?type=Dog">Dogs</NavLink>
               <NavLink to="/allPets?type=Cat">Cats</NavLink>
