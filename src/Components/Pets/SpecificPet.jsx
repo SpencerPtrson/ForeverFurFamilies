@@ -61,7 +61,7 @@ export default function SpecificPet() {
       <Container>
         <Row>
           <Col>
-            <Row className="carousel-container">
+            <Row className="carousel-container" style={{width:'85%', height:'20%',margin:'30px'}}>
               <Carousel className="PetDetails">
                 <Carousel.Item>
                   <div
@@ -72,6 +72,7 @@ export default function SpecificPet() {
                       className="img-fluid"
                       src={picture}
                       alt={`Slide ${name}`}
+                      
                     />
                   </div>
                 </Carousel.Item>
@@ -82,11 +83,11 @@ export default function SpecificPet() {
             <Container>
               <Row>
                 <Col>
-                  <StyledText>Hi! I'm {name}!</StyledText>
+                  <StyledText style={{margin:'20px'}}>Hi! I'm {name}!</StyledText>
                 </Col>
                 <Col>
                   <Link to={`/Adoption/${id}`}>
-                    <Button variant="primary">Adopt Me!</Button>
+                    <Button variant="primary" style={{margin:'28px'}}>Adopt Me!</Button>
                   </Link>
                 </Col>
               </Row>
