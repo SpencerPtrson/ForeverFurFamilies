@@ -1,11 +1,12 @@
 :root {
   --color-primary: #2f67ec;
 }
-body{
+
+body {
   font-family: 'Open Sans', sans-serif;
   background: #ffffff;
-  color:#080808;
-  margin:0;
+  color: #080808;
+  margin: 0;
   height: 100vh;
   display: grid;
 }
@@ -15,7 +16,7 @@ nav {
   background: rgb(16, 16, 194);
   font-weight: 900;
   font-size: 10;
-  display:flexbox;
+  display: flexbox;
   padding: 0px;
   width: 100%;
 }
@@ -31,8 +32,51 @@ nav .item {
   min-width: 16.6666%;
   line-height: 60px;
   text-align: center;
-  text-decoration:none;
+  text-decoration: none;
 }
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.bar { 
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+@media screen and (max-width: 1216px) {
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(16, 16, 194);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    z-index: 999;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+  .item.open:hover {
+    margin-bottom: 125px; /* Adjust the margin as needed */
+    transition: margin-top 0.3s ease; /* Add a smooth transition effect */
+  }}
+
 nav .item .dropdown {
   display: none;
   position: absolute;
