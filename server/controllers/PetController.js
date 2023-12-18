@@ -253,7 +253,7 @@ export const petHandlerFunctions = {
 
       // Create new pet without images
       const newPet = await Pet.create({
-        name,
+        name: name.slice(0,1).toUpperCase() + name.slice(1),
         species,
         breed,
         age,

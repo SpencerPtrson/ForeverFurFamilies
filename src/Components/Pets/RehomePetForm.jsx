@@ -82,6 +82,7 @@ const RehomePetForm = ({ userId }) => {
       <h1 style={{ textAlign: "center" }}>
         Re-Home them to give them a better life!
       </h1>
+
       <Form onSubmit={handlePetInfoSubmit} className="story-form">
         <Form.Label>What's your pet's personality?</Form.Label>
         <textarea
@@ -243,50 +244,60 @@ const RehomePetForm = ({ userId }) => {
         />
         <Form.Label>Medical Details</Form.Label>
 
-        <div className="checkList">
-          <div className="list-container">
-            <div>
-              <FormLabel>Has your pet been spayed and neutered?</FormLabel>
-              <FormCheck
-                name="spayed_neutered"
-                onChange={handlePetInfoChange}
-              />
-            </div>
+        <div>
+          <FormLabel>
+            <FormCheck
+              className="form-check-inline"
+              name="spayed_neutered"
+              onChange={handlePetInfoChange}
+            />
+            Has your pet been spayed and neutered?
+          </FormLabel>
+        </div>
 
-            <div>
-              <FormLabel>Has your pet been house trained?</FormLabel>
-              <FormCheck
-                name="house_trained"
-                onChange={handlePetInfoChange}
-                width={200}
-              />
-            </div>
+        <div>
+          <FormLabel>
+            {" "}
+            <FormCheck
+              className="form-check-inline"
+              onChange={handlePetInfoChange}
+              width={200}
+            />
+            Has your pet been house trained?
+          </FormLabel>
+        </div>
 
-            <div>
-              <FormLabel>
-                Has your pet been declawed? (leave blank if N/A)
-              </FormLabel>
-              <FormCheck
-                className="checkbox"
-                name="declawed"
-                onChange={handlePetInfoChange}
-              />
-            </div>
+        <div>
+          <FormLabel>
+            <FormCheck
+              className="form-check-inline"
+              name="declawed"
+              onChange={handlePetInfoChange}
+            />
+            Has your pet been declawed? (leave blank if N/A)
+          </FormLabel>
+        </div>
 
-            <div>
-              <FormLabel>Does your pet have special needs?</FormLabel>
-              <FormCheck
-                name="special_needs"
-                onChange={handlePetInfoChange}
-                width={200}
-              />
-            </div>
+        <div>
+          <FormLabel>
+            <FormCheck
+              className="form-check-inline"
+              onChange={handlePetInfoChange}
+              width={200}
+            />
+            Does your pet have special needs?
+          </FormLabel>
+        </div>
 
-            <div>
-              <FormLabel>Is your pet up to date on their shots?</FormLabel>
-              <FormCheck name="shots_current" onChange={handlePetInfoChange} />
-            </div>
-          </div>
+        <div>
+          <FormLabel className="form-check-label">
+            <FormCheck
+              className="form-check-inline"
+              name="shots_current"
+              onChange={handlePetInfoChange}
+            />
+            Is your pet up to date on their shots?
+          </FormLabel>
         </div>
 
         <button type="submit">Submit Pet</button>
