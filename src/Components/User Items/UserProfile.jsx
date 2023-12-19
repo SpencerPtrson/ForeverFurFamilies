@@ -4,7 +4,7 @@ import axios, { all } from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import CreateStoryForm from "./CreateStoryForm";
 import './UserProfile.css'
-import favPets from "./GettingFavs";
+import FavPets from "./GettingFavs";
 
 export const UserProfile = () => {
   const navigate = useNavigate();
@@ -204,9 +204,10 @@ console.log(petName)
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
           {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
-          <button className="user-profile-button favorite-pets-button" onClick={favPets}>
+          <button className="user-profile-button favorite-pets-button" onClick={toggleStoryForm}>
           {showStoryForm ? 'Hide your Favorites' : 'View Your Favorites'}
           </button>
+          {showStoryForm && <FavPets/>}
           </div>
           
 

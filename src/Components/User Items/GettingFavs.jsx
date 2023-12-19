@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import PetCards from "../Pets/PetCards";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const favPets = () => {
+const FavPets = () => {
   const [favList, setFavList] = useState([]);
   const userId = useSelector((state) => state.userId);
 
@@ -10,8 +12,16 @@ const favPets = () => {
     const getFavPets = async () => {
       try {
         const response = await axios.get(`/api/favoritePets/users/${userId}`);
-        setFavList(response.data.pets)
-        // console.log(response.data.pets);
+
+        const getPromises = response.data.favoritePets.map(async(pets) =>{
+            const res = await axios.get(`/api/pets/${pets.petId}`)
+            console.log(res.data.pet)
+            return res.data.pet
+        })
+        const allPets = await Promise.all(getPromises)
+        console.log(allPets)
+        setFavList(allPets)
+        // console.log(response.data.favoritePets);
       } catch (error) {
         console.error("error finding pet", error);
       }
@@ -19,11 +29,11 @@ const favPets = () => {
     getFavPets();
   }, []);
 
-  const petCards = favList.map((pet) => {
-    return <PetCards pet={pet} key={pet.petId} />;
-  });
+  const petCards = favList.map((pet) => (
+    <PetCards pet={pet} key={pet.petId} />
+  ));
 
   return <div>{petCards}</div>;
 };
 
-export default favPets;
+export default FavPets;
