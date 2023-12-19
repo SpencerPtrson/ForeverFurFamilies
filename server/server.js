@@ -83,7 +83,7 @@ app.get(
 );
 
 // Get all pets by age categories
-// app.get('/api/pets/ageGroups', petHandlerFunctions.getPetsByAgeGroups);
+app.get('/api/pets/ageGroups', petHandlerFunctions.getPetsByAgeGroups);
 
 // Get all baby pets
 app.get("/api/pets/baby", petHandlerFunctions.getBabyPets);
