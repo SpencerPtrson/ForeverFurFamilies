@@ -86,22 +86,22 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
-                      Adopting a Pet
+                    <a href="https://www.hepper.com/why-adopting-a-pet-is-better-than-buying/" className="text-white">
+                      Why adopt a pet from a shelter?
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.purina.com/articles/dog/getting-a-dog/benefits-of-multiple-pets" className="text-white">
                       Benefits of Multiple Pets
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://animals.howstuffworks.com/pets/animal-shelters.htm" className="text-white">
                       Animal Shelters & Rescues
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Other" className="text-white">
                       Other Types of Pets
                     </a>
                   </p>
@@ -119,32 +119,32 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Dog" className="text-white">
                       Dog Adoption
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.akc.org/dog-breeds/" className="text-white">
                       Dog Breeds
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.hillspet.com/dog-care/nutrition-feeding/how-much-dog-food-how-often?cq_src=google_ads&cq_cmp=386709379&cq_con=1224856176294976&cq_term=what%20to%20feed%20a%20dog&cq_med=&cq_plac=&cq_net=o&cq_plt=gp&gclid=3bf2a0f45ba81e8daa01c57592e440c1&gclsrc=3p.ds&msclkid=3bf2a0f45ba81e8daa01c57592e440c1&utm_source=bing&utm_medium=cpc&utm_campaign=US_PET_EQ_General_Dog_EVG_TEXT_CTGY_EXT_ATT_CPT_NA_RFUS_EN_HLN%20HIL%20132&utm_term=what%20to%20feed%20a%20dog&utm_content=Dogs_Feeding" className="text-white">
                       Feeding Your Dog
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://pethelpful.com/dogs/common-dog-behaviors-you-should-know-their-meaning" className="text-white">
                       Dog Behavior
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.akc.org/expert-advice/health/how-to-keep-your-dog-healthy/" className="text-white">
                       Dog Health & Wellness
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.thesprucepets.com/steps-to-train-your-dog-1118273" className="text-white">
                       Dog Training
                     </a>
                   </p>
@@ -167,32 +167,32 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Cat" className="text-white">
                       Cat Adoption
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://cats.com/cat-Breeds" className="text-white">
                       Cat Breeds
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://vcahospitals.com/know-your-pet/feeding-times-and-frequency-for-cats" className="text-white">
                       Feeding Your Cat
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.rd.com/list/how-to-decode-your-cats-behavior/" className="text-white">
                       Cat Behavior
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.petmd.com/cat/general-health/complete-cat-health-guide-every-life-stage" className="text-white">
                       Cat Health & Wellness
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://revealpetfood.com/pet-wellbeing/house-training-a-cat/" className="text-white">
                       Cat Training
                     </a>
                   </p>

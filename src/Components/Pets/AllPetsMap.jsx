@@ -109,7 +109,8 @@ export default function AllPetsMap({ petList }) {
 
     // Create Markers
     const markers = petLocationArr.map((pl) => {
-      // console.log("LatLng for marker maker:", pl.lat, pl.lng, "for pet:", pl.name);
+      console.log("PL:", pl);
+      // var fullAddress = 
       const newMarker = new AdvancedMarkerElement({
         map,
         position: { lat: +pl.lat, lng: +pl.lng },
