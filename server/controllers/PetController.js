@@ -81,41 +81,33 @@ export const petHandlerFunctions = {
     try {
       // Get Boolean age key-value pairs from req.body
       const { baby, young, adult, senior } = req.body;
-      console.log("Baby:", baby);
-      console.log("Young:", young);
-      console.log("Adult:", adult);
-      console.log("Senior:", senior);
       const filterArr = [];
-      if (baby) filterArr.push('baby');
-      if (young) filterArr.push('young');
-      if (adult) filterArr.push('adult');
-      if (senior) filterArr.push('senior');
+      if (baby) filterArr.push("baby");
+      if (young) filterArr.push("young");
+      if (adult) filterArr.push("adult");
+      if (senior) filterArr.push("senior");
       const pets = await Pet.findAll({
         where: {
           hasBeenAdopted: false,
         },
       });
-      // filter pets based on key value pairs
-      console.log(filterArr);
 
+      // Create Regex Filters
       const regexArr = [];
       for (const filter of filterArr) {
-        const regex = new RegExp(filter, 'gi');
+        const regex = new RegExp(filter, "gi");
         regexArr.push(regex);
       }
 
       const filteredPets = [];
       for (const pet of pets) {
         for (const regex of regexArr) {
-          console.log("Testing", regex, "for", pet.name)
           if (regex.test(pet.age)) {
             filteredPets.push(pet);
             break;
           }
         }
       }
-      filteredPets.sort((pet) => pet.name)
-
       res.json({ success: true, pets: filteredPets });
     } catch (error) {
       console.log("Unable to get pets by age groups.");
@@ -261,7 +253,7 @@ export const petHandlerFunctions = {
 
       // Create new pet without images
       const newPet = await Pet.create({
-        name: name.slice(0,1).toUpperCase() + name.slice(1),
+        name: name.slice(0, 1).toUpperCase() + name.slice(1),
         species,
         breed,
         age,
