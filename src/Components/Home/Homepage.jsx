@@ -9,6 +9,7 @@ import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import HeroSection from "./HeroSection";
+import PetsRehomedCounter from "./PetsRehomedCounter";
 
 const HomePage = () => {
   const [seniorPets, setSeniorPets] = useState([]);
@@ -85,25 +86,13 @@ const HomePage = () => {
       </Modal>
 
       <HeroSection />
-
+      
       <div className="homepage-banner">
         <h1>Welcome to the ForeverFur Families WebPage</h1>
         <p>Find your new best friend today!</p>
       </div>
+
       <Container>
-        <Row>
-          <Col>
-            Total pets reHomed
-            <br />
-            {adoptedPetCount}
-          </Col>
-          <Col>
-            <Card>
-              <Card.Img variant="top" src={pic} />
-              <Card.Body>{story}</Card.Body>
-            </Card>
-          </Col>
-        </Row>
         <Row>
           <section className="carousel" style={{maxHeight:"65vh"}}>
             <ol className="carousel_viewport">
@@ -115,8 +104,33 @@ const HomePage = () => {
             </ol>
           </section>
         </Row>
+
         <Row>
           <Col>
+          <PetsRehomedCounter />
+            
+          </Col>
+          <Col>
+            
+          </Col>
+        </Row>
+        
+
+        <Row>
+          <Col>
+          
+          <img src={pic} alt="Bingo's Success Story" width="500" height="600" />
+          </Col>
+          <Col>
+            
+              
+              {story}
+            
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          
             <AllPetsMap petList={pets} />
           </Col>
         </Row>
