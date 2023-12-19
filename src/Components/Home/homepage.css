@@ -12,16 +12,19 @@
   background: transparent;
   border: none;
 }
+
 *::-webkit-scrollbar-thumb {
   background: transparent;
   border: none;
 }
+
 ol,
 col {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .carousel {
   position: relative;
   width: 100%;
@@ -29,6 +32,7 @@ col {
   perspective: 100px;
   overflow: hidden;
 }
+
 .carousel_viewport {
   position: absolute;
   top: 0;
@@ -41,6 +45,7 @@ col {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
 }
+
 .carousel::before,
 .carousel::after {
   content: "";
@@ -53,18 +58,22 @@ col {
   border-radius: 47%;
   background: #ffffff;
 }
+
 .carousel::before {
   top: -480%;
 }
+
 .carousel::after {
   bottom: -480%;
 }
+
 .carousel_slide {
   position: relative;
   flex: 0 0 33.33%;
   width: 33.33%;
   counter-increment: item;
 }
+
 .carousel_snapper {
   position: absolute;
   top: 0;
