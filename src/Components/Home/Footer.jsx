@@ -86,7 +86,7 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Dog" className="text-white">
                       Adopting a Pet
                     </a>
                   </p>
@@ -119,7 +119,7 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Dog" className="text-white">
                       Dog Adoption
                     </a>
                   </p>
@@ -167,12 +167,12 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="/allPets?type=Cat" className="text-white">
                       Cat Adoption
                     </a>
                   </p>
                   <p>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.catbreedslist.com/all-cat-breeds/" className="text-white">
                       Cat Breeds
                     </a>
                   </p>
