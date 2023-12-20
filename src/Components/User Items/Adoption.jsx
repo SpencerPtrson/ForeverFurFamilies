@@ -97,7 +97,7 @@ export const Adoption = () => {
 
   return (
     <div>
-      <Container>
+      <Container style={{minHeight:'120vh'}}>
         <Row>
           <Col>
             <h1>Thanks for considering the adoption of {name}! </h1>
