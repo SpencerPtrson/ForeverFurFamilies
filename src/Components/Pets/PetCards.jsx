@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { FavoriteButton } from "./FavoriteButton";
 import { useSelector } from "react-redux";
-import "./PetCards.css"
+import "./PetCards.css";
 
 export default function PetCards({ pet, customClass }) {
   const userId = useSelector((state) => state.userId);
@@ -15,16 +15,22 @@ export default function PetCards({ pet, customClass }) {
   if (state && cityName) locationString += ", ";
   if (state) locationString += state;
   return (
+
     <Card key={petId} className={cardClassName}>
       
       <div className="cardtop">
-      <Link to={`/SpecificPet/${petId}`}>
+        <Link to={`/SpecificPet/${petId}`}>
           <Card.Img variant="top" src={picture} />
-          </Link>
-          {userId !== "" && ( <div className="heart-icon-wrapper">
-      <div className="heart-icon"><FavoriteButton petId={petId} /> </div></div>)}
-        </div>
-        
+        </Link>
+        {userId !== "" && (
+          <div className="heart-icon-wrapper">
+            <div className="heart-icon">
+              <FavoriteButton petId={petId} />{" "}
+            </div>
+          </div>
+        )}
+      </div>
+
       <Card.Body>
         <Link to={`/SpecificPet/${petId}`}>
           <Card.Title>{name}</Card.Title>
@@ -37,7 +43,6 @@ export default function PetCards({ pet, customClass }) {
           </Card.Text>
           <Card.Text>{locationString}</Card.Text>
         </Link>
-        
       </Card.Body>
     </Card>
   );

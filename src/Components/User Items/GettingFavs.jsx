@@ -4,6 +4,9 @@ import PetCards from "../Pets/PetCards";
 import { useState } from "react";
 import { useEffect } from "react";
 import './GettingFavs.css'
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { FavoriteButton } from "../Pets/FavoriteButton";
 
 const FavPets = () => {
   const [favList, setFavList] = useState([]);
