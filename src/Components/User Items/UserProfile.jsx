@@ -204,7 +204,6 @@ console.log(petName)
           <p>Phone Number: {formData.phoneNumber}</p>
           <div>
 
-
           <button className="user-profile-button view-appointments-button" onClick={fetchAppointments}>
             {showAppointments ? 'Hide Appointments' : 'View Appointments'}
             </button>
@@ -226,10 +225,18 @@ console.log(petName)
               <h2>My Appointments</h2>
               {appointments}
             </div>
+            
           )}
-          {showFavPets && <FavPets favList={favList} setFavList={setFavList}/>}
+          {showFavPets && (
+            <>
+            <h2>My Favorites</h2>
+            <div className="favorites-container">
+          <FavPets favList={favList} setFavList={setFavList}/>
+          </div>
+          </>
+          )}
+        
           {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
-
 
         </div>
       )}
