@@ -4,9 +4,10 @@ import { FavoriteButton } from "./FavoriteButton";
 import { useSelector } from "react-redux";
 import "./PetCards.css";
 
-export default function PetCards({ pet }) {
+export default function PetCards({ pet, customClass }) {
   const userId = useSelector((state) => state.userId);
 
+  const cardClassName = customClass ? `card ${customClass}` : "card";
   const { petId, picture, name, species, breed, cityName, state, gender, age } =
     pet;
   let locationString = "";
@@ -14,7 +15,9 @@ export default function PetCards({ pet }) {
   if (state && cityName) locationString += ", ";
   if (state) locationString += state;
   return (
-    <Card key={petId}>
+
+    <Card key={petId} className={cardClassName}>
+      
       <div className="cardtop">
         <Link to={`/SpecificPet/${petId}`}>
           <Card.Img variant="top" src={picture} />

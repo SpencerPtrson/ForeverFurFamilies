@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import PetCards from "../Pets/PetCards";
 import { useState } from "react";
 import { useEffect } from "react";
+import './GettingFavs.css'
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteButton } from "../Pets/FavoriteButton";
@@ -33,34 +34,10 @@ const FavPets = () => {
   }, []);
 
   const petCards = favList.map((pet) => (
-    <Card key={pet.petId}>
-      
-    <div className="cardtop">
-    <Link to={`/SpecificPet/${pet.petId}`}>
-        <Card.Img variant="top" src={pet.picture} />
-        </Link>
-        {userId !== "" && ( <div className="heart-icon-wrapper">
-    <div className="heart-icon"><FavoriteButton petId={pet.petId} /> </div></div>)}
-      </div>
-      
-    <Card.Body>
-      <Link to={`/SpecificPet/${pet.petId}`}>
-        <Card.Title>{pet.name}</Card.Title>
-        <Card.Text>
-          {pet.species}, {pet.breed}
-        </Card.Text>
-
-        <Card.Text>
-          {pet.gender}, {pet.age}
-        </Card.Text>
-        <Card.Text>{pet.locationString}</Card.Text>
-      </Link>
-      
-    </Card.Body>
-  </Card>
+    <PetCards pet={pet} key={pet.petId} customClass="favPetCard" />
   ));
 
-  return <div>{petCards}</div>;
+  return <div className="fav-pets-container">{petCards}</div>;
 };
 
 export default FavPets;
