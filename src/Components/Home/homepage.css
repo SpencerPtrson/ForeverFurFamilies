@@ -87,7 +87,7 @@ col {
 }
 
 .homepage-banner {
-  background-color: #2f67ec;
+  background-color: #1010C2;
   color: white;
   text-align: center;
   padding: 5px;
@@ -104,3 +104,50 @@ col {
 .homepage-banner p {
   font-size: 1.2em;
 }
+
+.counter h2 {
+  color: #fff;
+}
+
+.counter {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search h1 {
+  color: #1010C2;
+}
+
+.success {
+  height: 100%;
+}
+
+.quote {
+  flex-direction: column;
+  color: #fff;
+}
+
+.fa-2xl {
+  font-size: 3rem;
+}
+
+.success-title {
+  color: #fff;
+}
+
+.container-fluid.success-stories{
+  background-color: #1010C2;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.left-col {
+  display: flex;
+}
+
+.right-col {
+  display: flex;
+}
+
