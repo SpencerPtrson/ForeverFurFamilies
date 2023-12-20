@@ -327,7 +327,7 @@ async function seed() {
     if (pet.status !== "adoptable") isAdoptable = false;
 
     let geocodeRes = await axios.get(
-      `https://geocode.maps.co/search?postalcode=${pet.contact.address.postcode}`
+      `https://geocode.maps.co/search?postalcode=${pet.contact.address.postcode}&country=US`
     );
 
     if (geocodeRes.data === null || geocodeRes.data.length < 1) {
