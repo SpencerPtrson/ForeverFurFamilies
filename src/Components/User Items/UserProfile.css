@@ -54,6 +54,10 @@
   .appointments-container {
     margin-top: 20px;
   }
+
+  .favorites-container {
+    margin-top: 20px;
+  }
   
   .appointment-card {
     background-color: #fff;
