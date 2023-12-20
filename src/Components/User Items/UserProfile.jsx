@@ -10,6 +10,7 @@ export const UserProfile = () => {
   const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState(false);
   const [showStoryForm, setShowStoryForm] = useState(false);
+  const [showFavPets, setShowFavPets] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +22,7 @@ export const UserProfile = () => {
   const userId = useSelector((state) => state.userId);
   const dispatch = useDispatch();
   const [petList,setPetList] = useState([])
+  const [favList, setFavList] = useState([])
   const [pet, setPet] = useState([]);
   const [petPic, setPetPic] = useState("");
   const [appointments, setAppointments] = useState([]);
@@ -28,6 +30,7 @@ export const UserProfile = () => {
   const [appointmentsError, setAppointmentsError] = useState(null);
   const [showAppointments, setShowAppointments] = useState(false);
   const [petName,setPetName] = useState([])
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -137,6 +140,10 @@ export const UserProfile = () => {
     setShowStoryForm(!showStoryForm)
   }
 
+  const toggleFavPets = () => {
+    setShowFavPets(!showFavPets)
+  }
+
   
 
 console.log(petName)
@@ -196,18 +203,23 @@ console.log(petName)
           <p>Email: {formData.email}</p>
           <p>Phone Number: {formData.phoneNumber}</p>
           <div>
-          <button className="user-profile-button edit-button" onClick={toggleEditMode}>Edit</button>
-          <button className="user-profile-button logout-button"onClick={handleLogout}>Logout</button>
+
+
           <button className="user-profile-button view-appointments-button" onClick={fetchAppointments}>
-            {showAppointments ? 'Hide Appointments' : 'View Appointments'}</button>
+            {showAppointments ? 'Hide Appointments' : 'View Appointments'}
+            </button>
+
+          <button className="user-profile-button favorite-pets-button" onClick={toggleFavPets}>
+          {showFavPets ? 'Hide Favorites' : 'View Favorites'}
+          </button>
           <button className="user-profile-button share-story-button" onClick={toggleStoryForm}>
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
           {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
-          <button className="user-profile-button favorite-pets-button" onClick={toggleStoryForm}>
-          {showStoryForm ? 'Hide your Favorites' : 'View Your Favorites'}
-          </button>
-          {showStoryForm && <FavPets/>}
+
+          {showFavPets && <FavPets favList={favList} setFavList={setFavList}/>}
+          <button className="user-profile-button edit-button" onClick={toggleEditMode}>Edit</button>
+          <button className="user-profile-button logout-button"onClick={handleLogout}>Logout</button>
           </div>
           
 

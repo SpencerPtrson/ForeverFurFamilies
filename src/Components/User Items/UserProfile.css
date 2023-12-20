@@ -1,5 +1,5 @@
 .user-profile-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -71,6 +71,8 @@
 
 
 .user-profile-button {
+    display: inline-block;
+    flex-wrap: wrap;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -80,10 +82,10 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  
   .edit-button {
     background-color: #007bff; 
     color: white;
+    margin-left: 10px;
   }
   
   .edit-button:hover {
@@ -120,5 +122,12 @@
     background-color: #196076;
   }
   
-  
- 
+  .favorite-pets-button {
+    background-color: #ffc107;
+    color: white;
+    margin-left: 10px;
+  }
+
+  .favorite-pets-button:hover {
+    background-color: #e0a800;
+  }

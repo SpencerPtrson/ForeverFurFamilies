@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import PetCards from "../Pets/PetCards";
 import { useState } from "react";
 import { useEffect } from "react";
+import './GettingFavs.css'
 
 const FavPets = () => {
   const [favList, setFavList] = useState([]);
@@ -30,10 +31,10 @@ const FavPets = () => {
   }, []);
 
   const petCards = favList.map((pet) => (
-    <PetCards pet={pet} key={pet.petId} />
+    <PetCards pet={pet} key={pet.petId} customClass="favPetCard" />
   ));
 
-  return <div>{petCards}</div>;
+  return <div className="fav-pets-container">{petCards}</div>;
 };
 
 export default FavPets;
