@@ -215,14 +215,10 @@ console.log(petName)
           <button className="user-profile-button share-story-button" onClick={toggleStoryForm}>
             {showStoryForm ? 'Hide Story Form' : 'Share Your Story'}
           </button>
-          {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
 
-          {showFavPets && <FavPets favList={favList} setFavList={setFavList}/>}
           <button className="user-profile-button edit-button" onClick={toggleEditMode}>Edit</button>
           <button className="user-profile-button logout-button"onClick={handleLogout}>Logout</button>
           </div>
-          
-
           {isAppointmentsLoading && <div>Loading Appointments...</div>}
           {appointmentsError && <div>Error Loading Appointments</div>}
           {showAppointments && !isAppointmentsLoading && appointments.length > 0 && (
@@ -231,6 +227,10 @@ console.log(petName)
               {appointments}
             </div>
           )}
+          {showFavPets && <FavPets favList={favList} setFavList={setFavList}/>}
+          {showStoryForm && <CreateStoryForm userId={userId} petList={petList}/>}
+
+
         </div>
       )}
     </div>

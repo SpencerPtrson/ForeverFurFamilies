@@ -86,7 +86,7 @@ export default function Footer() {
                     }}
                   />
                   <p>
-                    <a href="https://www.hepper.com/why-adopting-a-pet-is-better-than-buying/" className="text-white">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.hepper.com/why-adopting-a-pet-is-better-than-buying/" className="text-white">
                       Why adopt a pet from a shelter?
                     </a>
                   </p>
