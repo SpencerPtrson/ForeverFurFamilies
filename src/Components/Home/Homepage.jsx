@@ -94,6 +94,11 @@ const HomePage = () => {
 
       <Container>
         <Row>
+          <div class="d-flex justify-content-center carousel-header">
+            <h1>Featured Pets</h1>
+          </div>
+        </Row>
+        <Row>
           <section className="carousel" style={{maxHeight:"65vh"}}>
             <ol className="carousel_viewport">
               {petCards.map((card, index) => (

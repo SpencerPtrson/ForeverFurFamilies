@@ -50,7 +50,7 @@ col {
 .carousel::after {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   left: 50%;
   translate: -50% 0;
   width: 515%;
@@ -91,18 +91,9 @@ col {
   color: white;
   text-align: center;
   padding: 5px;
-  margin: 0px;
+  margin-bottom: 20px;
   font-weight: 500;
   width: 100%;
-}
-
-.homepage-banner h1 {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.homepage-banner p {
-  font-size: 1.2em;
 }
 
 .counter h2 {
@@ -150,4 +141,9 @@ col {
 .right-col {
   display: flex;
 }
+
+.carousel-header h1 {
+  color:#1010C2;
+}
+
 
