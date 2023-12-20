@@ -41,10 +41,10 @@ export default function PetsRehomedCounter() {
   }, [inView]);
 
   return (
-    <div ref={ref} className="counter-section">
-      <p>Total pets reHomed</p>
-      <br />
-      <span>{counterValue}</span>
+    <div ref={ref} className="d-flex justify-content-center counter-section">
+  
+          <p><span>{counterValue}</span></p>
+
     </div>
   );
 };

@@ -10,6 +10,8 @@ import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import HeroSection from "./HeroSection";
 import PetsRehomedCounter from "./PetsRehomedCounter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
   const [seniorPets, setSeniorPets] = useState([]);
@@ -88,8 +90,6 @@ const HomePage = () => {
       <HeroSection />
       
       <div className="homepage-banner">
-        <h1>Welcome to the ForeverFur Families WebPage</h1>
-        <p>Find your new best friend today!</p>
       </div>
 
       <Container>
@@ -104,33 +104,60 @@ const HomePage = () => {
             </ol>
           </section>
         </Row>
-
-        <Row>
-          <Col>
-          <PetsRehomedCounter />
-            
-          </Col>
-          <Col>
-            
-          </Col>
-        </Row>
+        </Container>
         
+        
+        <Container fluid className="success-stories">
+        <Container>         
+        <Row>
+        <div class="d-flex justify-content-center success-title">
+          <h1>Success Stories</h1>
+          </div>
+          <Col className="left-col">
+            
 
-        <Row>
+            
+              <div className="d-flex align-items-center counter">
+                <h2>Pets reHomed</h2>
+                <PetsRehomedCounter />
+              </div>
+            
+                
+          </Col>
+
           <Col>
+          <div class="d-flex justify-content-center success">
+
           
-          <img src={pic} alt="Bingo's Success Story" width="500" height="600" />
+          <div className="d-flex align-items-center">
+          <img src={pic} alt="Bingo's Success Story" width="100%" height="100%" />
+          </div></div>
           </Col>
-          <Col>
+          <Col className="right-col d-flex align-items-center">
+          
+            <div className="d-flex align-self-center quote">
             
-              
-              {story}
+            <div class="d-flex align-items-center justify-content-center">
+            <FontAwesomeIcon icon={faQuoteLeft} size="2xl" style={{color: "#ffffff",}} />
+                </div>
+                
+              {story}!
+
+
+            </div>
             
-          </Col>
+          
+           </Col>
         </Row>
+        </Container> 
+        </Container>       
+
+        <Container>
         <Row>
           <Col>
-          
+          <div class="d-flex justify-content-center search">
+            <h1>Search for Pets in Your Area</h1>
+          </div>
             <AllPetsMap petList={pets} />
           </Col>
         </Row>

@@ -1,0 +1,7 @@
+.counter-section p {
+    /* Add your styles here */
+    color: #fff; /* Change color to your preference */
+    font-size: calc(1.75rem + 1.5vw); /* Change font size to your preference */
+    font-weight: 600;
+    
+  }
